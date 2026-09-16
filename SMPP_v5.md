@@ -2042,7 +2042,7 @@ The following diagram illustrates the use of registered delivery as a means of o
       │                                   │                               │
       │                                   │── Network Delivery Attempt ──>│
       │                                   │<────── NACK (failure) ────────│
-      ⋮                                   ⋮                               ⋮
+      │                                   │                               │
       │                                   │── Network Delivery Attempt ──>│
       │                                   │<─────── ACK (success) ────────│
       │<───── deliver_sm (receipt) ───────│                               │
