@@ -15,38 +15,37 @@ A ESME typically represents a fixed network SMS client, such as a WAP Proxy Serv
 A Routing Entity (RE) is a generic term for a network element that is utilized for MC to MC, and ESME to MC message routing. A RE has the ability to emulate the functionality associated with both a MC and an ESME. To an ESME, a RE appears as a MC and to a MC, a RE appears as an ESME. A carrier may utilise REs to hide a network of Message Centres, presenting only the REs as the external interface point for ESMEs.
 
 The following diagram illustrates the context of SMPP in a mobile network:
-
 ```text
-                    SMPP
-┌──────────┐      ┌──────────────┐
-│   ESME   │─────>│ TCP/IP / X.25│
-└──────────┘      └──────┬───────┘
-                         │
-                   ┌─────┴─────┐
-                   │  Routing  │
-                   │ Entities  │
-                   └─────┬─────┘
-                         │ SMPP
-                 ┌───────┴────────┐
-                 │ TCP/IP / X.25  │
-                 └───────┬────────┘
-                         │
-              ┌──────────┼──────────┐
-              ▼          ▼          ▼
-            SMSC       SMSC       SMSC
-              │          │          │
-              └──────────┼──────────┘
-                         ▼
-                 ┌──────────────┐
-                 │Mobile Network│
-                 │              │
-                 │ MSC BSC HLR  │
-                 │     VLR SS7  │
-                 └───────┬──────┘
-                         │
-                    Mobile devices
+                   SMPP
+    ┌──────────┐          ┌────────────────┐
+    │   ESME   │─────────>│ TCP/IP or X.25 │
+    └──────────┘          └───────┬────────┘
+                                  │
+                         ┌────────┴─────────┐
+                         │ Routing Entities │
+                         └────────┬─────────┘
+                                  │ SMPP
+                          ┌───────┴────────┐
+                          │ TCP/IP or X.25 │
+                          └───────┬────────┘
+                                  │
+          ┌───────────────────────┼───────────────────────┐
+          ▼                       ▼                       ▼
+     ┌─────────┐             ┌─────────┐       ┌─────────────────────┐
+     │  SMSC 1 │             │  SMSC N │       │ Other (eg USSD, CBC)│
+     └────┬────┘             └────┬────┘       └──────────┬──────────┘
+          └───────────────────────┼───────────────────────┘
+                                  ▼
+                      ┌───────────────────────┐
+                      │     Mobile Network    │
+                      │     MSC  BSC  HLR     │
+                      │        VLR  SS7       │
+                      └───────────┬───────────┘
+                                  │
+                        ┌─────────┴─────────┐
+                        │   Mobile devices  │
+                        └───────────────────┘
 ```
-
 **Figure 1-1 SMPP Network Diagram**
 
 SMPP V5.0  SMS Forum 12 of 166
