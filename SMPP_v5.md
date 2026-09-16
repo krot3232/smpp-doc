@@ -482,15 +482,14 @@ An ESME has established a network connection to the MC but has not yet issued a 
 ##### 2.3.3 Bound_RX
 
 A connected ESME has requested to bind as a Receiver (by issuing a *bind_receiver* PDU) and has received a *bind_receiver_resp* PDU from the MC authorising its Bind request. An ESME bound as a receiver may receive short messages from a MC, which may be originated, by a mobile station, by another ESME or by the MC itself (for example a MC delivery receipt). Refer to section 2.4 for a full list of applicable operations in Bound_RX state.
-
-Message ESME Center
-
-N etwork C onnection
-
-*b ind _ receiver*
-
-*b ind _ receiver_ resp*
-
+```text
+    ┌──────┐                                         ┌────────────────┐
+    │ ESME │                                         │ Message Center │
+    └───┬──┘                                         └────────┬───────┘
+        │──────────────── Network Connection ────────────────>│
+        │─────────────────── bind_receiver ──────────────────>│
+        │<─────────────── bind_receiver_resp ─────────────────│
+```
 **Figure 2-4 Bound_RX State**
 
 ##### 2.3.4 Bound_TRX
