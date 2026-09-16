@@ -520,12 +520,12 @@ The ESME or MC has closed the network connection. This typically results as foll
 
 The purpose of the *outbind* operation is to allow the MC initiate a SMPP session. A typical example of where such a facility might be applicable would be where the MC had outstanding messages for delivery to the ESME.
 ```text
+                      Initiated by Message Center
     ┌──────┐                                         ┌────────────────┐
     │ ESME │                                         │ Message Center │
     └───┬──┘                                         └────────┬───────┘
         │<─────────────── Network Connection ─────────────────│
         │<───────────────────── outbind ──────────────────────│
-        │             Initiated by Message Center             │
 ```
 **Figure 2-6 Outbound State**
 
