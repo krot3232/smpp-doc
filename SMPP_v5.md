@@ -612,55 +612,55 @@ To help explain the context of SMPP operations and their related states, the fol
 SMPP V5.0  SMS Forum 31 of 166
 
 ##### 2.5.2 Example Receiver Session
-
-Message ESME Center
-
-Network Connection
-
-Open
-
-*b ind _ receiver*
-
-*b ind _ receiver_ resp* <u>Bound_RX</u> *deliver_ sm* *deliver_ sm _ resp*
-
-*deliver_ sm* *deliver_ sm _ resp*
-
-*unb ind* *unb ind _ resp* Unbound
-
-*C onnect*<s>i</s>*on C*<s>l</s>*osed*
-
-<u>Closed</u>
-
+```text
+    ┌──────┐                                         ┌────────────────┐
+    │ ESME │                                         │ Message Center │
+    └───┬──┘                                         └────────┬───────┘
+        │──────────────── Network Connection ────────────────>│
+     [Open]                                                   │
+        │─────────────────── bind_receiver ──────────────────>│
+        │<─────────────── bind_receiver_resp ─────────────────│
+   [Bound_RX]                                                 │
+        │<─────────────────── deliver_sm ─────────────────────│
+        │────────────────── deliver_sm_resp ─────────────────>│
+        │<─────────────────── deliver_sm ─────────────────────│
+        │────────────────── deliver_sm_resp ─────────────────>│
+        │────────────────────── unbind ──────────────────────>│
+        │<─────────────────── unbind_resp ────────────────────│
+    [Unbound]                                                 │
+        │                                                     │
+        │----------------- Connection Closed ---------------->│
+    [Closed]                                                  │
+```
 **Figure 2-9 Example Receiver Session**
 
 SMPP V5.0  SMS Forum 32 of 166
 
 ##### 2.5.3 Example Transceiver Session
-
-Message ESME Center
-
-N etwork C onnection
-
-Open
-
-*b ind _ transceiver* *b ind _ transceiver_ resp* <u>Bound_TRX</u> *deliver_ sm* *deliver_ sm _ resp*
-
-*deliver_ sm* *deliver_ sm _ resp*
-
-*sub m it_ sm*
-
-*sub m it_ sm _ resp*
-
-*query_ sm*
-
-*query_ sm _ resp*
-
-*unb ind* *unb ind _ resp* <u>Unbound</u>
-
-*C onnect*<s>i</s>*on C*<s>l</s>*osed*
-
-<u>Closed</u>
-
+```text
+    ┌──────┐                                         ┌────────────────┐
+    │ ESME │                                         │ Message Center │
+    └───┬──┘                                         └────────┬───────┘
+        │──────────────── Network Connection ────────────────>│
+     [Open]                                                   │
+        │───────────────── bind_transceiver ─────────────────>│
+        │<────────────── bind_transceiver_resp ───────────────│
+   [Bound_TRX]                                                │
+        │<─────────────────── deliver_sm ─────────────────────│
+        │────────────────── deliver_sm_resp ─────────────────>│
+        │<─────────────────── deliver_sm ─────────────────────│
+        │────────────────── deliver_sm_resp ─────────────────>│
+        │───────────────────── submit_sm ────────────────────>│
+        │<───────────────── submit_sm_resp ───────────────────│
+        │───────────────────── query_sm ─────────────────────>│
+        │<────────────────── query_sm_resp ───────────────────│
+        │────────────────────── unbind ──────────────────────>│
+        │<─────────────────── unbind_resp ────────────────────│
+    [Unbound]                                                 │
+        │                                                     │
+        │----------------- Connection Closed ---------------->│
+    [Closed]                                                  │
+```
 **Figure 2-10 Example Transceiver Session**
 
 SMPP V5.0  SMS Forum 33 of 166
