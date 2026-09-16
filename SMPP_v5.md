@@ -2085,21 +2085,20 @@ The conventional approach to SMS has been to store the message in a MC storage a
 the *cancel_sm*, *query_sm* and *replace_sm* operations or submit w/replace mode of *submit_sm*.
 
 The following diagram illustrates store and forward mode. The message is first accepted by the Message Center and acknowledged with the *submit_sm_resp* PDU that is returned to the ESME. The message center then makes an attempt to deliver the message, which fails due to some network error. Several retry attempts may occur until the message is finally delivered to the subscriber. Store and forward is based on the concept of giving the message to the MC and relying on the MC to do a `best effort` attempt to deliver the message to its destination.
-
-SMPP V5.0  SMS Forum 81 of 166
-
-Message ESME SME Center
-
-|Bound_TX||
-|---|---|
-|submit_sm||
-|submit_sm_resp|Network Delivery Attempt NACK (failure) Network Delivery Attempt|
-
-*ACK (success)*
-
+```text
+    ┌──────┐                   ┌────────────────┐                    ┌─────┐
+    │ ESME │                   │ Message Center │                    │ SME │
+    └───┬──┘                   └────────┬───────┘                    └──┬──┘
+   [Bound_TX]                           │                               │
+        │────────── submit_sm ─────────>│                               │
+        │<────── submit_sm_resp ────────│                               │
+        │                               │── Network Delivery Attempt ──>│
+        │                               │<────── NACK (failure) ────────│
+        │                               │                               │
+        │                               │── Network Delivery Attempt ──>│
+        │                               │<─────── ACK (success) ────────│
+```
 **Figure 4-2 Store and Forward Mode**
-
-SMPP V5.0  SMS Forum 82 of 166
 
 ##### 4.2.10.3 Datagram Message Mode
 
