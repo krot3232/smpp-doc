@@ -666,27 +666,28 @@ SMPP V5.0  SMS Forum 32 of 166
 SMPP V5.0  SMS Forum 33 of 166
 
 ##### 2.5.4 Example Transmitter Session (Cell Broadcast Entity)
-
-Message ESME Center
-
-Network Connection
-
-Open
-
-*bind_transmitter*
-
-*bind_transmitter_resp* <u>Bound_TX</u> *broadcast_sm* *broadcast_sm_resp*
-
-*broadcast_sm* *broadcast_sm_resp*
-
-*cancel_broadcast_sm* *cancel_broadcast_sm_resp*
-
-*unbind* *unbind_resp* <u>Unbound</u>
-
-*Connection Closed*
-
-Closed
-
+```text
+    ┌──────┐                                         ┌────────────────┐
+    │ ESME │                                         │ Message Center │
+    └───┬──┘                                         └────────┬───────┘
+        │──────────────── Network Connection ────────────────>│
+     [Open]                                                   │
+        │───────────────── bind_transmitter ─────────────────>│
+        │<────────────── bind_transmitter_resp ───────────────│
+   [Bound_TX]                                                 │
+        │─────────────────── broadcast_sm ───────────────────>│
+        │<──────────────── broadcast_sm_resp ─────────────────│
+        │─────────────────── broadcast_sm ───────────────────>│
+        │<──────────────── broadcast_sm_resp ─────────────────│
+        │──────────────── cancel_broadcast_sm ───────────────>│
+        │<──────────── cancel_broadcast_sm_resp ──────────────│
+        │────────────────────── unbind ──────────────────────>│
+        │<─────────────────── unbind_resp ────────────────────│
+    [Unbound]                                                 │
+        │                                                     │
+        │----------------- Connection Closed ---------------->│
+    [Closed]                                                  │
+```
 **Figure 2-11 Example Transmitter Session (Cell Broadcast Entity)**
 
 SMPP V5.0  SMS Forum 34 of 166
@@ -694,25 +695,28 @@ SMPP V5.0  SMS Forum 34 of 166
 ##### 2.5.5 Example Outbind Session
 
 This example depicts an outbind session that results in the binding of a receiver ESME.
-
-Message ESME Center
-
-Network Connection Open *outb ind*
-
-<u>Outbound</u>
-
-*b ind _ receiver*
-
-*b ind _ receiver_ resp* <u>Bound_RX</u> *deliver_ sm* *deliver_ sm _ resp*
-
-*deliver_ sm* *deliver_ sm _ resp*
-
-*unb ind* *unb ind _ resp* Unbound
-
-*C onnect*<s>i</s>*on C*<s>l</s>*osed*
-
-<u>Closed</u>
-
+```text
+    ┌──────┐                                         ┌────────────────┐
+    │ ESME │                                         │ Message Center │
+    └───┬──┘                                         └────────┬───────┘
+        │<─────────────── Network Connection ─────────────────│
+     [Open]                                                   │
+        │<───────────────────── outbind ──────────────────────│
+   [Outbound]                                                 │
+        │─────────────────── bind_receiver ──────────────────>│
+        │<─────────────── bind_receiver_resp ─────────────────│
+   [Bound_RX]                                                 │
+        │<─────────────────── deliver_sm ─────────────────────│
+        │────────────────── deliver_sm_resp ─────────────────>│
+        │<─────────────────── deliver_sm ─────────────────────│
+        │────────────────── deliver_sm_resp ─────────────────>│
+        │────────────────────── unbind ──────────────────────>│
+        │<─────────────────── unbind_resp ────────────────────│
+    [Unbound]                                                 │
+        │                                                     │
+        │----------------- Connection Closed ---------------->│
+    [Closed]                                                  │
+```
 **Figure 2-12 Example Outind Session**
 
 SMPP V5.0  SMS Forum 35 of 166
