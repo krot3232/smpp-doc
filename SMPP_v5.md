@@ -458,24 +458,26 @@ X.25. This connection is referred to as a SMPP session and can have several stat
 ##### 2.3.1 Open
 
 An ESME has established a network connection to the MC but has not yet issued a Bind request. The MC is only aware of the TCP/IP or X.25 connection. No identification details have yet been exchanged.
-
-Message ESME Center
-
-|ESME|Network Connection Initiated by ESME Figure 2-2 Open State A connected ESME has requested to bind as a Transmitter (by issuing a bind_transmitter_resp request. An ESME bound as a transmitter may send short messages to a MC for onward delivery to a Mobile Station or to another ESME. The ESME may also replace, query or cancel a previously submitted short message. Refer to section 2.4 for a full list of applicable Message Center||
-|---|---|---|
-||N etwork C onnection b ind _ transm itter||
+```text
+                           Initiated by ESME
+    ┌──────┐                                         ┌────────────────┐
+    │ ESME │                                         │ Message Center │
+    └───┬──┘                                         └────────┬───────┘
+        │──────────────── Network Connection ────────────────>│
+```
+**Figure 2-2 Open State**
 
 ##### 2.3.2 Bound_TX
-
-*bind_transmitter* PDU) and has received a PDU from the MC authorising its bind
-
-##### operations in Bound_TX state
-
-*b ind _ transm itter_ resp*
-
+ A connected ESME has requested to bind as a Transmitter (by issuing a bind_transmitter_resp request. An ESME bound as a transmitter may send short messages to a MC for onward delivery to a Mobile Station or to another ESME. The ESME may also replace, query or cancel a previously submitted short message. Refer to section 2.4 for a full list of applicable operations in Bound_TX state.
+```text
+    ┌──────┐                                         ┌────────────────┐
+    │ ESME │                                         │ Message Center │
+    └───┬──┘                                         └────────┬───────┘
+        │──────────────── Network Connection ────────────────>│
+        │───────────────── bind_transmitter ─────────────────>│
+        │<────────────── bind_transmitter_resp ───────────────│
+```
 **Figure 2-3 Bound_TX State**
-
-SMPP V5.0  SMS Forum 26 of 166
 
 ##### 2.3.3 Bound_RX
 
