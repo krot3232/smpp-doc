@@ -421,16 +421,25 @@ The Open Systems Interconnect model or OSI stack as it is more commonly known, d
 
 SMPP is an application layer protocol, using the same underlying communications as protocols such as well known services like telnet, ftp, http etc. An application layer connection is typically presented as a buffer through which an application can send and receive data. The transport of this data between one peer and another is completely hidden from the ESME or MC. In fact, nowhere in SMPP is there any support for parity, CRC checking or any other form of corruption detection .This is all automatically handled by the application layer functionality of TCP/IP or X.25. The only assumption made by a SMPP-based application, ESME or MC, is that the remote peer conforms to the protocol and that a PDU sent from one peer to another is fully recognisable as a SMPP PDU.
 
-|IDC|ESME Application|Application||IDC|
-|---|---|---|---|---|
-||Transport|Reliable Packet Transfer Transport|||
-||Network|Packet Transfer Network|||
-||Data|Data Octet Transfer|||
-||Physical|Physical|||
+```text
+      ESME                                      Message Center
+┌───────────────┐                              ┌───────────────┐
+│  Application  │                              │  Application  │
+├───────────────┤                              ├───────────────┤
+│   Transport   │<─ Reliable Packet Transfer ─>│   Transport   │
+├───────────────┤                              ├───────────────┤
+│    Network    │<───── Packet Transfer ──────>│    Network    │
+├───────────────┤                              ├───────────────┤
+│     Data      │<────── Octet Transfer ──────>│     Data      │
+├───────────────┤                              ├───────────────┤
+│   Physical    │                              │   Physical    │
+└───────┬───────┘                              └───────┬───────┘
+        ▲                                              ▲
+        │                                              │
+        └──────────────────────────────────────────────┘
+         Network Cable, Serial Link, Wireless Interface
+```
 
-Message Center
-
-Netw ork Cable, Serial Link, Wireless Inter f ac e
 
 **Figure 2-1 Application Layer Communication Between ESME and MC**
 
