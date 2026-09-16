@@ -585,27 +585,28 @@ SMPP V5.0  SMS Forum 30 of 166
 To help explain the context of SMPP operations and their related states, the following examples illustrate typical dialogues for the three types of ESME.
 
 ##### 2.5.1 Example Transmitter Session
-
-Message ESME Center
-
-Network Connection
-
-Open
-
-*b ind _ transm itter*
-
-*b ind _ transm itter_ resp* <u>Bound_TX</u> *sub m it_ sm* *sub m it_ sm _ resp*
-
-*sub m it_ sm* *sub m it_ sm _ resp*
-
-*cancel_ sm* *cancel_ sm _ resp*
-
-*unb ind* *unb ind _ resp* Unbound
-
-*C onnect*<s>i</s>*on C*<s>l</s>*osed*
-
-<u>Closed</u>
-
+```text
+    ┌──────┐                                         ┌────────────────┐
+    │ ESME │                                         │ Message Center │
+    └───┬──┘                                         └────────┬───────┘
+        │──────────────── Network Connection ────────────────>│
+     [Open]                                                   │
+        │───────────────── bind_transmitter ─────────────────>│
+        │<────────────── bind_transmitter_resp ───────────────│
+   [Bound_TX]                                                 │
+        │───────────────────── submit_sm ────────────────────>│
+        │<───────────────── submit_sm_resp ───────────────────│
+        │───────────────────── submit_sm ────────────────────>│
+        │<───────────────── submit_sm_resp ───────────────────│
+        │───────────────────── cancel_sm ────────────────────>│
+        │<───────────────── cancel_sm_resp ───────────────────│
+        │────────────────────── unbind ──────────────────────>│
+        │<─────────────────── unbind_resp ────────────────────│
+    [Unbound]                                                 │
+        │                                                     │
+        │----------------- Connection Closed ---------------->│
+    [Closed]                                                  │
+```
 **Figure 2-8 Example Transmitter Session**
 
 SMPP V5.0  SMS Forum 31 of 166
