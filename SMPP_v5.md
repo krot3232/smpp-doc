@@ -1024,19 +1024,22 @@ SMPP V5.0  SMS Forum 45 of 166
 ##### 2.10.4 Secure Tunnel
 
 Another approach to securing a SMPP session is to use a secure tunnel. This is where the ESME-MC connection is not made directly from one peer to another but by connecting to a secure tunnel server. The tunnel server is configured to match a particular insecure connection from an ESME with a secure connection to another tunnel usually located in the peers network. The remote tunnel, then matches the incoming connection with another insecure connection onwards to the other peer. The result is that an ESME and MC combination unable to support direct SSL/TLS can still be secured for Internet ready communication by means of a tunnel server.
-
-IDC IDC
-
-Message ESME Center
-
-Insecure Insecure SMPP Session SMPP Session
-
-IDC IDC Secure Secure Tunnel Tunnel Server Server
-
-Secure Session
-
-Message Center Network ESME Network
-
+```text
+    ESME Network                        Message Center Network
+┌────────────────────────┐        ┌──────────────────────────────┐
+│  ┌──────┐              │        │ ┌────────────────┐           │
+│  │ ESME │              │        │ │ Message Center │           │
+│  └───┬──┘              │        │ └───────┬────────┘           │
+│      ▲ Insecure        │        │         ▲ Insecure           │
+│      ▼ SMPP Session    │        │         ▼ SMPP Session       │
+│ ┌────┴─────────┐       │        │  ┌──────┴───────┐            │
+│ │Secure Tunnel │       │        │  │Secure Tunnel │            │
+│ │    Server    │       │        │  │    Server    │            │
+│ └────┬─────────┘       │        │  └──────┬───────┘            │
+│      ▲                 │        │         ▲                    │
+└──────┼─────────────────┘        └─────────┼────────────────────┘
+       └────── Secure Session ──────────────┘
+```
 **Figure 2-18 ESME-MC SMPP session using a secure tunnel**
 
 SMPP V5.0  SMS Forum 46 of 166
