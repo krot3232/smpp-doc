@@ -519,32 +519,27 @@ The ESME or MC has closed the network connection. This typically results as foll
 ##### 2.3.7 Outbound
 
 The purpose of the *outbind* operation is to allow the MC initiate a SMPP session. A typical example of where such a facility might be applicable would be where the MC had outstanding messages for delivery to the ESME.
-
-Message ESME Center
-
-Network Connection
-
-*outbind*
-
-Initiated by Message Center
-
+```text
+    ┌──────┐                                         ┌────────────────┐
+    │ ESME │                                         │ Message Center │
+    └───┬──┘                                         └────────┬───────┘
+        │<─────────────── Network Connection ─────────────────│
+        │<───────────────────── outbind ──────────────────────│
+        │             Initiated by Message Center             │
+```
 **Figure 2-6 Outbound State**
 
 The following diagram illustrates the concept of Outbind when used to request a receiver ESME to bind.
-
-Message ESME Center
-
-Network Connection
-
-*outbind*
-
-*b ind _ receiver*
-
-*bind_receiver_resp*
-
+```text
+    ┌──────┐                                         ┌────────────────┐
+    │ ESME │                                         │ Message Center │
+    └───┬──┘                                         └────────┬───────┘
+        │<─────────────── Network Connection ─────────────────│
+        │<───────────────────── outbind ──────────────────────│
+        │─────────────────── bind_receiver ──────────────────>│
+        │<─────────────── bind_receiver_resp ─────────────────│
+```
 **Figure 2-7 Bound_RX State from Outbound State**
-
-SMPP V5.0  SMS Forum 28 of 166
 
 ##### 2.4 Operation Matrix
 
