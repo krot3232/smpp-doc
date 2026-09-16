@@ -728,31 +728,30 @@ Up to now, we have referred to PDUs by name and indicated the request/response p
 ##### 2.6.1 The PDU Sequence Number
 
 Each SMPP request PDU has an identifier called a sequence number that is used to uniquely identify the PDU in the context of its’ originating entity and the current SMPP session. The resulting response PDU (which must be returned on the same SMPP session) is expected to mirror the sequence number of the original request. The following diagram illustrates the use of sequence numbers.
-
-Message ESME Center
-
-N etwork C onnection
-
-Open
-
-*b ind _ transceiver (seq =1)* *b ind _ transceiver_ resp (seq =1)* <u>Bound_TRX</u> *deliver_ sm (seq =1)* *deliver_ sm _ resp (seq =1)*
-
-*deliver_ sm (seq =2)* *deliver_ sm _ resp (seq =2)*
-
-*sub m it_ sm (seq =2)*
-
-*sub m it_ sm _ resp (seq =2)*
-
-*query_ sm (seq =3)*
-
-*query_ sm _ resp (seq =3)*
-
-*unb ind (seq =4)* *unb ind _ resp (seq =4)* <u>Unbound</u>
-
-*C onnect*<s>i</s>*on C*<s>l</s>*osed*
-
-<u>Closed</u>
-
+```text
+    ┌──────┐                                         ┌────────────────┐
+    │ ESME │                                         │ Message Center │
+    └───┬──┘                                         └────────┬───────┘
+        │──────────────── Network Connection ────────────────>│
+     [Open]                                                   │
+        │───────────── bind_transceiver (seq=1) ─────────────>│
+        │<────────── bind_transceiver_resp (seq=1) ───────────│
+   [Bound_TRX]                                                │
+        │<─────────────── deliver_sm (seq=1) ─────────────────│
+        │────────────── deliver_sm_resp (seq=1) ─────────────>│
+        │<─────────────── deliver_sm (seq=2) ─────────────────│
+        │────────────── deliver_sm_resp (seq=2) ─────────────>│
+        │───────────────── submit_sm (seq=2) ────────────────>│
+        │<───────────── submit_sm_resp (seq=2) ───────────────│
+        │───────────────── query_sm (seq=3) ─────────────────>│
+        │<────────────── query_sm_resp (seq=3) ───────────────│
+        │────────────────── unbind (seq=4) ──────────────────>│
+        │<─────────────── unbind_resp (seq=4) ────────────────│
+    [Unbound]                                                 │
+        │                                                     │
+        │----------------- Connection Closed ---------------->│
+    [Closed]                                                  │
+```
 **Figure 2-13 Transceiver Session demonstrating PDU Sequencing**
 
 Referring to the above example, sequence numbers are uniquely issued per request PDU. This means that for every PDU request issued by an ESME, it must use a different sequence number. The recommended approach is to use monotonically increasing sequence numbers, starting at 1. The first issued PDU request has a sequence number of 1, the next uses 2 and so on.
@@ -786,39 +785,36 @@ If the ESME-MC connection is closed or lost, then the expected recovery would be
 ##### 2.6.4 Synchronous Vs. Asynchronous
 
 SMPP is an asynchronous protocol. This means that an ESME or MC can send several requests at a time to the other party. The PDU sequence number plays a crucial role in supporting the asynchronous nature of SMPP. All example sessions shown in the previous sections have been synchronous. Here is an example of an asynchronous session.
-
-SMPP V5.0  SMS Forum 37 of 166
-
-Message ESME Center
-
-N etwork C onnection
-
-Open
-
-*b ind _ transm itter (seq =1)* *b ind _ transm itter_ resp (seq =1)* <u>Bound_TX</u>
-
-*sub m it_ sm (seq =2)* *sub m it_sm (seq=3)* *sub m it_ sm (seq =4)* *sub m it_sm (seq=5)* *sub m it_ sm (seq =6)* *sub m it_ sm _ resp (seq =2)*
-
-*submit_sm (seq=7)* *query_ sm (seq =8)*
-
-*sub m it_ sm _ resp (seq =3)*
-
-*query_ sm _ resp (seq =8)*
-
-*sub m it_ sm _ resp (seq =4)* *sub m it_ sm _ resp (seq =7)* *sub m it_ sm _ resp (seq =5)*
-
-*sub m it_ sm _ resp (seq =6)*
-
-*unb ind (seq =9)*
-
-*unb ind _ resp (seq =9)*
-
-<u>Unbound</u>
-
-*C onnect*<s>i</s>*on C losed*
-
-Clos ed
-
+```text
+    ┌──────┐                                         ┌────────────────┐
+    │ ESME │                                         │ Message Center │
+    └───┬──┘                                         └────────┬───────┘
+        │──────────────── Network Connection ────────────────>│
+     [Open]                                                   │
+        │───────────── bind_transmitter (seq=1) ─────────────>│
+        │<────────── bind_transmitter_resp (seq=1) ───────────│
+   [Bound_TX]                                                 │
+        │───────────────── submit_sm (seq=2) ────────────────>│
+        │───────────────── submit_sm (seq=3) ────────────────>│
+        │───────────────── submit_sm (seq=4) ────────────────>│
+        │───────────────── submit_sm (seq=5) ────────────────>│
+        │───────────────── submit_sm (seq=6) ────────────────>│
+        │<───────────── submit_sm_resp (seq=2) ───────────────│
+        │───────────────── submit_sm (seq=7) ────────────────>│
+        │───────────────── query_sm (seq=8) ─────────────────>│
+        │<───────────── submit_sm_resp (seq=3) ───────────────│
+        │<────────────── query_sm_resp (seq=8) ───────────────│
+        │<───────────── submit_sm_resp (seq=4) ───────────────│
+        │<───────────── submit_sm_resp (seq=7) ───────────────│
+        │<───────────── submit_sm_resp (seq=5) ───────────────│
+        │<───────────── submit_sm_resp (seq=6) ───────────────│
+        │────────────────── unbind (seq=9) ──────────────────>│
+        │<─────────────── unbind_resp (seq=9) ────────────────│
+    [Unbound]                                                 │
+        │                                                     │
+        │----------------- Connection Closed ---------------->│
+    [Closed]                                                  │
+```
 **Figure 2-14 Asynchronous Transmitter Session**
 
 The asynchronous behaviour of both the ESME and Message Centre is evident in the above session. The ESME issues 5 *submit_sm* requests to the MC before receiving its first *submit_sm_resp*. Note that the order in which the MC acknowledges these requests is by no means guaranteed to match the transmission order of the original requests. A Message Centre, because of it using a distributed architecture or because it is in fact a SMPP Routing Entity and is distributing the ESME requests to other Message Centres, is likely to acknowledge requests in the order they are completed. Some requests may be distributed to busier parts of the system than others and as such may take longer to process. The result is that the asynchronous sequence of acknowledgements returned to the ESME may not carry the same order as used by the requests. The same applies for messages delivered by the MC to the ESME. The MC must support the ability to process response PDUs in non- contiguous order.
@@ -832,21 +828,18 @@ SMPP V5.0  SMS Forum 38 of 166
 Synchronous behaviour may appear the easier route to take when developing an application. Sending at most one PDU request, then waiting for the response is an easy alternative over the management of an entire window of PDUs, which may be acknowledged in a non- contiguous order.
 
 However for an application to efficiently utilise the SMPP session bandwidth, asynchronous transmission can make significant improvements. The following diagram helps explain the reasoning for using the protocol in an asynchronous manner.
-
-Message ESME Center
-
-||Requests||
-|---|---|---|
-|PDU|PDU|PDU|
-|Network Connection|||
-|PDU PDU|PDU||
-
-PDU PDU
-
-PDU PDU
-
-<u>Responses</u>
-
+```text
+    ┌──────┐                                         ┌────────────────┐
+    │ ESME │                                         │ Message Center │
+    └───┬──┘                                         └────────┬───────┘
+        │   ┌───┐ ┌───┐ ┌───┐ ┌───┐ ┌───┐                     │
+        │── │PDU│ │PDU│ │PDU│ │PDU│ │PDU│ ── Requests ───────>│
+        │   └───┘ └───┘ └───┘ └───┘ └───┘                     │
+        │<─────────── Network Connection ────────────────────>│
+        │   ┌───┐ ┌───┐ ┌───┐ ┌───┐ ┌───┐                     │
+        │<─ │PDU│ │PDU│ │PDU│ │PDU│ │PDU│ ── Responses ───────│
+        │   └───┘ └───┘ └───┘ └───┘ └───┘                     │
+```
 **Figure 2-15 Asychronous Windowing**
 
 The above example shows 5 PDUs asynchronously transmitted across the SMPP session from the ESME to MC. If the MC can process only one PDU at a time, then the benefit of asynchronous transmission is actually not lost. In this situation, the window of PDUs becomes a queue of requests for the MC. As soon as the MC acknowledges each request, it will immediately find another request waiting. The same benefits apply to receiver and transceiver sessions where the MC is issuing deliver_sm or data_sm PDUs to the ESME.
