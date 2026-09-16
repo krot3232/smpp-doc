@@ -422,27 +422,23 @@ As described earlier, the ESME and MC communication is based on a SMPP session. 
 The Open Systems Interconnect model or OSI stack as it is more commonly known, defines a layered approach to data communications working from the most basic electronic data communications (physical), up to link level communication involving the transmission of octets and onwards to fully formed network packets (network) and ultimately to transport layers that manage packets and the reliable transport of data, ensuring the appropriate resending of packets that are not properly received at the remote end.
 
 SMPP is an application layer protocol, using the same underlying communications as protocols such as well known services like telnet, ftp, http etc. An application layer connection is typically presented as a buffer through which an application can send and receive data. The transport of this data between one peer and another is completely hidden from the ESME or MC. In fact, nowhere in SMPP is there any support for parity, CRC checking or any other form of corruption detection .This is all automatically handled by the application layer functionality of TCP/IP or X.25. The only assumption made by a SMPP-based application, ESME or MC, is that the remote peer conforms to the protocol and that a PDU sent from one peer to another is fully recognisable as a SMPP PDU.
-
 ```text
-      ESME                                      Message Center
-┌───────────────┐                              ┌───────────────┐
-│  Application  │                              │  Application  │
-├───────────────┤                              ├───────────────┤
-│   Transport   │<─ Reliable Packet Transfer ─>│   Transport   │
-├───────────────┤                              ├───────────────┤
-│    Network    │<───── Packet Transfer ──────>│    Network    │
-├───────────────┤                              ├───────────────┤
-│     Data      │<────── Octet Transfer ──────>│     Data      │
-├───────────────┤                              ├───────────────┤
-│   Physical    │                              │   Physical    │
-└───────┬───────┘                              └───────┬───────┘
-        ▲                                              ▲
-        │                                              │
-        └──────────────────────────────────────────────┘
+┌ ESME ──────────┐                              ┌ Message Center ┐
+│  Application   │                              │  Application   │
+├────────────────┤                              ├────────────────┤
+│   Transport    │<─ Reliable Packet Transfer ─>│   Transport    │
+├────────────────┤                              ├────────────────┤
+│    Network     │<───── Packet Transfer ──────>│    Network     │
+├────────────────┤                              ├────────────────┤
+│      Data      │<────── Octet Transfer ──────>│      Data      │
+├────────────────┤                              ├────────────────┤
+│    Physical    │                              │    Physical    │
+└───────┬────────┘                              └───────┬────────┘
+        ▲                                               ▲
+        │                                               │
+        └───────────────────────────────────────────────┘
          Network Cable, Serial Link, Wireless Interface
 ```
-
-
 **Figure 2-1 Application Layer Communication Between ESME and MC**
 
 SMPP V5.0  SMS Forum 25 of 166
