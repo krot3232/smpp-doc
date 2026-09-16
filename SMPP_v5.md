@@ -959,31 +959,28 @@ When commencing a SMPP session, the ESME or MC would begin transmission of reque
 If the TLV is not present in response PDUs, then simple linear windowing is the only means of applying flow control within the session.
 
 The advantage of using *congestion_state* over a fixed window is that the ESME can avail of the optimum performance available at a particular time instead of predetermining some window limit and using this consistently. This recognises that a MC or ESME may be under varying levels of stress and that predetermined performance is not always guaranteed.
-
-SMPP V5.0  SMS Forum 43 of 166
-
-Message ESME Center
-
-<u>Bound_TX</u>
-
-|50/sec||XXX||
-|---|---|---|---|
-||XXX_resp (congestion_state=40)||Medium|
-|80/sec||XXX||
-||XXX_resp (congestion_state=55)||High|
-||XXX_resp (congestion_state=72)||High|
-|120/sec||XXX||
-||XXX_resp (congestion_state=85)||Optimum|
-|120/sec||XXX||
-||XXX_resp (congestion_state=83)||Optimum|
-|120/sec||XXX||
-||XXX_resp (congestion_state=86)||Optimum|
-||XXX_resp (congestion_state=88)||Optimum|
-|120/sec||XXX||
-||XXX_resp (congestion_state=94)||Nearing Congestion|
-|100/sec||XXX||
-|100/sec|XXX_resp (congestion_state=88)||Optimum|
-
+```text
+       ┌──────┐                                  ┌────────────────┐
+       │ ESME │                                  │ Message Center │
+       └───┬──┘                                  └────────┬───────┘
+      [Bound_TX]                                          │
+   50/sec  │──────────────────── XXX ────────────────────>│
+           │<────── XXX_resp (congestion_state=40) ───────│ [Medium]
+   80/sec  │──────────────────── XXX ────────────────────>│
+           │<────── XXX_resp (congestion_state=55) ───────│ [High]
+           │<────── XXX_resp (congestion_state=72) ───────│ [High]
+  120/sec  │──────────────────── XXX ────────────────────>│
+           │<────── XXX_resp (congestion_state=85) ───────│ [Optimum]
+  120/sec  │──────────────────── XXX ────────────────────>│
+           │<────── XXX_resp (congestion_state=83) ───────│ [Optimum]
+  120/sec  │──────────────────── XXX ────────────────────>│
+           │<────── XXX_resp (congestion_state=86) ───────│ [Optimum]
+           │<────── XXX_resp (congestion_state=88) ───────│ [Optimum]
+  120/sec  │──────────────────── XXX ────────────────────>│
+           │<────── XXX_resp (congestion_state=94) ───────│ [Nearing Congestion]
+  100/sec  │──────────────────── XXX ────────────────────>│
+  100/sec  │<────── XXX_resp (congestion_state=88) ───────│ [Optimum]
+```
 **Figure 2-16 Flow Control & Congestion Avoidance using the *congestion_state* TLV.**
 
 The above diagram shows a session where an ESME is transmitting PDUs at a rate of 50/second. On recognising the *congestion_state* TLV and its below Optimum value, the ESME increased its rate until the *congestion_state* enters an optimum range. At this point, the ESME maintains the 120 PDUs/second until the *congestion_state* enters ‘Nearing Congestion’, at which time the ESME relaxes the messaging rate to return the *congestion_state* to an optimum level.
@@ -1005,21 +1002,21 @@ The well known Secure Socket Layer (SSL) and its standardised form TLS provide a
 ##### 2.10.3 Secure VPN
 
 A Virtual Private Network is typically used within organizations to consolidate intranets, extranets and other forms of networks. Security solutions within VPNs can vary from system to system. However the typical approach is to encrypt at the packet or data layers. The result is that an insecure session from one VPN to another can be transparently encrypted using a variety of encryption mechanisms. The ESME and MC need not support encryption directly.
-
-IDC IDC
-
-Message ESME Center
-
-Insecure Insecure SMPP Session SMPP Session
-
-IDC IDC
-
-VPN Router VPN Router
-
-Secure Session
-
-Message Center VPN ESME VPN
-
+```text
+    ESME VPN                            Message Center VPN
+┌────────────────────────┐        ┌──────────────────────────────┐
+│  ┌──────┐              │        │ ┌────────────────┐           │
+│  │ ESME │              │        │ │ Message Center │           │
+│  └───┬──┘              │        │ └───────┬────────┘           │
+│      ▲ Insecure        │        │         ▲ Insecure           │
+│      ▼ SMPP Session    │        │         ▼ SMPP Session       │
+│ ┌────┴─────────┐       │        │  ┌──────┴───────┐            │
+│ │  VPN Router  │       │        │  │  VPN Router  │            │
+│ └────┬─────────┘       │        │  └──────┬───────┘            │
+│      ▲                 │        │         ▲                    │
+└──────┼─────────────────┘        └─────────┼────────────────────┘
+       └────── Secure Session ──────────────┘
+```
 **Figure 2-17 ESME-MC SMPP session using a secure VPN**
 
 SMPP V5.0  SMS Forum 45 of 166
