@@ -2031,17 +2031,23 @@ The MC, depending on configuration, may also reject or truncate messages that ex
 The *registered_delivery* field (ref. 4.7.21) allows an ESME request a delivery receipt for the message. Under normal circumstances, a receipt is typically sent to the ESME when the message reached a final delivery state, regardless of whether the message was actually delivered or not. However the *registered_delivery* field provides a number of settings that dictate the requirements for generating the receipt. One such example is the value of 2, which requests a receipt only if the message is not delivered when it reaches its final state.
 
 The following diagram illustrates the use of registered delivery as a means of obtaining a delivery confirmation.
-
-SMPP V5.0  SMS Forum 79 of 166
-
-Message ESME SME Center
-
-|Bound_TX|||
-|---|---|---|
-|Bound_RX|submit_sm submit_sm _resp deliver_sm (receipt)|Network Delivery Attempt NACK (failure) Network Delivery Attempt ACK (success)|
-
-*deliver_sm_resp*
-
+```text
+  ┌─────────────────┐            ┌────────────────┐                    ┌─────┐
+  │       ESME      │            │ Message Center │                    │ SME │
+  └───┬─────────┬───┘            └────────┬───────┘                    └──┬──┘
+      │    [Bound_TX]                     │                               │
+ [Bound_RX]     │                         │                               │
+      │         │─────── submit_sm ──────>│                               │
+      │         │<─── submit_sm_resp ─────│                               │
+      │                                   │                               │
+      │                                   │── Network Delivery Attempt ──>│
+      │                                   │<────── NACK (failure) ────────│
+      ⋮                                   ⋮                               ⋮
+      │                                   │── Network Delivery Attempt ──>│
+      │                                   │<─────── ACK (success) ────────│
+      │<───── deliver_sm (receipt) ───────│                               │
+      │───────── deliver_sm_resp ────────>│                               │
+```
 **Figure 4-1 Registered Delivery**
 
 ##### 4.2.9.2 Scheduled
