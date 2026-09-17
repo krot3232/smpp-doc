@@ -2120,7 +2120,6 @@ In Datagram Message Mode, typical MC functions such as scheduled delivery, regis
         │<────── submit_sm_resp ────────│                               │
         │                               │── Network Delivery Attempt ──>│
         │                               │<────── NACK (failure) ────────│
-        ⋮                               ⋮                               ⋮
         │                               │── Network Delivery Attempt ──>│
         │                               │<─────── ACK (success) ────────│
 ```
