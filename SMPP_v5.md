@@ -265,64 +265,25 @@ The following sub-sections list each category and its associated operations.
 
 **Table 1-7 Message Broadcast Operations**
 
-##### Anciliary Submission Operations
+##### 1.4.5.5 Anciliary Submission Operations
+| SMPP PDU Name | Description |
+| --- | --- |
+| `cancel_sm` | This PDU is used to cancel a previously submitted message. The PDU contains the source address of the original message and the `message_id` returned in the original `submit_sm_resp`, `submit_multi_resp` or `data_sm_resp` PDU. This PDU may also omit the `message_id` and instead contain a source address, destination address and optional `service_type` field as a means of cancelling a range of messages sent from one address to another. |
+| `cancel_sm_resp` | The MC returns this PDU to indicate the success or failure of a `cancel_sm` PDU. |
+| `query_sm` | This PDU is used to query the state of a previously submitted message. The PDU contains the source address of the original message and the `message_id` returned in the original `submit_sm_resp`, `submit_multi_resp` or `data_sm_resp` PDU. |
+| `query_sm_resp` | The MC returns a `query_sm_resp` PDU as a means of indicating the result of a message query attempt. The PDU will indicate the success or failure of the attempt and for successful attempts will also include the current state of the message. |
+| `replace_sm` | The `replace_sm` PDU is used by an ESME to pass a `message_id` of a previously submitted message along with several other fields used to update the text, validity period and other attributes of the message. |
+| `replace_sm_resp` | The `replace_sm_resp` PDU indicates the success or failure of a `replace_sm` PDU |
 
-<www.smsforum.net>
+**Table 1-8 Anciliary Submission Operations**
 
-##### SMPP PDU Name
-
-##### 1.4.5.3
-
-##### SMPP PDU Name
-
-*deliver_sm*
-
-*deliver_sm_resp*
-
-*data_sm Data_sm*
-
-*data_sm_resp*
-
-##### 1.4.5.4
-
-##### SMPP PDU Name
-
-*broadcast_sm*
-
-*broadcast_sm_resp*
-
-##### 1.4.5.5
-
-##### SMPP PDU Name
-
-*cancel_sm*
-
-*cancel_sm_resp*
-
-*query_sm*
-
-*query_sm_resp*
-
-*replace_sm*
-
-##### SMPP V5.0
-
-##### Description
-
-This PDU is used to cancel a previously submitted message. The PDU contains the source address of the original message and the *message_id* returned in the original *submit_sm_resp*, *submit_multi_resp* or *data_sm_resp* PDU. This PDU may also omit the *message_id* and instead contain a source address, destination address and optional *service_type* field as a means of cancelling a range of messages sent from one address to another. The MC returns this PDU to indicate the success or failure of a *cancel_sm* PDU. This PDU is used to query the state of a previously submitted message. The PDU contains the source address of the original message and the message_id returned in the original submit_sm_resp, submit_multi_resp or data_sm_resp PDU. The MC returns a *query_sm_resp* PDU as a means of indicating the result of a message query attempt. The PDU will indicate the success or failure of the attempt and for successful attempts will also include the current state of the message. The *replace_sm* PDU is used by an ESME to pass a *message_id* of a previously submitted message along with
-
-#####  SMS Forum 23 of 166
-
-|SMPP PDU Name||Description|
-|---|---|---|
-|||several other fields used to update the text, validity period and other attributes of the message.|
-|replace_sm_resp|a|The replace_sm_resp PDU indicates the success or failure of replace_sm PDU|
-|1.4.5.6 Anciliary Broadcast Operations||Table 1-8 Anciliary Submission Operations|
-|SMPP PDU Name||Description|
-|cancel_broadcast_sm||This PDU is used to cancel the state of a previously broadcast message.|
-|cancel_broadcast_sm_resp||Response to cancel_broadcast_sm PDU.|
-|query_broadcast_sm||This PDU is used to query the state of a previously broadcast message. The PDU contains the source address of the original message and the message_id returned in the original broadcast_sm_resp PDU.|
-|query_broadcast_sm_resp||The MC returns a query_broadcast_sm_resp PDU as a means of indicating the result of a broadcast query attempt. The PDU will indicate the success or failure of the attempt and for successful attempts will also include the current state of the message.|
+##### 1.4.5.6 Anciliary Broadcast Operations
+| SMPP PDU Name | Description |
+| --- | --- |
+| `cancel_broadcast_sm` | This PDU is used to cancel the state of a previously broadcast message. |
+| `cancel_broadcast_sm_resp` | Response to `cancel_broadcast_sm` PDU. |
+| `query_broadcast_sm` | This PDU is used to query the state of a previously broadcast message. The PDU contains the source address of the original message and the `message_id` returned in the original `broadcast_sm_resp` PDU. |
+| `query_broadcast_sm_resp` | The MC returns a `query_broadcast_sm_resp` PDU as a means of indicating the result of a broadcast query attempt. The PDU will indicate the success or failure of the attempt and for successful attempts will also include the current state of the message. |
 
 **Table 1-9 Anciliary Broadcast Operations**
 
