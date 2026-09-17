@@ -67,7 +67,7 @@ This document defines Version 5.0 of the SMPP protocol. It is intended for desig
 
 |Term|Definition|
 |---|---|
-|ACK Acknowledgement||
+|ACK|Acknowledgement|
 |API|Application Programming Interface|
 |BTS|Base Transceiver Station|
 |CBE|Cell Broadcast Entity, an ESME specifically designed for Cell Broadcast|
@@ -78,10 +78,12 @@ This document defines Version 5.0 of the SMPP protocol. It is intended for desig
 |MB|Message Bureau-This is typically an operator message bureau.|
 |MC|Message Centre-A generic term used to describe various types of SMS Gateways.|
 |MCC|Mobile Country Code|
-|MNC MS Mobile Station|Mobile Network Code|
+|MNC|Mobile Network Code|
+|MS|Mobile Station|
 |MSB|Most Significant Byte|
 |MSC|Mobile Switching Centre|
-|MWI NACK Negative Acknowledgement|Message Waiting Indication|
+|MWI|Message Waiting Indication|
+|NACK|Negative Acknowledgement|
 |NSAP|Network Service Access Point|
 |PDU|Protocol Data Unit|
 |PSSD|Process Unstructured Supplementary Services Data|
@@ -106,8 +108,6 @@ This document defines Version 5.0 of the SMPP protocol. It is intended for desig
 SMPP V5.0  SMS Forum 13 of 166
 
 ##### 1.3 References
-
-|Ref.|Document Title|Document Number|Version|
 | Ref. | Document Title | Document Number | Version Number |
 | :--- | :--- | :--- | :--- |
 | [GSM 03.03] | Digital Cellular Telecommunications System (Phase 2+); Numbering, Addressing and Identification (Release 1998) | GSM 03.03<br>http://www.etsi.fr<br>3GPP<br>http://www.3GPP.org | v7.8.0 |
@@ -132,87 +132,7 @@ SMPP V5.0  SMS Forum 13 of 166
 | [3GPP TS 23.040] | Technical Realization of the Short Message Service (SMS) (Release 4) | 3GPP<br>http://www.3gpp.org | Version 5.3.0 |
 | [3GPP TS 23.041] | Technical Realization of Cell Broadcast Service. (Release 4) | 3GPP<br>http://www.3gpp.org | Version 4.2.0 |
 | [3GPP TS 23.049] | Example protocol stacks for interconnecting Cell Broadcast Centre (CBC) and Base Station Controller (BSC). (Release 1998) | 3GPP<br>http://www.3gpp.org | Version 7.0.0 |
-
-
-
-
-
-
-
-|`Digital Cellular|[GSM 03.38]|v5.6.1|
-|---|---|---|
-|telecommunication s system (Phase|[http://www.etsi.fr](http://www.etsi.fr) Superseded by [19]|Jan. ‘98|
-
-2+); Alphabets and language specific information`. [3] [GSM 03.40] v5.7.1
-
-|Technical|GSM 03.40|
-|---|---|
-|Realisation of the|[http://www.etsi.fr|](<http://www.etsi.fr>|)
-|Short Message|Superseded by [20]|
-
-Service Point to Point
-
-[4] [GSM MAP 09.02] GSM Mobile [GSM MAP 09.02] v5.11.0 Application Part <u>[http://www.etsi.fr](http://www.etsi.fr)</u> Superseded by [23]
-
-[5] [IS637] Short Message TIA/EIA/IS-637-A Rev A Service for Spread Spectrum Systems
-
-##### [6] [IS824] TIA/EIA/IS-824 For inclusion
-
-|Generic Broadcast||
-|---|---|
-|Teleservice|in IS41|
-|Transport|Rev F|
-
-Capability: Network Perspective. st [7] [IS630] Broadcast TIA/EIA/IS-136-630 Aug 31 1999 Teleservice Transport ANSI TIA/EIA- -Broadcast Air 136 Rev.A Interface Transport (BATS). [8] [TSAR] Teleservice TIA/EIA-136-620 Rev 0 Segmentation and Reassembly (TSAR)
-
-[9] [CMT-136] Short Message TIA/EIA-136-710-A Rev A Service-Cellular Messaging Teleservice
-
-[10] [GUTS] General UDP TIA/EIA-136-750 Rev 0 Transport Service (GUTS)
-
-SMPP V5.0  SMS Forum 14 of 166
-
-**Ref. Document Title Document Number** Version Number [11] [ANSI-41] Cellular Radio-TIA/EIA-41.D Rev D Telecommunications Intersystem Operations [12] [TSB29-D] TIA/EIA Rev D
-
-|International||
-|---|---|
-|Implementation of|December|
-|Wireless|2000|
-
-Telecommunications Systems
-
-##### [13] [WAPARCH]
-
-|Wireless|WAP Forum|Version 30-|
-|---|---|---|
-|Application|[http://www.wapforum.|Apr.-](<http://www.wapforum>.|Apr.-) 1998|
-|Protocol|org||
-
-Architecture Specification
-
-|[14] [WCMP]|Wireless Control|WAP Forum|Version|
-|---|---|---|---|
-||Message Protocol Specification|[http://www.wapforum](http://www.wapforum). org|4-Aug-1999|
-|[15] [WDP]|Wireless Datagram|WAP Forum|Version|
-||Protocol Specification|[http://www.wapforum](http://www.wapforum). org|5-Nov-1999|
-|[16] [ITUT X.213]|Open Systems|[ITUT X.213]|11/95|
-
-Interconnection-Network Service Definition
-
-|[17] [KOR ITS]|PCS operators|PCS standardization|1.06 Rev|
-|---|---|---|---|
-||common standards for handset-SMS functionalities|committee PCS-SMS-97-05-28|99-04-30|
-|[18] [3GPP TS 23.032]|Universal Geographical Area|3GPP [http://www.3gpp.org|Version](<http://www.3gpp.org>|Version) 4.0.0|
-
-Description (GAD) (Release 4) [19] [3GPP TS 23.038] Alphabets and 3GPP Version language-specific <u>[http://www.3gpp.org](http://www.3gpp.org)</u> 5.0.0 information (Release 4) [20] [3GPP TS 23.040] Technical 3GPP Version Realization of the <u>[http://www.3gpp.org](http://www.3gpp.org)</u> 5.3.0 Short Message Service (SMS) (Release 4) [21] [3GPP TS 23.041] Technical 3GPP Version Realization of Cell [http://www.3gpp.org](http://www.3gpp.org) 4.2.0 Broadcast Service. (Release 4) [22] [3GPP TS 23.049] Example protocol 3GPP Version stacks for [http://www.3gpp.org](http://www.3gpp.org) 7.0.0 interconnecting Cell Broadcast Centre (CBC) and Base Station Controller (BSC). (Release 1998)
-
-SMPP V5.0  SMS Forum 15 of 166
-
-|Ref.|Document Title|Document Number|Version|
-|---|---|---|---|
-||||Number|
-|[23] [3GPP TS 29.002]|Mobile Application Part (MAP)|3GPP Version|4.6.0|
-
-Specification (Release 4)
+| [3GPP TS 29.002] | Mobile Application Part (MAP) Specification (Release 4) | 3GPP | Version 4.6.0 |
 
 **Table 1-2 References**
 
