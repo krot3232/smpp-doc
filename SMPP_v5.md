@@ -147,56 +147,13 @@ SMPP V5.0  SMS Forum 16 of 166
 
 Several versions of the SMPP protocol exist. The following table explains the differences between each version:
 
-|Protocol|Owner|Description|
-|---|---|---|
-|Version|||
-|V5.0 2003|SMS Forum|This version is an enhancement of SMPP V3.4. The version number change from 3.4 to 5.0 is intended to avoid confusion with|
+| Protocol Version | Owner | Description |
+| :--- | :--- | :--- |
+| V3.4<br>1999 | SMS Forum | This version of SMPP is based on V3.3 and was intended to provide a fully backward compatible specification to V3.3. The differences are summarized as follows:<br><ul><li>Removal of Query_last_messages operation</li><li>Removal of Query_message_details operation</li><li>Removal of Param_retrieve operation</li><li>Addition of Outbind operation to provide support for MC-initiated sessions.</li><li>Addition of data_sm operation to provide support for a lightweight submission operation applicable to WAP.</li><li>Addition of message modes to provide datagram and transaction mechanisms for message submission.</li><li>Error code set rationalized to remove vendor specific characteristics and make the protocol more applicable as an open interface.</li><li>Optional Parameters (TLVs) introduced as a means of extending PDUs in a backward compatible manner.</li><li>Protocol ownership transferred in full to the SMS Forum (formerly SMPP Developers Forum)</li></ul> |
+| V4.0<br>1997 | Logica Aldiscon Ltd.<br>(Logica plc.) | This version of SMPP was an independent version of the protocol designed and customized for the PDC market in Japan. It introduced features such as optional parameters, user message references and Outbind. The protocol remains proprietary and fully owned by Logica plc. |
+| SMPP-P<br>V1.0 - V1.3<br>1994-1997 | Aldiscon Ltd.<br>(Logica plc.) | This was a set of protocol extensions designed to provide subscriber and distribution list provisioning services. |
+| V1.0 - V3.3<br>1991-1997 | Aldiscon Ltd.<br>(Logica plc.) | The original specification as defined and owned by Aldiscon Ltd. (now Logica). Version 1.0 of this protocol also features in GSM 03.39 version 4.0.0 ETR 243: November 1995. |
 
-##### the proprietary Logica SMPP V4.0 specification
-
-The specification incorporates many changes defined by the SMS Forum during the lifetime of V3.4. The layout has also been revised to cater for a more detailed and clearer description of the protocol functionality.
-
-The new features are summarized as follows:
-
-- Addition of Cell Broadcast operations for use with CBCs (Cell Broadcast Centres).
-- New registered mode for `successful delivery only` receipting.
-- Enhanced the *network_error_code* TLV to classify several additional error types.
-- New *congestion_state* TLV added to support flow control and congestion avoidance.
-- Added *ussd_service_op* TLV support to *deliver_sm* for bi- directional USSD.
-- Added additional error codes for *service_type* restrictions (ESME_RSERTYPDENIED, ESME_RSERTYPUNAUTH, ESME_RSERTYPUNAVAIL)
-- Added error code, ESME_RPROHIBITED to indicate a prohibited operation.
-- Added *billing_identification* TLV to support pass-through billing information between ESME and MC.
-- Enhanced *alert_on_message_delivery* TLV to support new alert modes for CDMA.
-- Added *dest_addr_np_country, dest_addr_np_information,* *dest_addr_np_resolution* TLVs to enable the encoding of number portability information for inter-carrier routing.
-- Added end point Identification TLVs (*source_network_id,* *source_node_id, dest_network_id, dest_node_id*) to enable intelligent routing with intra- and inter-carrier architectures.
-SMPP V5.0  SMS Forum 17 of 166
-
-|Protocol|Owner|Description|
-|---|---|---|
-|Version|||
-|V3.4 1999|SMS Forum|This version of SMPP is based on V3.3 and was intended to provide a fully backward compatible specification to V3.3. The|
-
-##### differences are summarized as follows
-
-- Removal of Query_last_messages operation
-- Removal of Query_message_details operation
-- Removal of Param_retrieve operation
-- Addition of Outbind operation to provide support for MC-initiated sessions.
-- Addition of data_sm operation to provide support for a lightweight submission operation applicable to WAP.
-- Addition of message modes to provide datagram and transaction mechanisms for message submission.
-- Error code set rationalized to remove vendor specific characteristics and make the protocol more applicable as an open interface.
-- Optional Parameters (TLVs) introduced as a means of extending PDUs in a backward compatible manner.
-- Protocol ownership transferred in full to the SMS Forum (formerly SMPP Developers Forum)
-
-|V4.0|Logica|This version of SMPP was an independent version of the protocol|
-|---|---|---|
-|1997|Aldiscon Ltd. (Logica plc.)|designed and customized for the PDC market in Japan. It introduced features such as optional parameters, user message references and Outbind. The protocol remains proprietary and fully owned by Logica plc.|
-|SMPP-P|Aldiscon Ltd.|This was a set of protocol extensions designed to provide|
-|V1.0 - V1.3 1994-1997|(Logica plc.)|subscriber and distribution list provisioning services.|
-|V1.0 - V3.3|Aldiscon Ltd.|The original specification as defined and owned by Aldiscon Ltd.|
-|1991-1997|(Logica plc.)|(now Logica). Version 1.0 of this protocol also features in GSM|
-
-03.39 version 4.0.0 ETR 243: November 1995.
 **Table 1-3 SMPP Protocol Versions**
 
 ##### 1.4.2 Supported Cellular Technologies
