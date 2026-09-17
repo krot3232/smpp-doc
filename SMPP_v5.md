@@ -111,28 +111,28 @@ SMPP V5.0  SMS Forum 13 of 166
 ##### 1.3 References
 | Ref. | Document Title | Document Number | Version Number |
 | :--- | :--- | :--- | :--- |
-| [GSM 03.03] | Digital Cellular Telecommunications System (Phase 2+); Numbering, Addressing and Identification (Release 1998) | GSM 03.03<br>http://www.etsi.fr<br>3GPP<br>http://www.3GPP.org | v7.8.0 |
-| [GSM 03.38] | "Digital Cellular telecommunications system (Phase 2+); Alphabets and language specific information". | [GSM 03.38]<br>http://www.etsi.fr<br>Superseded by | v5.6.1<br>Jan. '98 |
-| [GSM 03.40] | Technical Realisation of the Short Message Service Point to Point | GSM 03.40<br>http://www.etsi.fr<br>Superseded by | v5.7.1 |
-| [GSM MAP 09.02] | GSM Mobile Application Part | [GSM MAP 09.02]<br>http://www.etsi.fr<br>Superseded by | v5.11.0 |
+| [GSM 03.03] | Digital Cellular Telecommunications System (Phase 2+); Numbering, Addressing and Identification (Release 1998) | GSM 03.03 http://www.etsi.fr 3GPP http://www.3GPP.org | v7.8.0 |
+| [GSM 03.38] | "Digital Cellular telecommunications system (Phase 2+); Alphabets and language specific information". | [GSM 03.38] http://www.etsi.fr Superseded by | v5.6.1 Jan. '98 |
+| [GSM 03.40] | Technical Realisation of the Short Message Service Point to Point | GSM 03.40 http://www.etsi.fr Superseded by | v5.7.1 |
+| [GSM MAP 09.02] | GSM Mobile Application Part | [GSM MAP 09.02] http://www.etsi.fr Superseded by | v5.11.0 |
 | [IS637] | Short Message Service for Spread Spectrum Systems | TIA/EIA/IS-637-A | Rev A |
-| [IS824] | Generic Broadcast Teleservice Transport Capability: Network Perspective. | TIA/EIA/IS-824 | For inclusion in IS41<br>Rev F |
-| [IS630] | Broadcast Teleservice Transport -Broadcast Air Interface Transport (BATS). | TIA/EIA/IS-136-630 | Aug 31st 1999<br>ANSI TIA/EIA-136 Rev.A |
+| [IS824] | Generic Broadcast Teleservice Transport Capability: Network Perspective. | TIA/EIA/IS-824 | For inclusion in IS41 Rev F |
+| [IS630] | Broadcast Teleservice Transport -Broadcast Air Interface Transport (BATS). | TIA/EIA/IS-136-630 | Aug 31st 1999 ANSI TIA/EIA-136 Rev.A |
 | [TSAR] | Teleservice Segmentation and Reassembly (TSAR) | TIA/EIA/136-620 | Rev 0 |
 | [CMT-136] | Short Message Service - Cellular Messaging Teleservice | TIA/EIA-136-710-A | Rev A |
 | [GUTS] | General UDP Transport Service (GUTS) | TIA/EIA-136-750 | Rev 0 |
 | [ANSI-41] | Cellular Radio-Telecommunications Intersystem Operations | TIA/EIA-41.D | Rev D |
-| [TSB29-D] | International Implementation of Wireless Telecommunications Systems | TIA/EIA | Rev D<br>December 2000 |
-| [WAPARCH] | Wireless Application Protocol Architecture Specification | WAP Forum<br>http://wapforum.org | Version 30-Apr.-1998 |
-| [WCMP] | Wireless Control Message Protocol Specification | WAP Forum<br>http://wapforum.org | Version 4-Aug-1999 |
-| [WDP] | Wireless Datagram Protocol Specification | WAP Forum<br>http://wapforum.org | Version 5-Nov-1999 |
+| [TSB29-D] | International Implementation of Wireless Telecommunications Systems | TIA/EIA | Rev D December 2000 |
+| [WAPARCH] | Wireless Application Protocol Architecture Specification | WAP Forum http://wapforum.org | Version 30-Apr.-1998 |
+| [WCMP] | Wireless Control Message Protocol Specification | WAP Forum http://wapforum.org | Version 4-Aug-1999 |
+| [WDP] | Wireless Datagram Protocol Specification | WAP Forum http://wapforum.org | Version 5-Nov-1999 |
 | [ITUT X.213] | Open Systems Interconnection - Network Service Definition | [ITUT X.213] | 11/95 |
-| [KOR ITS] | PCS operators common standards for handset-SMS functionalities | PCS standardization committee<br>PCS-SMS-97-05-28 | 1.06 Rev 99-04-30 |
-| [3GPP TS 23.032] | Universal Geographical Area Description (GAD) (Release 4) | 3GPP<br>http://www.3gpp.org | Version 4.0.0 |
-| [3GPP TS 23.038] | Alphabets and language-specific information (Release 4) | 3GPP<br>http://www.3gpp.org | Version 5.0.0 |
-| [3GPP TS 23.040] | Technical Realization of the Short Message Service (SMS) (Release 4) | 3GPP<br>http://www.3gpp.org | Version 5.3.0 |
-| [3GPP TS 23.041] | Technical Realization of Cell Broadcast Service. (Release 4) | 3GPP<br>http://www.3gpp.org | Version 4.2.0 |
-| [3GPP TS 23.049] | Example protocol stacks for interconnecting Cell Broadcast Centre (CBC) and Base Station Controller (BSC). (Release 1998) | 3GPP<br>http://www.3gpp.org | Version 7.0.0 |
+| [KOR ITS] | PCS operators common standards for handset-SMS functionalities | PCS standardization committee PCS-SMS-97-05-28 | 1.06 Rev 99-04-30 |
+| [3GPP TS 23.032] | Universal Geographical Area Description (GAD) (Release 4) | 3GPP http://www.3gpp.org | Version 4.0.0 |
+| [3GPP TS 23.038] | Alphabets and language-specific information (Release 4) | 3GPP http://www.3gpp.org | Version 5.0.0 |
+| [3GPP TS 23.040] | Technical Realization of the Short Message Service (SMS) (Release 4) | 3GPP http://www.3gpp.org | Version 5.3.0 |
+| [3GPP TS 23.041] | Technical Realization of Cell Broadcast Service. (Release 4) | 3GPP http://www.3gpp.org | Version 4.2.0 |
+| [3GPP TS 23.049] | Example protocol stacks for interconnecting Cell Broadcast Centre (CBC) and Base Station Controller (BSC). (Release 1998) | 3GPP http://www.3gpp.org | Version 7.0.0 |
 | [3GPP TS 29.002] | Mobile Application Part (MAP) Specification (Release 4) | 3GPP | Version 4.6.0 |
 
 **Table 1-2 References**
@@ -149,10 +149,10 @@ Several versions of the SMPP protocol exist. The following table explains the di
 
 | Protocol Version | Owner | Description |
 | :--- | :--- | :--- |
-| V3.4<br>1999 | SMS Forum | This version of SMPP is based on V3.3 and was intended to provide a fully backward compatible specification to V3.3. The differences are summarized as follows:<br><ul><li>Removal of Query_last_messages operation</li><li>Removal of Query_message_details operation</li><li>Removal of Param_retrieve operation</li><li>Addition of Outbind operation to provide support for MC-initiated sessions.</li><li>Addition of data_sm operation to provide support for a lightweight submission operation applicable to WAP.</li><li>Addition of message modes to provide datagram and transaction mechanisms for message submission.</li><li>Error code set rationalized to remove vendor specific characteristics and make the protocol more applicable as an open interface.</li><li>Optional Parameters (TLVs) introduced as a means of extending PDUs in a backward compatible manner.</li><li>Protocol ownership transferred in full to the SMS Forum (formerly SMPP Developers Forum)</li></ul> |
-| V4.0<br>1997 | Logica Aldiscon Ltd.<br>(Logica plc.) | This version of SMPP was an independent version of the protocol designed and customized for the PDC market in Japan. It introduced features such as optional parameters, user message references and Outbind. The protocol remains proprietary and fully owned by Logica plc. |
-| SMPP-P<br>V1.0 - V1.3<br>1994-1997 | Aldiscon Ltd.<br>(Logica plc.) | This was a set of protocol extensions designed to provide subscriber and distribution list provisioning services. |
-| V1.0 - V3.3<br>1991-1997 | Aldiscon Ltd.<br>(Logica plc.) | The original specification as defined and owned by Aldiscon Ltd. (now Logica). Version 1.0 of this protocol also features in GSM 03.39 version 4.0.0 ETR 243: November 1995. |
+| V3.4 1999 | SMS Forum | This version of SMPP is based on V3.3 and was intended to provide a fully backward compatible specification to V3.3. The differences are summarized as follows: Removal of Query_last_messages operation;Removal of Query_message_details operation;Removal of Param_retrieve operation;Addition of Outbind operation to provide support for MC-initiated sessions.;Addition of data_sm operation to provide support for a lightweight submission operation applicable to WAP.;Addition of message modes to provide datagram and transaction mechanisms for message submission.;Error code set rationalized to remove vendor specific characteristics and make the protocol more applicable as an open interface.;Optional Parameters (TLVs) introduced as a means of extending PDUs in a backward compatible manner.;Protocol ownership transferred in full to the SMS Forum (formerly SMPP Developers Forum); |
+| V4.0 1997 | Logica Aldiscon Ltd. (Logica plc.) | This version of SMPP was an independent version of the protocol designed and customized for the PDC market in Japan. It introduced features such as optional parameters, user message references and Outbind. The protocol remains proprietary and fully owned by Logica plc. |
+| SMPP-P V1.0 - V1.3 1994-1997 | Aldiscon Ltd. (Logica plc.) | This was a set of protocol extensions designed to provide subscriber and distribution list provisioning services. |
+| V1.0 - V3.3 1991-1997 | Aldiscon Ltd. (Logica plc.) | The original specification as defined and owned by Aldiscon Ltd. (now Logica). Version 1.0 of this protocol also features in GSM 03.39 version 4.0.0 ETR 243: November 1995. |
 
 **Table 1-3 SMPP Protocol Versions**
 
@@ -166,7 +166,6 @@ SMPP is designed to support short messaging functionality for any cellular techn
 - CDMA2000 (1xRTT & 3xRTT)
 - ANSI-136 (TDMA)
 - iDEN
-SMPP V5.0  SMS Forum 18 of 166
 
 ##### 1.4.3 Typical Applications of SMPP
 
@@ -216,28 +215,35 @@ The following sub-sections list each category and its associated operations.
 
 ##### 1.4.5.1 Session Management Operations
 
-|SMPP PDU Name|Description|
-|---|---|
-|bind_transmitter|Authentication PDU used by a transmitter ESME to bind to the Message Centre. The PDU contains identification information and an access password for the ESME.|
-|bind_transmitter_resp|Message Centre response to a bind_transmitter PDU. This PDU indicates the success or failure of the ESME’s attempt to bind as a transmitter|
-|bind_receiver|Authentication PDU used by a receiver ESME to bind to the Message Centre. The PDU contains identification information, an access password for the ESME and may also contain routing information specifying the range of addresses serviced by the ESME.|
-|bind_receiver_resp|Message Centre response to a bind_receiver PDU. This PDU indicates the success or failure of the ESME’s attempt to bind as a receiver|
-|bind_transceiver|Authentication PDU used by a transceiver ESME to bind to the Message Centre. The PDU contains identification information, an access password for the ESME and may also contain routing information specifying the range of addresses serviced by the ESME.|
+| SMPP PDU Name | Description |
+| :--- | :--- |
+| *bind_transmitter* | Authentication PDU used by a transmitter ESME to bind to the Message Centre. The PDU contains identification information and an access password for the ESME. |
+| *bind_transmitter_resp* | Message Centre response to a bind_transmitter PDU. This PDU indicates the success or failure of the ESME's attempt to bind as a transmitter |
+| *bind_receiver* | Authentication PDU used by a receiver ESME to bind to the Message Centre. The PDU contains identification information, an access password for the ESME and may also contain routing information specifying the range of addresses serviced by the ESME. |
+| *bind_receiver_resp* | Message Centre response to a bind_receiver PDU. This PDU indicates the success or failure of the ESME's attempt to bind as a receiver |
+| *bind_transceiver* | Authentication PDU used by a transceiver ESME to bind to the Message Centre. The PDU contains identification information, an access password for the ESME and may also contain routing information specifying the range of addresses serviced by the ESME. |
+| *bind_transceiver_resp* | Message Centre response to a bind_transceiver PDU. This PDU indicates the success or failure of the ESME's attempt to bind as a transceiver |
+| *outbind* | Authentication PDU used by a Message Centre to Outbind to an ESME to inform it that messages are present in the MC. The PDU contains identification, and access password for the ESME. If the ESME authenticates the request, it will respond with a bind_receiver or bind_transceiver to begin the process of binding into the MC. |
+| *unbind* | This PDU can be sent by the ESME or MC as a means of initiating the termination of a SMPP session. |
+| *unbind_resp* | This PDU can be sent by the ESME or MC as a means of acknowledging the receipt of an unbind request. After sending this PDU the MC typically closes the network connection. |
+| *enquire_link* | This PDU can be sent by the ESME or MC to test the network connection. The receiving peer is expected to acknowledge the PDU as a means of verifying the test. |
+| *enquire_link_resp* | This PDU is used to acknowledge an enquire_link request sent by an ESME or MC. |
+| *alert_notification* | A MC sends an alert_notification to an ESME as a means of alerting it to the availability of an SME. |
+| *generic_nack* | This PDU can be sent by an ESME or MC as a means of indicating the receipt of an invalid PDU. The receipt of a generic_nack usually indicates that the remote peer either cannot identify the PDU or has deemed it an invalid PDU due to its size or content. |
 
-SMPP V5.0  SMS Forum 21 of 166
+***Table 1-4 Session Management Operations*** 
 
-||SMPP PDU Name||Description||
-|---|---|---|---|---|
-||bind_transceiver_resp outbind unbind unbind_resp enquire_link enquire_link_resp alert_notification generic_nack 1.4.5.2||Message Centre response to a bind_transceiver PDU. This PDU indicates the success or failure of the ESME’s attempt to bind as a transceiver Authentication PDU used by a Message Centre to Outbind to an ESME to inform it that messages are present in the MC. The PDU contains identification, and access password for the ESME. If the ESME authenticates the request, it will respond with a bind_receiver or bind_transceiver to begin the process of binding into the MC. This PDU can be sent by the ESME or MC as a means of initiating the termination of a SMPP session. This PDU can be sent by the ESME or MC as a means of acknowledging the receipt of an unbind request. After sending this PDU the MC typically closes the network connection. This PDU can be sent by the ESME or MC to test the network connection. The receiving peer is expected to acknowledge the PDU as a means of verifying the test. This PDU is used to acknowledge an enquire_link request sent by an ESME or MC. A MC sends an alert_notification to an ESME as a means of alerting it to the availability of an SME. This PDU can be sent by an ESME or MC as a means of indicating the receipt of an invalid PDU. The receipt of a generic_nack usually indicates that the remote peer either cannot identify the PDU or has deemed it an invalid PDU due to its size or content. Table 1-4 Session Management Operations Message Submission Operations||
-||SMPP PDU Name submit_sm submit_sm_resp submit_multi submit_multi_resp data_sm data_sm data_sm_resp||Description A transmitter or transceiver ESME, wishing to submit a short message, can use this PDU to specify the sender, receiver and text of the short message. Other attributes include message priority, data coding scheme, validity period etc. The MC response to a submit_sm PDU, indicating the success or failure of the request. Also included is a MC message_id that can be used in subsequent operations to query, cancel or replace the contents of an undelivered message. A variation of the submit_sm PDU that supports up to 255 recipients for the given message. The MC response to a submit_multi PDU. This is similar to the submit_sm_resp PDU. The main difference is that where some of the specified recipients were either invalid or rejected by the Message Centre, the PDU can specify the list of failed recipients, appending a specific error code for each one, indicating the reason the recipient was invalid. Also included is a MC message_id that can be used in subsequent operations to query, cancel or replace the contents of an undelivered message. is a streamlined version of the submit_sm operation, designed for packet-based applications that do not demand extended functionality normally available in the submit_sm operation. ESMEs implementing WAP over a SMS bearer typically use this operation. The MC response to a data_sm PDU, indicating the success or||
+##### Message Submission Operations
 
-SMPP V5.0  SMS Forum 22 of 166
 
-### SMSFORUM
-
-##### Description
-
-failure of the request. Also included is a MC *message_id* that can be used in subsequent operations to query, cancel or replace the contents of an undelivered message.
+| SMPP PDU Name | Description |
+| :--- | :--- |
+| *submit_sm* | A transmitter or transceiver ESME, wishing to submit a short message, can use this PDU to specify the sender, receiver and text of the short message. Other attributes include message priority, data coding scheme, validity period etc. |
+| *submit_sm_resp* | The MC response to a submit_sm PDU, indicating the success or failure of the request. Also included is a MC message_id that can be used in subsequent operations to query, cancel or replace the contents of an undelivered message. |
+| *submit_multi* | A variation of the submit_sm PDU that supports up to 255 recipients for the given message. |
+| *submit_multi_resp* | The MC response to a submit_multi PDU. This is similar to the submit_sm_resp PDU. The main difference is that where some of the specified recipients were either invalid or rejected by the Message Centre, the PDU can specify the list of failed recipients, appending a specific error code for each one, indicating the reason the recipient was invalid. Also included is a MC message_id that can be used in subsequent operations to query, cancel or replace the contents of an undelivered message. |
+| *data_sm* | data_sm is a streamlined version of the submit_sm operation, designed for packet-based applications that do not demand extended functionality normally available in the submit_sm operation. ESMEs implementing WAP over a SMS bearer typically use this operation. |
+| *data_sm_resp* | The MC response to a data_sm PDU, indicating the success or failure of the request. Also included is a MC message_id that can be used in subsequent operations to query, cancel or replace the contents of an undelivered message. |
 
 **Table 1-5 Message Submission Operations**
 
