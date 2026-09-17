@@ -38,7 +38,7 @@ The following diagram illustrates the context of SMPP in a mobile network:
   └───────┬───────────────────────┬────────────────────┴──┐
    SMPP   │                       │                       │
      ┌────┴────┐             ┌────┴────┐       ┌──────────┴──────────┐
-     │  SMSC 1 │      ⋯      │  SMSC N │       │ Other (eg USSD, CBC)│
+     │  SMSC 1 │             │  SMSC N │       │ Other (eg USSD, CBC)│
      └────┬────┘             └────┬────┘       └──────────┬──────────┘
           └───────────────────────┼───────────────────────┘
                                   │
