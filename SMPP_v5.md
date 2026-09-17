@@ -424,37 +424,44 @@ The following table lists each SMPP operation PDU by name and the appropriate Se
 **Note:** A SMPP Routing Entity (RE) is capable of emulating an ESME and MC at the same
 
 time and therefore, all MC or ESME operations listed below are also simultaneously applicable to a RE. For example, a RE may issue a *bind_transmitter* to a MC while a session is in an open state (RE binding to Message Center). Additionally, the RE may return a *bind_transmitter_resp* PDU to an ESME with an open state session (ESME binding to RE).
-
-|Session State|Open||Outbound||Bound_TX||Bound_RX||Bound_TRX||Unbound||
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-|SMPP Entity PDU alert_notification bind_receiver bind_receiver_resp bind_transceiver bind_transceiver_resp bind_transmitter bind_transmitter_resp broadcast_sm broadcast_sm_resp cancel_broadcast_sm cancel_broadcast_sm_resp cancel_sm cancel_sm_resp|ESME • • •|MC • • •|ESME • • •|MC • • •|ESME • • •|MC • • •|ESME|MC •|ESME • • •|MC • • • •|ESME|MC|
-|data_sm|||||•|||•|•|•|||
-|data_sm_resp deliver_sm deliver_sm_resp||||||•|• •|•|• •|• •|||
-|enquire_link|•|•|•|•|•|•|•|•|•|•|•|•|
-|enquire_link_resp|•|•|•|•|•|•|•|•|•|•|•|•|
-|generic_nack|•|•|•|•|•|•|•|•|•|•|•|•|
-|outbind||•|||||||||||
-|query_broadcast_sm|||||•||||•||||
-|query_broadcast_sm_resp||||||•||||•|||
-|query_sm|||||•||||•||||
-|query_sm_resp||||||•||||•|||
-|replace_sm|||||•||||•||||
-|replace_sm_resp||||||•||||•|||
-|submit_multi|||||•||||•||||
-|submit_multi_resp||||||•||||•|||
-|submit_sm|||||•||||•||||
-
-SMPP V5.0  SMS Forum 29 of 166
-
-|Session State|Open||Outbound||Bound_TX||Bound_RX||Bound_TRX||Unbound||
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-|SMPP Entity PDU submit_sm_resp|ESME|MC|ESME|MC|ESME|MC •|ESME|MC|ESME|MC •|ESME|MC|
-|unbind|||||•|•|•|•|•|•|||
-|unbind_resp|||||•|•|•|•|•|•|||
+| PDU | Open / ESME | Open / MC | Outbound / ESME | Outbound / MC | Bound_TX / ESME | Bound_TX / MC | Bound_RX / ESME | Bound_RX / MC | Bound_TRX / ESME | Bound_TRX / MC | Unbound / ESME | Unbound / MC |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `alert_notification` |  |  |  |  |  |  |  | v |  | v |  |  |
+| `bind_receiver` | v |  | v |  |  |  |  |  |  |  |  |  |
+| `bind_receiver_resp` |  | v |  | v |  |  |  |  |  |  |  |  |
+| `bind_transceiver` | v |  | v |  |  |  |  |  |  |  |  |  |
+| `bind_transceiver_resp` |  | v |  | v |  |  |  |  |  |  |  |  |
+| `bind_transmitter` | v |  | v |  |  |  |  |  |  |  |  |  |
+| `bind_transmitter_resp` |  | v |  | v |  |  |  |  |  |  |  |  |
+| `broadcast_sm` |  |  |  |  | v |  |  |  | v |  |  |  |
+| `broadcast_sm_resp` |  |  |  |  |  | v |  |  |  | v |  |  |
+| `cancel_broadcast_sm` |  |  |  |  | v |  |  |  | v |  |  |  |
+| `cancel_broadcast_sm_resp` |  |  |  |  |  | v |  |  |  | v |  |  |
+| `cancel_sm` |  |  |  |  | v |  |  |  | v |  |  |  |
+| `cancel_sm_resp` |  |  |  |  |  | v |  |  |  | v |  |  |
+| `data_sm` |  |  |  |  | v |  |  | v | v | v |  |  |
+| `data_sm_resp` |  |  |  |  |  | v | v |  | v | v |  |  |
+| `deliver_sm` |  |  |  |  |  |  |  | v |  | v |  |  |
+| `deliver_sm_resp` |  |  |  |  |  |  | v |  | v |  |  |  |
+| `enquire_link` | v | v | v | v | v | v | v | v | v | v | v | v |
+| `enquire_link_resp` | v | v | v | v | v | v | v | v | v | v | v | v |
+| `generic_nack` | v | v | v | v | v | v | v | v | v | v | v | v |
+| `outbind` |  | v |  |  |  |  |  |  |  |  |  |  |
+| `query_broadcast_sm` |  |  |  |  | v |  |  |  | v |  |  |  |
+| `query_broadcast_sm_resp` |  |  |  |  |  | v |  |  |  | v |  |  |
+| `query_sm` |  |  |  |  | v |  |  |  | v |  |  |  |
+| `query_sm_resp` |  |  |  |  |  | v |  |  |  | v |  |  |
+| `replace_sm` |  |  |  |  | v |  |  |  | v |  |  |  |
+| `replace_sm_resp` |  |  |  |  |  | v |  |  |  | v |  |  |
+| `submit_multi` |  |  |  |  | v |  |  |  | v |  |  |  |
+| `submit_multi_resp` |  |  |  |  |  | v |  |  |  | v |  |  |
+| `submit_sm` |  |  |  |  | v |  |  |  | v |  |  |  |
+| `submit_sm_resp` |  |  |  |  |  | v |  |  |  | v |  |  |
+| `unbind` |  |  |  |  | v | v | v | v | v | v |  |  |
+| `unbind_resp` |  |  |  |  | v | v | v | v | v | v |  |  |
 
 **Table 2-1 Operation Matrix**
 
-SMPP V5.0  SMS Forum 30 of 166
 
 ##### 2.5 Sample Sessions
 
