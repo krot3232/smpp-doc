@@ -2105,19 +2105,25 @@ The following diagram illustrates store and forward mode. The message is first a
 The Datagram Message Mode emulates the datagram paradigm used in other data communication protocols such as UDP datagram packet transfer and focuses on high message throughput without the associated secure storage and retry guarantees of Store and Forward Message Mode. In Datagram Message Mode the message originator (i.e. the ESME) does not receive any form of delivery acknowledgement.
 
 In Datagram Message Mode, typical MC functions such as scheduled delivery, registered delivery etc. do not apply. Datagram Message Mode is designed for high throughput applications that may not require the highly secure delivery functionality offered by the Store and Forward message mode. It is ideally suited for applications where the data content is transient in nature, for example, vehicle tracking applications.
-
-Message ESME SME Center
-
-|Bound_TX|||
-|---|---|---|
-||submit_sm submit_sm _resp submit_sm submit_sm_resp|Network Delivery Attempt NACK (failure) Network Delivery Attempt NACK (failure) Network Delivery Attempt|
-
-datagram mode One network delivery attempt made
-
-store & forward mode Multiple delivery attem pts m ade until message is delivered or expires
-
-*ACK (success)*
-
+```text
+    ┌──────┐                   ┌────────────────┐                    ┌─────┐
+    │ ESME │                   │ Message Center │                    │ SME │
+    └───┬──┘                   └────────┬───────┘                    └──┬──┘
+   [Bound_TX]                           │                               │
+    ────┼──────── datagram mode ────────┼── one delivery attempt only ──┼────
+        │────────── submit_sm ─────────>│                               │
+        │<────── submit_sm_resp ────────│                               │
+        │                               │── Network Delivery Attempt ──>│
+        │                               │<────── NACK (failure) ────────│
+    ────┼──── store & forward mode ─────┼ retry until delivered/expired ┼────
+        │────────── submit_sm ─────────>│                               │
+        │<────── submit_sm_resp ────────│                               │
+        │                               │── Network Delivery Attempt ──>│
+        │                               │<────── NACK (failure) ────────│
+        ⋮                               ⋮                               ⋮
+        │                               │── Network Delivery Attempt ──>│
+        │                               │<─────── ACK (success) ────────│
+```
 **Figure 4-3 Datagram Message Mode compare to Store and Forward Mode**
 
 SMPP V5.0  SMS Forum 83 of 166
