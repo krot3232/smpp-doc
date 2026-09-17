@@ -108,13 +108,36 @@ SMPP V5.0  SMS Forum 13 of 166
 ##### 1.3 References
 
 |Ref.|Document Title|Document Number|Version|
-|---|---|---|---|
-||||Number|
-|[1] [GSM 03.03]|Digital Cellular Telecommunications System (Phase 2+); Numbering,|GSM 03.03 [http://www.etsi.fr](http://www.etsi.fr) 3GPP [http://www.3GPP.org|v7.6.0|](<http://www.3GPP.org>|v7.6.0|)
+| Ref. | Document Title | Document Number | Version Number |
+| :--- | :--- | :--- | :--- |
+| [GSM 03.03] | Digital Cellular Telecommunications System (Phase 2+); Numbering, Addressing and Identification (Release 1998) | GSM 03.03<br>http://www.etsi.fr<br>3GPP<br>http://www.3GPP.org | v7.8.0 |
+| [GSM 03.38] | "Digital Cellular telecommunications system (Phase 2+); Alphabets and language specific information". | [GSM 03.38]<br>http://www.etsi.fr<br>Superseded by | v5.6.1<br>Jan. '98 |
+| [GSM 03.40] | Technical Realisation of the Short Message Service Point to Point | GSM 03.40<br>http://www.etsi.fr<br>Superseded by | v5.7.1 |
+| [GSM MAP 09.02] | GSM Mobile Application Part | [GSM MAP 09.02]<br>http://www.etsi.fr<br>Superseded by | v5.11.0 |
+| [IS637] | Short Message Service for Spread Spectrum Systems | TIA/EIA/IS-637-A | Rev A |
+| [IS824] | Generic Broadcast Teleservice Transport Capability: Network Perspective. | TIA/EIA/IS-824 | For inclusion in IS41<br>Rev F |
+| [IS630] | Broadcast Teleservice Transport -Broadcast Air Interface Transport (BATS). | TIA/EIA/IS-136-630 | Aug 31st 1999<br>ANSI TIA/EIA-136 Rev.A |
+| [TSAR] | Teleservice Segmentation and Reassembly (TSAR) | TIA/EIA/136-620 | Rev 0 |
+| [CMT-136] | Short Message Service - Cellular Messaging Teleservice | TIA/EIA-136-710-A | Rev A |
+| [GUTS] | General UDP Transport Service (GUTS) | TIA/EIA-136-750 | Rev 0 |
+| [ANSI-41] | Cellular Radio-Telecommunications Intersystem Operations | TIA/EIA-41.D | Rev D |
+| [TSB29-D] | International Implementation of Wireless Telecommunications Systems | TIA/EIA | Rev D<br>December 2000 |
+| [WAPARCH] | Wireless Application Protocol Architecture Specification | WAP Forum<br>http://wapforum.org | Version 30-Apr.-1998 |
+| [WCMP] | Wireless Control Message Protocol Specification | WAP Forum<br>http://wapforum.org | Version 4-Aug-1999 |
+| [WDP] | Wireless Datagram Protocol Specification | WAP Forum<br>http://wapforum.org | Version 5-Nov-1999 |
+| [ITUT X.213] | Open Systems Interconnection - Network Service Definition | [ITUT X.213] | 11/95 |
+| [KOR ITS] | PCS operators common standards for handset-SMS functionalities | PCS standardization committee<br>PCS-SMS-97-05-28 | 1.06 Rev 99-04-30 |
+| [3GPP TS 23.032] | Universal Geographical Area Description (GAD) (Release 4) | 3GPP<br>http://www.3gpp.org | Version 4.0.0 |
+| [3GPP TS 23.038] | Alphabets and language-specific information (Release 4) | 3GPP<br>http://www.3gpp.org | Version 5.0.0 |
+| [3GPP TS 23.040] | Technical Realization of the Short Message Service (SMS) (Release 4) | 3GPP<br>http://www.3gpp.org | Version 5.3.0 |
+| [3GPP TS 23.041] | Technical Realization of Cell Broadcast Service. (Release 4) | 3GPP<br>http://www.3gpp.org | Version 4.2.0 |
+| [3GPP TS 23.049] | Example protocol stacks for interconnecting Cell Broadcast Centre (CBC) and Base Station Controller (BSC). (Release 1998) | 3GPP<br>http://www.3gpp.org | Version 7.0.0 |
 
-Addressing and Identification (Release 1998)
 
-##### [2] [GSM 03.38]
+
+
+
+
 
 |`Digital Cellular|[GSM 03.38]|v5.6.1|
 |---|---|---|
