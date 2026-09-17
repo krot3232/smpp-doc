@@ -87,7 +87,8 @@ This document defines Version 5.0 of the SMPP protocol. It is intended for desig
 |NSAP|Network Service Access Point|
 |PDU|Protocol Data Unit|
 |PSSD|Process Unstructured Supplementary Services Data|
-|PSSR RE Routing Entity|Process Unstructured Supplementary Services Request|
+|PSSR|Process Unstructured Supplementary Services Request|
+|RE|Routing Entity|
 |SME|Short Message Entity|
 |SMPP|Short Message Peer to Peer Protocol|
 |SMSC|Short Message Service Centre|
