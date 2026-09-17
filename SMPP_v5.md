@@ -2132,19 +2132,22 @@ SMPP V5.0  SMS Forum 83 of 166
 Transaction Message Mode allows the ESME message originator to receive a form of delivery acknowledgment (that indicates if the message has been successfully or unsuccessfully delivered to the destination MS) within the SMPP response PDU.
 
 Transaction Message Mode is designed for applications that involve real-time messaging where an ESME requires a synchronous end-to-end delivery outcome, without the need for long term MC storage.
-
-Message ESME SME Center
-
-|Bound_TX|||
-|---|---|---|
-||submit_sm submit_sm _resp data_sm|Network Delivery Attempt NACK (failure) Network Delivery Attempt ACK (success)|
-
-transaction mode One network delivery attempt made Response to ESME delayed until delivery outcome is known
-
-transaction mode using data_sm
-
-*data_sm _resp*
-
+```text
+    ┌──────┐                   ┌────────────────┐                    ┌─────┐
+    │ ESME │                   │ Message Center │                    │ SME │
+    └───┬──┘                   └────────┬───────┘                    └──┬──┘
+   [Bound_TX]                           │                               │
+    ────┼────── transaction mode ───────┼─ resp after delivery outcome ─┼────
+        │────────── submit_sm ─────────>│                               │
+        │                               │── Network Delivery Attempt ──>│
+        │                               │<────── NACK (failure) ────────│
+        │<────── submit_sm_resp ────────│                               │
+    ────┼────── transaction mode ───────┼──────── using data_sm ────────┼────
+        │─────────── data_sm ──────────>│                               │
+        │                               │── Network Delivery Attempt ──>│
+        │                               │<─────── ACK (success) ────────│
+        │<─────── data_sm_resp ─────────│                               │
+```
 **Figure 4-4 Transaction Mode**
 
 SMPP V5.0  SMS Forum 84 of 166
