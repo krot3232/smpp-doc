@@ -248,22 +248,20 @@ The following sub-sections list each category and its associated operations.
 **Table 1-5 Message Submission Operations**
 
 ##### 1.4.5.3 Message Delivery Operations
-
-
 | SMPP PDU Name | Description |
-| :--- | :--- |
-| *deliver_sm* | Deliver_sm is the symmetric opposite to submit_sm and is used by a MC to deliver a message to a receiver or transceiver ESME. |
-| *deliver_sm_resp* | This PDU indicates the ESMEs acceptance or rejection of the delivered message. The error returned by the ESME can cause the message to be retried at a later date or rejected there and then. |
-| *data_sm* | Data_sm can also be used for message delivery from Message Centre to the ESME. ESMEs implementing WAP over SMS typically use this operation. |
-| *data_sm_resp* | The ESME response to a data_sm PDU, indicating the success or failure of the MC-initiated delivery request. |
+| --- | --- |
+| `deliver_sm` | `Deliver_sm` is the symmetric opposite to `submit_sm` and is used by a MC to deliver a message to a receiver or transceiver ESME. |
+| `deliver_sm_resp` | This PDU indicates the ESMEs acceptance or rejection of the delivered message. The error returned by the ESME can cause the message to be retried at a later date or rejected there and then. |
+| `data_sm` | `Data_sm` can also be used for message delivery from Message Centre to the ESME. ESMEs implementing WAP over SMS typically use this operation. |
+| `data_sm_resp` | The ESME response to a `data_sm` PDU, indicating the success or failure of the MC-initiated delivery request. |
 
 **Table 1-6 Message Delivery Operations**
 
-##### Message Broadcast Operations
-
-##### Description
-
-A broadcast ESME, wishing to broadcast a short message, can use this PDU to specify the alias, geographical areas, and text of the short message. The MC response to a *broadcast_sm* PDU, indicating the success or failure of the request. Also included is a MC *message_id* that can be used in subsequent operations to query or cancel the message.
+##### 1.4.5.4 Message Broadcast Operations
+| SMPP PDU Name | Description |
+| --- | --- |
+| `broadcast_sm` | A broadcast ESME, wishing to broadcast a short message, can use this PDU to specify the alias, geographical areas, and text of the short message. |
+| `broadcast_sm_resp` | The MC response to a `broadcast_sm` PDU, indicating the success or failure of the request. Also included is a MC `message_id` that can be used in subsequent operations to query or cancel the message. |
 
 **Table 1-7 Message Broadcast Operations**
 
