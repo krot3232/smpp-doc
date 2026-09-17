@@ -217,19 +217,19 @@ The following sub-sections list each category and its associated operations.
 
 | SMPP PDU Name | Description |
 | :--- | :--- |
-| *bind_transmitter* | Authentication PDU used by a transmitter ESME to bind to the Message Centre. The PDU contains identification information and an access password for the ESME. |
-| *bind_transmitter_resp* | Message Centre response to a bind_transmitter PDU. This PDU indicates the success or failure of the ESME's attempt to bind as a transmitter |
-| *bind_receiver* | Authentication PDU used by a receiver ESME to bind to the Message Centre. The PDU contains identification information, an access password for the ESME and may also contain routing information specifying the range of addresses serviced by the ESME. |
-| *bind_receiver_resp* | Message Centre response to a bind_receiver PDU. This PDU indicates the success or failure of the ESME's attempt to bind as a receiver |
-| *bind_transceiver* | Authentication PDU used by a transceiver ESME to bind to the Message Centre. The PDU contains identification information, an access password for the ESME and may also contain routing information specifying the range of addresses serviced by the ESME. |
-| *bind_transceiver_resp* | Message Centre response to a bind_transceiver PDU. This PDU indicates the success or failure of the ESME's attempt to bind as a transceiver |
-| *outbind* | Authentication PDU used by a Message Centre to Outbind to an ESME to inform it that messages are present in the MC. The PDU contains identification, and access password for the ESME. If the ESME authenticates the request, it will respond with a bind_receiver or bind_transceiver to begin the process of binding into the MC. |
-| *unbind* | This PDU can be sent by the ESME or MC as a means of initiating the termination of a SMPP session. |
-| *unbind_resp* | This PDU can be sent by the ESME or MC as a means of acknowledging the receipt of an unbind request. After sending this PDU the MC typically closes the network connection. |
-| *enquire_link* | This PDU can be sent by the ESME or MC to test the network connection. The receiving peer is expected to acknowledge the PDU as a means of verifying the test. |
-| *enquire_link_resp* | This PDU is used to acknowledge an enquire_link request sent by an ESME or MC. |
-| *alert_notification* | A MC sends an alert_notification to an ESME as a means of alerting it to the availability of an SME. |
-| *generic_nack* | This PDU can be sent by an ESME or MC as a means of indicating the receipt of an invalid PDU. The receipt of a generic_nack usually indicates that the remote peer either cannot identify the PDU or has deemed it an invalid PDU due to its size or content. |
+| `bind_transmitter` | Authentication PDU used by a transmitter ESME to bind to the Message Centre. The PDU contains identification information and an access password for the ESME. |
+| `bind_transmitter_resp` | Message Centre response to a bind_transmitter PDU. This PDU indicates the success or failure of the ESME's attempt to bind as a transmitter |
+| `bind_receiver` | Authentication PDU used by a receiver ESME to bind to the Message Centre. The PDU contains identification information, an access password for the ESME and may also contain routing information specifying the range of addresses serviced by the ESME. |
+| `bind_receiver_resp` | Message Centre response to a bind_receiver PDU. This PDU indicates the success or failure of the ESME's attempt to bind as a receiver |
+| `bind_transceiver` | Authentication PDU used by a transceiver ESME to bind to the Message Centre. The PDU contains identification information, an access password for the ESME and may also contain routing information specifying the range of addresses serviced by the ESME. |
+| `bind_transceiver_resp` | Message Centre response to a bind_transceiver PDU. This PDU indicates the success or failure of the ESME's attempt to bind as a transceiver |
+| `outbind` | Authentication PDU used by a Message Centre to Outbind to an ESME to inform it that messages are present in the MC. The PDU contains identification, and access password for the ESME. If the ESME authenticates the request, it will respond with a bind_receiver or bind_transceiver to begin the process of binding into the MC. |
+| `unbind` | This PDU can be sent by the ESME or MC as a means of initiating the termination of a SMPP session. |
+| `unbind_resp` | This PDU can be sent by the ESME or MC as a means of acknowledging the receipt of an unbind request. After sending this PDU the MC typically closes the network connection. |
+| `enquire_link` | This PDU can be sent by the ESME or MC to test the network connection. The receiving peer is expected to acknowledge the PDU as a means of verifying the test. |
+| `enquire_link_resp` | This PDU is used to acknowledge an enquire_link request sent by an ESME or MC. |
+| `alert_notification` | A MC sends an alert_notification to an ESME as a means of alerting it to the availability of an SME. |
+| `generic_nack` | This PDU can be sent by an ESME or MC as a means of indicating the receipt of an invalid PDU. The receipt of a generic_nack usually indicates that the remote peer either cannot identify the PDU or has deemed it an invalid PDU due to its size or content. |
 
 ***Table 1-4 Session Management Operations*** 
 
@@ -238,12 +238,12 @@ The following sub-sections list each category and its associated operations.
 
 | SMPP PDU Name | Description |
 | :--- | :--- |
-| *submit_sm* | A transmitter or transceiver ESME, wishing to submit a short message, can use this PDU to specify the sender, receiver and text of the short message. Other attributes include message priority, data coding scheme, validity period etc. |
-| *submit_sm_resp* | The MC response to a submit_sm PDU, indicating the success or failure of the request. Also included is a MC message_id that can be used in subsequent operations to query, cancel or replace the contents of an undelivered message. |
-| *submit_multi* | A variation of the submit_sm PDU that supports up to 255 recipients for the given message. |
-| *submit_multi_resp* | The MC response to a submit_multi PDU. This is similar to the submit_sm_resp PDU. The main difference is that where some of the specified recipients were either invalid or rejected by the Message Centre, the PDU can specify the list of failed recipients, appending a specific error code for each one, indicating the reason the recipient was invalid. Also included is a MC message_id that can be used in subsequent operations to query, cancel or replace the contents of an undelivered message. |
-| *data_sm* | data_sm is a streamlined version of the submit_sm operation, designed for packet-based applications that do not demand extended functionality normally available in the submit_sm operation. ESMEs implementing WAP over a SMS bearer typically use this operation. |
-| *data_sm_resp* | The MC response to a data_sm PDU, indicating the success or failure of the request. Also included is a MC message_id that can be used in subsequent operations to query, cancel or replace the contents of an undelivered message. |
+| `submit_sm` | A transmitter or transceiver ESME, wishing to submit a short message, can use this PDU to specify the sender, receiver and text of the short message. Other attributes include message priority, data coding scheme, validity period etc. |
+| `submit_sm_resp` | The MC response to a submit_sm PDU, indicating the success or failure of the request. Also included is a MC message_id that can be used in subsequent operations to query, cancel or replace the contents of an undelivered message. |
+| `submit_multi` | A variation of the submit_sm PDU that supports up to 255 recipients for the given message. |
+| `submit_multi_resp` | The MC response to a submit_multi PDU. This is similar to the submit_sm_resp PDU. The main difference is that where some of the specified recipients were either invalid or rejected by the Message Centre, the PDU can specify the list of failed recipients, appending a specific error code for each one, indicating the reason the recipient was invalid. Also included is a MC message_id that can be used in subsequent operations to query, cancel or replace the contents of an undelivered message. |
+| `data_sm` | data_sm is a streamlined version of the submit_sm operation, designed for packet-based applications that do not demand extended functionality normally available in the submit_sm operation. ESMEs implementing WAP over a SMS bearer typically use this operation. |
+| `data_sm_resp` | The MC response to a data_sm PDU, indicating the success or failure of the request. Also included is a MC message_id that can be used in subsequent operations to query, cancel or replace the contents of an undelivered message. |
 
 **Table 1-5 Message Submission Operations**
 
