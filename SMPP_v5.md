@@ -1462,12 +1462,12 @@ The *submit_multi* operation is an enhanced variation of *submit_sm* designed to
 | `source_addr_npi` | 1 | Integer | Numbering Plan Indicator for source address.<br><br>If not known, set to NULL (Unknown). | 4.7.2 |
 | `source_addr` | Var. max 21 | C-Octet String | Address of SME which originated this message.<br><br>If not known, set to NULL (Unknown). | 4.7.29 |
 | `number_of_dests` | 1 | Integer | Number of destination addresses – indicates the number of destinations that are to follow.<br><br>A maximum of 255 destination addresses are allowed.<br><br>Note: Set to 1 when submitting to one SME Address or when submitting to one Distribution List. | 4.7.17 |
-| `dest_address`: | Var. max 24 |  | SME Format Destination Address (Composite field) |  |
+| `dest_address`<sup>1</sup>: | Var. max 24 |  | SME Format Destination Address (Composite field) |  |
 | &nbsp;&nbsp;->`dest_flag` | 1 | Integer | `0x01` (SME Address) | 4.7.9 |
 | &nbsp;&nbsp;->`dest_addr_ton` | 1 | Integer | Type of Number for destination | 4.7.1 |
 | &nbsp;&nbsp;->`dest_addr_npi` | 1 | Integer | Numbering Plan Indicator for destination | 4.7.2 |
 | &nbsp;&nbsp;->`destination_addr` | Var. max 21 | C-Octet String | Destination address of this short message. For mobile terminated messages, this is the directory number of the recipient MS | 4.7.8 |
-| `dest_address`: | Var. max 23 |  | Distribution List Format Destination Address (Composite Field) |  |
+| `dest_address`<sup>1</sup>: | Var. max 23 |  | Distribution List Format Destination Address (Composite Field) |  |
 | &nbsp;&nbsp;->`dest_flag` | 1 | Integer | `0x02` (Distribution List) | 4.7.9 |
 | &nbsp;&nbsp;->`dl_name` | Var. max 21 | C-Octet String | Name of Distribution List | 4.7.10 |
 | `esm_class` | 1 | Integer | Indicates Message Mode and Message Type | 4.7.12 |
@@ -1485,6 +1485,8 @@ The *submit_multi* operation is an enhanced variation of *submit_sm* designed to
 
 **Table 4-18 *submit_multi* PDU**
 
+1 This field is a composite field containing a mandatory *dest_flag* field and then either an SME address (*dest_ton*, *dest_npi* & *destination_addr*) or a Distribution List (*dl_name*). Additionally the field can be encoded multiple times according to the value specified in the *number_of_dests* field.
+
 
 
 ### 4.2.3.2 submit_multi_resp Syntax
@@ -1496,7 +1498,7 @@ The *submit_multi* operation is an enhanced variation of *submit_sm* designed to
 | `sequence_number` | 4 | Integer | Set to sequence number of original `submit_multi` PDU. | 4.7.24 |
 | `message_id` | Var. max 65 | C-Octet String | This field contains the MC message ID of the submitted message. It may be used at a later stage to query the status of a message, cancel or replace the message. | 4.7.14 |
 | `no_unsuccess` | 1 | Integer | The number of messages to destination SME addresses that were unsuccessfully submitted to the MC. This is followed by the specified number of unsuccessful SMEs, each specified in a `unsuccess_sme` field. | 4.7.16 |
-| `unsuccess_sme`: | Var. max 27 |  | Unsuccessful SME (Composite Field) |  |
+| `unsuccess_sme`<sup>2</sup>: | Var. max 27 |  | Unsuccessful SME (Composite Field) |  |
 | &nbsp;&nbsp;->`dest_addr_ton` | 1 | Integer | Type of number for destination | 4.7.1 |
 | &nbsp;&nbsp;->`dest_addr_npi` | 1 | Integer | Numbering Plan Indicator for SME | 4.7.2 |
 | &nbsp;&nbsp;->`destination_addr` | Var. max 21 | C-Octet String | Destination Address of SME | 4.7.8 |
@@ -1504,6 +1506,8 @@ The *submit_multi* operation is an enhanced variation of *submit_sm* designed to
 | Message Submission Response TLVs | Var. | TLV |  | 4.2.5 |
 
 **Table 4-19 *submit_multi_resp* PDU**
+
+2 This field is a composite field containing an SME address (*dest_addr_ton*, *dest_addr_npi* & *destination_addr*) and an error code (*error_status_code*). Additionally the field can be encoded multiple times according to the value specified in the *no_unsuccess* field.
 
 
 ## 4.2.4 Message Submission Request TLVs
@@ -2515,6 +2519,14 @@ The following values are defined for this field:
 
 3 This represents the default alphabet assumed by the MC. This coding scheme may differ from vendor to vendor or may vary according to location and network technology of MC. For portability of applications, it is strongly recommended to avoid using this setting. 4 In cases where a Data Coding Scheme is defined for TDMA and/ or CDMA but not defined for GSM, SMPP uses GSM 03.38 reserved values. 5 These coding schemes are common to GSM, TDMA and CDMA. The SMPP protocol allows ESME applications to use the same DCS value (i.e. the GSM 03.38 value) for all three technologies. 6 The *data_coding* parameter will evolve to specify Character code settings only. Thus the recommended way to specify GSM MWI control is by specifying the relevant settings in the TLVs *ms_msg_wait_facilities* and *ms_validity.* 7 The *data_coding* parameter will evolve to specify Character code settings only. Thus the recommended way to specify GSM message class control is by specifying the relevant setting in the TLV *dest_addr_subunit*.
 
+4 In cases where a Data Coding Scheme is defined for TDMA and/ or CDMA but not defined for GSM, SMPP uses GSM 03.38 reserved values.
+
+5 These coding schemes are common to GSM, TDMA and CDMA. The SMPP protocol allows ESME applications to use the same DCS value (i.e. the GSM 03.38 value) for all three technologies.
+
+6 The *data_coding* parameter will evolve to specify Character code settings only. Thus the recommended way to specify GSM MWI control is by specifying the relevant settings in the TLVs *ms_msg_wait_facilities* and *ms_validity*.
+
+7 The *data_coding* parameter will evolve to specify Character code settings only. Thus the recommended way to specify GSM message class control is by specifying the relevant setting in the TLV *dest_addr_subunit*.
+
 
 
 ## 4.7.8 destination_addr
@@ -2526,6 +2538,7 @@ An IP address is specified in `aaa.bbb.ccc.ddd` notation. IP version 6.0 is not 
 ## 4.7.9 dest_flag
 A flag, which will identify whether destination address is a Distribution List (DL) name or SME
 address.
+
 | dest_flag Value | Meaning |
 | --- | --- |
 | `0x01` | SME Address |
@@ -2636,13 +2649,13 @@ The *password* parameter is used by the MC to authenticate the identity of the b
 The *priority_flag* parameter allows the originating SME to assign a priority level to the short message:
 **9** **GSM (SMS)**
 
-| Priority | GSM (SMS) | GSM (CBS) | ANSI-136 | IS-95 | ANSI-41 (CBS) |
+| Priority | GSM (SMS)<sup>9</sup> | GSM (CBS) | ANSI-136 | IS-95 | ANSI-41 (CBS) |
 | --- | --- | --- | --- | --- | --- |
 | 0 | non-priority | Normal | Bulk | Normal | Normal |
 | 1 | Priority | Immediate Broadcast | Normal | Interactive | Interactive |
 | 2 | Priority | High priority | Urgent | Urgent | Urgent |
 | 3 | Priority | reserved | Very Urgent | Emergency | Emergency |
-| 4 | N/A | Priority Background | N/A | N/A | N/A |
+| 4 | N/A | Priority Background<sup>10</sup> | N/A | N/A | N/A |
 | All other values reserved |  |  |  |  |  |
 
 **Table 4-51 *priority_flag* Values**
@@ -2651,6 +2664,11 @@ The *priority_flag* parameter allows the originating SME to assign a priority le
 
 different wording above. GSM does not support presentation of priority on the mobile station.
 
+9 For GSM mobile terminated, messages with priority greater than Level 0 are treated as priority when making a delivery attempt (i.e. a delivery attempt is made even when MWD is set in the HLR). For GSM Cell Broadcast service the category of the message can have priority background, see [GSM 03.41] Section 9.2.7.
+
+10 For GSM Cell Broadcast service the category of the message can have priority background, see [GSM 03.41] Section 9.2.7.
+
+
 ## 4.7.20 protocol_id
 
 <u>GSM</u> Set according to GSM 03.40 [GSM 03.40]
@@ -2658,10 +2676,6 @@ different wording above. GSM does not support presentation of priority on the mo
 <u>ANSI-136 (TDMA)</u>
 
 For mobile terminated messages, this field is not used and is therefore ignored by the MC. For ANSI-136 mobile originated messages, the MC should set this value to NULL.
-
-9 For GSM mobile terminated, messages with priority greater than Level 0 are treated as priority when making a delivery attempt (i.e. a delivery attempt is made even when MWD is set in the HLR). For GSM Cell Broadcast service the category of the message can have priority background, see [GSM 03.41] Section 9.2.7.
-
-
 
 <u>IS-95 (CDMA)</u>
 
