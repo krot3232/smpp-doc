@@ -1260,7 +1260,7 @@ This operation is used by the MC to signal an ESME to originate a *outbind* requ
 | `system_id` | Var. max 16 | C-Octet String | MC identifier.<br><br>Identifies the MC to the ESME. | 4.7.30 |
 | `password` | Var. max 9 | C-Octet String | The password may be used by the ESME for security reasons to authenticate the MC originating the outbind. | 4.7.18 |
 
-**Table 4-7*outbind PDU***
+**Table 4-7 *outbind PDU***
 
 ##### 4.1.1.8 unbind Syntax
 
@@ -2424,7 +2424,15 @@ The complete set of SMPP Command IDs and their associated values are defined in 
 **Table 4-44 command_id Values**
 
 ##### 4.7.6 command_status, error_status_code
-The command_status NULL in SMPP request messages. The SMPP Error status codes are returned by the MC in the SMPP message header and in the following table.|command_id a SMPP request. It is relevant only in the SMPP response message and should be set to error_status_code The complete set of SMPP Error Codes and their associated values are defined in the|Values field of a SMPP message response indicates the success or failure of command_status field of the field of a submit_multi_resp message.|
+The command_status field of a SMPP message response indicates the success or failure of
+a SMPP request. It is relevant only in the SMPP response message and should be set to
+NULL in SMPP request messages.
+
+The SMPP Error status codes are returned by the MC in the command_status field of the
+SMPP message header and in the error_status_code field of a submit_multi_resp message.
+
+The command_status NULL in SMPP request messages. The SMPP Error status codes are returned by the MC in the SMPP message header and in the following table.
+
 | Command Status Name | Value | Description |
 | --- | --- | --- |
 | ESME_ROK | `0x00000000` | No Error.<br><br>Specified in a response PDU to indicate the success of the corresponding request PDU. |
@@ -2499,8 +2507,6 @@ The command_status NULL in SMPP request messages. The SMPP Error status codes ar
 
 **Table 4-45 *command_status* Values**
 
-
-
 ##### 4.7.7 data_coding
 The following values are defined for this field:
 
@@ -2569,7 +2575,6 @@ short message.
 The esm_class parameter is encoded as follows in the submit_sm, submit_multi and
 data_sm (ESME -> MC) PDUs:
 
-|---|---|
 |  | esm_class Bits<br>7 6 5 4 3 2 1 0 | Meaning |
 | --- | --- | --- |
 | Messaging Mode (bits 1-0) | `x x x x x x 0 0` | Default MC Mode (e.g. Store and Forward) |
@@ -2588,7 +2593,7 @@ data_sm (ESME -> MC) PDUs:
 | GSM Specific (bits 7-6) | `1 1 x x x x x x` | Set UDHI and Reply Path (only relevant for GSM network) |
 
 **Table 4-48 *esm_class* Bit Values**
- The default setting of the *esm_class* parameter is 0x00.
+The default setting of the *esm_class* parameter is 0x00.
 
 ##### Notes
 
