@@ -426,39 +426,39 @@ The following table lists each SMPP operation PDU by name and the appropriate Se
 time and therefore, all MC or ESME operations listed below are also simultaneously applicable to a RE. For example, a RE may issue a *bind_transmitter* to a MC while a session is in an open state (RE binding to Message Center). Additionally, the RE may return a *bind_transmitter_resp* PDU to an ESME with an open state session (ESME binding to RE).
 | PDU | Open / ESME | Open / MC | Outbound / ESME | Outbound / MC | Bound_TX / ESME | Bound_TX / MC | Bound_RX / ESME | Bound_RX / MC | Bound_TRX / ESME | Bound_TRX / MC | Unbound / ESME | Unbound / MC |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `alert_notification` |  |  |  |  |  |  |  | v |  | v |  |  |
-| `bind_receiver` | v |  | v |  |  |  |  |  |  |  |  |  |
-| `bind_receiver_resp` |  | v |  | v |  |  |  |  |  |  |  |  |
-| `bind_transceiver` | v |  | v |  |  |  |  |  |  |  |  |  |
-| `bind_transceiver_resp` |  | v |  | v |  |  |  |  |  |  |  |  |
-| `bind_transmitter` | v |  | v |  |  |  |  |  |  |  |  |  |
-| `bind_transmitter_resp` |  | v |  | v |  |  |  |  |  |  |  |  |
-| `broadcast_sm` |  |  |  |  | v |  |  |  | v |  |  |  |
-| `broadcast_sm_resp` |  |  |  |  |  | v |  |  |  | v |  |  |
-| `cancel_broadcast_sm` |  |  |  |  | v |  |  |  | v |  |  |  |
-| `cancel_broadcast_sm_resp` |  |  |  |  |  | v |  |  |  | v |  |  |
-| `cancel_sm` |  |  |  |  | v |  |  |  | v |  |  |  |
-| `cancel_sm_resp` |  |  |  |  |  | v |  |  |  | v |  |  |
-| `data_sm` |  |  |  |  | v |  |  | v | v | v |  |  |
-| `data_sm_resp` |  |  |  |  |  | v | v |  | v | v |  |  |
-| `deliver_sm` |  |  |  |  |  |  |  | v |  | v |  |  |
-| `deliver_sm_resp` |  |  |  |  |  |  | v |  | v |  |  |  |
-| `enquire_link` | v | v | v | v | v | v | v | v | v | v | v | v |
-| `enquire_link_resp` | v | v | v | v | v | v | v | v | v | v | v | v |
-| `generic_nack` | v | v | v | v | v | v | v | v | v | v | v | v |
-| `outbind` |  | v |  |  |  |  |  |  |  |  |  |  |
-| `query_broadcast_sm` |  |  |  |  | v |  |  |  | v |  |  |  |
-| `query_broadcast_sm_resp` |  |  |  |  |  | v |  |  |  | v |  |  |
-| `query_sm` |  |  |  |  | v |  |  |  | v |  |  |  |
-| `query_sm_resp` |  |  |  |  |  | v |  |  |  | v |  |  |
-| `replace_sm` |  |  |  |  | v |  |  |  | v |  |  |  |
-| `replace_sm_resp` |  |  |  |  |  | v |  |  |  | v |  |  |
-| `submit_multi` |  |  |  |  | v |  |  |  | v |  |  |  |
-| `submit_multi_resp` |  |  |  |  |  | v |  |  |  | v |  |  |
-| `submit_sm` |  |  |  |  | v |  |  |  | v |  |  |  |
-| `submit_sm_resp` |  |  |  |  |  | v |  |  |  | v |  |  |
-| `unbind` |  |  |  |  | v | v | v | v | v | v |  |  |
-| `unbind_resp` |  |  |  |  | v | v | v | v | v | v |  |  |
+| `alert_notification` |  |  |  |  |  |  |  | + |  | + |  |  |
+| `bind_receiver` | + |  | + |  |  |  |  |  |  |  |  |  |
+| `bind_receiver_resp` |  | + |  | + |  |  |  |  |  |  |  |  |
+| `bind_transceiver` | + |  | + |  |  |  |  |  |  |  |  |  |
+| `bind_transceiver_resp` |  | + |  | + |  |  |  |  |  |  |  |  |
+| `bind_transmitter` | + |  | + |  |  |  |  |  |  |  |  |  |
+| `bind_transmitter_resp` |  | + |  | + |  |  |  |  |  |  |  |  |
+| `broadcast_sm` |  |  |  |  | + |  |  |  | + |  |  |  |
+| `broadcast_sm_resp` |  |  |  |  |  | + |  |  |  | + |  |  |
+| `cancel_broadcast_sm` |  |  |  |  | + |  |  |  | + |  |  |  |
+| `cancel_broadcast_sm_resp` |  |  |  |  |  | + |  |  |  | + |  |  |
+| `cancel_sm` |  |  |  |  | + |  |  |  | + |  |  |  |
+| `cancel_sm_resp` |  |  |  |  |  | + |  |  |  | + |  |  |
+| `data_sm` |  |  |  |  | + |  |  | + | + | + |  |  |
+| `data_sm_resp` |  |  |  |  |  | + | + |  | + | + |  |  |
+| `deliver_sm` |  |  |  |  |  |  |  | + |  | + |  |  |
+| `deliver_sm_resp` |  |  |  |  |  |  | + |  | + |  |  |  |
+| `enquire_link` | + | + | + | + | + | + | + | + | + | + | + | + |
+| `enquire_link_resp` | + | + | + | + | + | + | + | + | + | + | + | + |
+| `generic_nack` | + | + | + | + | + | + | + | + | + | + | + | + |
+| `outbind` |  | + |  |  |  |  |  |  |  |  |  |  |
+| `query_broadcast_sm` |  |  |  |  | + |  |  |  | + |  |  |  |
+| `query_broadcast_sm_resp` |  |  |  |  |  | + |  |  |  | + |  |  |
+| `query_sm` |  |  |  |  | + |  |  |  | + |  |  |  |
+| `query_sm_resp` |  |  |  |  |  | + |  |  |  | + |  |  |
+| `replace_sm` |  |  |  |  | + |  |  |  | + |  |  |  |
+| `replace_sm_resp` |  |  |  |  |  | + |  |  |  | + |  |  |
+| `submit_multi` |  |  |  |  | + |  |  |  | + |  |  |  |
+| `submit_multi_resp` |  |  |  |  |  | + |  |  |  | + |  |  |
+| `submit_sm` |  |  |  |  | + |  |  |  | + |  |  |  |
+| `submit_sm_resp` |  |  |  |  |  | + |  |  |  | + |  |  |
+| `unbind` |  |  |  |  | + | + | + | + | + | + |  |  |
+| `unbind_resp` |  |  |  |  | + | + | + | + | + | + |  |  |
 
 **Table 2-1 Operation Matrix**
 
@@ -731,64 +731,15 @@ If the ESME is synchronous and can only send a single PDU at a time, then as soo
 
 If we consider the transport time from ESME to MC to take α microseconds, then the overall idle time per operation is 2α. This is the elapsed idle time while the response is in transit to the ESME and when the next request is in transit to the MC. An asynchronous window of requests effectively avoids this inefficiency.
 
-SMPP V5.0  SMS Forum 39 of 166
-
 ##### 2.7 Session Timers
 
 SMPP operations are based on the exchange of operation PDUs between ESME and MC. In order to control the amount of time spent waiting for a response to arrive or particular operation to occur, the following timers are defined:
-
-|Timer|Required|Action on expiration|Description|
-|---|---|---|---|
-||SMPP|||
-||Session State|||
-
-Session Init Timer Open The network connection This timer specifies the time Outbound should be terminated. lapse allowed between a network connection being established by an ESME and a *bind_transmitter*, *bind_receiver* or *bind_transceiver* request being sent to the MC.
-
-The timer can also be used by a MC supporting Outbind and applied to the time interval between an Outbind request being sent to an ESME and its response with a bind request.
-
-This timer can also be used by an ESME supporting Outbind where an ESME will close the MC-initiated connection within the defined period if the MC fails to send an Outbind request.
-
-This timer should always be active on the MC and on <u>ESMEs supporting Outbind.</u>
-
-|Open|An enquire_link request|This timer specifies the time|
-|---|---|---|
-|Unbound Outbound|should be initiated.|lapse allowed between operations after which a|
-|Bound_TX||SMPP entity should|
-|Bound_RX||interrogate whether its’ peer|
-|Bound_TRX||still has an active session.|
-
-Enquire Link Timer
-
-This timer may be active on either peer (i.e. MC or ESME).
-
-SMPP V5.0  SMS Forum 40 of 166
-
-|Timer|Required|Action on expiration|Description|
-|---|---|---|---|
-||SMPP|||
-||Session State|||
-
-|Bound_TX|The SMPP session|This timer specifies the|
-|---|---|---|
-|Bound_RX Bound_TRX|should be dropped.|maximum time lapse allowed between|
-
-##### Inactivity Timer
-
-transactions, after which period of inactivity, a SMPP entity may assume that the session is no longer active. The resulting behaviour is to either close the session or issue an unbind request.
-
-This timer may be active on either peer (i.e. MC or ESME).
-
-|Open|Given operation|This timer specifies the time|
-|---|---|---|
-|Unbound|assumed to have failed.|lapse allowed between a|
-|Outbound||SMPP request and the|
-|Bound_TX||corresponding SMPP|
-|Bound_RX||response.|
-|Bound_TRX||This timer may be active on|
-
-Response Timer
-
-either communicating SMPP entity (i.e. MC or ESME).
+| Timer | Required SMPP Session State | Action on expiration | Description |
+| --- | --- | --- | --- |
+| Session Init Timer | Open<br>Outbound | The network connection should be terminated. | This timer specifies the time lapse allowed between a network connection being established by an ESME and a `bind_transmitter`, `bind_receiver` or `bind_transceiver` request being sent to the MC.<br><br>The timer can also be used by a MC supporting Outbind and applied to the time interval between an Outbind request being sent to an ESME and its response with a bind request.<br><br>This timer can also be used by an ESME supporting Outbind where an ESME will close the MC-initiated connection within the defined period if the MC fails to send an Outbind request.<br><br>This timer should always be active on the MC and on ESMEs supporting Outbind. |
+| Enquire Link Timer | Open<br>Unbound<br>Outbound<br>Bound_TX<br>Bound_RX<br>Bound_TRX | An `enquire_link` request should be initiated. | This timer specifies the time lapse allowed between operations after which a SMPP entity should interrogate whether its' peer still has an active session. This timer may be active on either peer (i.e. MC or ESME). |
+| Inactivity Timer | Bound_TX<br>Bound_RX<br>Bound_TRX | The SMPP session should be dropped. | This timer specifies the maximum time lapse allowed between transactions, after which period of inactivity, a SMPP entity may assume that the session is no longer active. The resulting behaviour is to either close the session or issue an unbind request.<br><br>This timer may be active on either peer (i.e. MC or ESME). |
+| Response Timer | Open<br>Unbound<br>Outbound<br>Bound_TX<br>Bound_RX<br>Bound_TRX | Given operation assumed to have failed. | This timer specifies the time lapse allowed between a SMPP request and the corresponding SMPP response.<br>This timer may be active on either communicating SMPP entity (i.e. MC or ESME). |
 
 **Table 2-2 SMPP Session Timers**
 
