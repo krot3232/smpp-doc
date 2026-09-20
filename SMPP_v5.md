@@ -425,6 +425,7 @@ The following table lists each SMPP operation PDU by name and the appropriate Se
 **Note:** A SMPP Routing Entity (RE) is capable of emulating an ESME and MC at the same
 
 time and therefore, all MC or ESME operations listed below are also simultaneously applicable to a RE. For example, a RE may issue a *bind_transmitter* to a MC while a session is in an open state (RE binding to Message Center). Additionally, the RE may return a *bind_transmitter_resp* PDU to an ESME with an open state session (ESME binding to RE).
+
 | PDU | Open / ESME | Open / MC | Outbound / ESME | Outbound / MC | Bound_TX / ESME | Bound_TX / MC | Bound_RX / ESME | Bound_RX / MC | Bound_TRX / ESME | Bound_TRX / MC | Unbound / ESME | Unbound / MC |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | `alert_notification` |  |  |  |  |  |  |  | + |  | + |  |  |
@@ -735,6 +736,7 @@ If we consider the transport time from ESME to MC to take α microseconds, then 
 ##### 2.7 Session Timers
 
 SMPP operations are based on the exchange of operation PDUs between ESME and MC. In order to control the amount of time spent waiting for a response to arrive or particular operation to occur, the following timers are defined:
+
 | Timer | Required SMPP Session State | Action on expiration | Description |
 | --- | --- | --- | --- |
 | Session Init Timer | Open<br>Outbound | The network connection should be terminated. | This timer specifies the time lapse allowed between a network connection being established by an ESME and a `bind_transmitter`, `bind_receiver` or `bind_transceiver` request being sent to the MC.<br><br>The timer can also be used by a MC supporting Outbind and applied to the time interval between an Outbind request being sent to an ESME and its response with a bind request.<br><br>This timer can also be used by an ESME supporting Outbind where an ESME will close the MC-initiated connection within the defined period if the MC fails to send an Outbind request.<br><br>This timer should always be active on the MC and on ESMEs supporting Outbind. |
@@ -980,15 +982,13 @@ SMPP V5.0  SMS Forum 52 of 166
 
 The general format of a SMPP PDU consists of a PDU header followed by a body as outlined in the following:
 
-##### SMPP PDU
-
-##### PDU Header (mandatory) PDU Body (Optional)
-
-Command Command Command Sequence PDU Body length id status number
-
-4 octets 4 octets 4 octets 4 octets Length = (Command Length value - 16) octets
-
-##### 4 octets Command Length - 4
+| Part | Size | Description |
+| --- | --- | --- |
+| Command length | 4 octets | PDU Header (mandatory) |
+| Command id | 4 octets | PDU Header (mandatory) |
+| Command status | 4 octets | PDU Header (mandatory) |
+| Sequence number | 4 octets | PDU Header (mandatory) |
+| PDU Body | Length = (Command Length value - 16) octets | PDU Body (Optional) |
 
 **Table 3-4 SMPP PDU Format**
 
@@ -1848,9 +1848,8 @@ service_type C-Octet The service_type parameter 4.7.25 String can be used to ind
 
 Set to NULL if not known by MC
 
-|source_addr_ton|1|Integer|Type of Number for source|4.7.1|
+|source_addr_ton|1|Integer|Type of Number for source address.|4.7.1|
 |---|---|---|---|---|
-||||address.||
 |source_addr_npi|1|Integer|Numbering Plan Indicator for source address.|4.7.2|
 |source_addr Var.|max 21|C-Octet String|Address of SME which originated this message.|4.7.29|
 |dest_addr_ton|1|Integer|Type of Number for destination|4.7.1|
@@ -2017,21 +2016,14 @@ SMPP V5.0  SMS Forum 95 of 166
 
 ##### 4.4.1.2 broadcast_sm_resp Syntax
 
-##### Field Name Size Type Description Ref
-
-**octets**
-
-command_length 4 Integer Set to overall length of PDU. 4.7.4
-
-##### command_id 4 Integer 0x80000111 4.7.5
-
-command_status 4 Integer Indicates outcome of 4.7.6 *broadcast_sm* request.
-
-sequence_number 4 Integer Set to sequence number of 4.7.24 original *broadcast_sm* PDU.
-
-message_id Var. C-Octet This field contains the MC 4.7.14 max 65 String message ID of the submitted message. It may be used at a later stage to perform subsequent operations on the message.
-
-Broadcast Response Var. TLV 4.4.3 Optional TLVs
+| Field Name | Size octets | Type | Description | Ref. |
+| --- | --- | --- | --- | --- |
+| `command_length` | 4 | Integer | Set to overall length of PDU. | 4.7.4 |
+| `command_id` | 4 | Integer | `0x80000111` | 4.7.5 |
+| `command_status` | 4 | Integer | Indicates outcome of `broadcast_sm` request. | 4.7.6 |
+| `sequence_number` | 4 | Integer | Set to sequence number of original `broadcast_sm` PDU. | 4.7.24 |
+| `message_id` | Var. max 65 | C-Octet String | This field contains the MC message ID of the submitted message. It may be used at a later stage to perform subsequent operations on the message. | 4.7.14 |
+| Broadcast Response Optional TLVs | Var. | TLV |  | 4.4.3 |
 
 **Table 4-27 *broadcast_sm_resp* PDU**
 
@@ -2205,8 +2197,6 @@ SMPP V5.0  SMS Forum 105 of 166
 
 ##### 4.5.3.2 replace_sm_resp Syntax
 
-|4.5.3.3 Message Replacement TLVs|||||||||
-|---|---|---|---|---|---|---|---|---|
 | Field Name | Size octets | Type | Description | Ref. |
 | --- | --- | --- | --- | --- |
 | `command_length` | 4 | Integer | Set to overall length of PDU. | 4.7.4 |
@@ -2215,6 +2205,12 @@ SMPP V5.0  SMS Forum 105 of 166
 | `sequence_number` | 4 | Integer | Set to sequence number of original `replace_sm` PDU. | 4.7.24 |
 
 **Table 4-35 *replace_sm_resp* PDU**
+
+##### 4.5.3.3 Message Replacement TLVs
+
+| Field Name | Size octets | Type | Description | Ref. |
+| --- | --- | --- | --- | --- |
+| `message_payload` | Var. | TLV | Contains the extended short message user data. Up to 64K octets can be transmitted.<br><br>Note: The short message data should be inserted in either the `short_message` or `message_payload` fields. Both fields should not be used simultaneously.<br><br>The `sm_length` field should be set to zero if using the `message_payload` parameter. | 4.8.4.36 |
 
 **Table 4-36 Message Replacement TLVs**
 
@@ -2619,27 +2615,17 @@ This is the default format used by SMPP. Scheduled delivery times, expiry times 
 
 Absolute time is formatted as a 16-character string (encoded as a 17-octet C-octet String) `**YYMMDDhhmmsstnnp**` where:
 
-##### Digits Meaning
-
-‘YY’ last two digits of the year (00-99)
-
-‘MM’ month (01-12)
-
-‘DD’ day (01-31)
-
-‘hh’ hour (00-23)
-
-‘mm’ minute (00-59)
-
-‘ss’ second (00-59)
-
-‘t’ tenths of second (0-9)
-
-‘nn’ Time difference in quarter hours between local time (as expressed in the first 13 octets) and UTC (Universal Time Constant) time (00-48).
-
-‘p’ `+` Local time is in quarter hours advanced in relation to UTC time.
-
-`-` Local time is in quarter hours retarded in relation to UTC time.
+| Digits | Meaning |
+| --- | --- |
+| ‘YY’ | last two digits of the year (00-99) |
+| ‘MM’ | month (01-12) |
+| ‘DD’ | day (01-31) |
+| ‘hh’ | hour (00-23) |
+| ‘mm’ | minute (00-59) |
+| ‘ss’ | second (00-59) |
+| ‘t’ | tenths of second (0-9) |
+| ‘nn’ | Time difference in quarter hours between local time (as expressed in the first 13 octets) and UTC (Universal Time Constant) time (00-48). |
+| ‘p’ | “+”  Local time is in quarter hours advanced in relation to UTC time.<br><br>“-”  Local time is in quarter hours retarded in relation to UTC time. |
 
 **Table 4-54 Absolute UTC Time Format**
 
@@ -2649,25 +2635,17 @@ Relative Time can be indicated by setting the UTC orientation flag to ‘R’ in
 
 Absolute time is formatted as a 16 character string (encoded as a 17-octet C-octet String) `**YYMMDDhhmmsstnnp**` where:
 
-##### Digits Meaning
-
-‘YY’ year (00-99)
-
-‘MM’ month (01-12)
-
-‘DD’ day (01-31)
-
-‘hh’ hour (00-23)
-
-‘mm’ minute (00-59)
-
-‘ss’ second (00-59)
-
-‘t’ Unused. Should be set to ‘0’
-
-‘nn’ Unused. Should be set to ‘00’
-
-‘p’ `R` Local time is relative to the current MC time.
+| Digits | Meaning |
+| --- | --- |
+| ‘YY’ | year (00-99) |
+| ‘MM’ | month (01-12) |
+| ‘DD’ | day (01-31) |
+| ‘hh’ | hour (00-23) |
+| ‘mm’ | minute (00-59) |
+| ‘ss’ | second (00-59) |
+| ‘t’ | Unused. Should be set to ‘0’ |
+| ‘nn’ | Unused. Should be set to ‘00’ |
+| ‘p’ | “R”  Local time is relative to the current MC time. |
 
 **Table 4-55 Relative Time Format**
 
@@ -2715,21 +2693,19 @@ Note: The *short_message* field is designed to carry binary payloads. This is wh
  specified as a C-Octet String. The value of the *sm_length* field indicates the explicit number of octets that the *short_message* field contains. NULL terminator octets (for ASCII content) should not be used in this field but if a NULL octet is included with the *short_message* data, then this octet MUST be included in the *sm_length* field.
 ***4.7.27 sm_default_msg_id*** The *sm_default_msg_id* parameter specifies the MC index of a pre-defined (‘canned’) message.
 
-##### sm_default_msg_id Value Meaning
-
-0 unused
-
-##### 1-255 Allowed values
+| sm_default_msg_id Value | Meaning |
+| --- | --- |
+| 0 | unused |
+| 1-255 | Allowed values |
 
 **Table 4-57 *sm_default_msg_id* Values**
 
 ***4.7.28 sm_length*** The *sm_length* parameter specifies the length of the *short_message* parameter in octets. The *sm_length* field should be set to 0 in the *submit_sm, submit_multi,* and *deliver_sm* PDUs if the *message_payload* parameter is being used to send user data larger than 255 octets.
 
-##### sm_length Value Meaning
-
-0 no user data in short message field
-
-1-255 allowed
+| sm_length Value | Meaning |
+| --- | --- |
+| 0 | no user data in short message field |
+| 1-255 | allowed |
 
 **Table 4-58 *sm_length* Values**
 
@@ -2747,11 +2723,10 @@ For a particular SMPP PDU, the ESME or MC may include some, all or none of the d
 
 The SMPP protocol defines the following Parameter Tag blocks:
 
-##### TLV Tag Range Meaning
-
-0x1400 - 0x3FFF Reserved for MC Vendor specific TLVs
-
-All other values Reserved for use by SMPP (Ref. Table 4-60)
+| TLV Tag Range | Meaning |
+| --- | --- |
+| `0x1400` - `0x3FFF` | Reserved for MC Vendor specific TLVs |
+| All other values | Reserved for use by SMPP (Ref. Table 4-60) |
 
 **Table 4-59 TLV Tag Value Ranges**
 
@@ -2880,23 +2855,12 @@ The *broadcast_area_identifier* defines the Broadcast Area in terms of a geograp
 
 **Table 4-64 *broadcast_area_identifier* TLV**
 
-##### 4.8.4.4.1 Broadcast Area Format types
-
-##### Format Format Size Octets Value Type Description Technology
-
-##### Value
-
-alias/ name 0x00 Var. Octet String This field allows Generic Max.100 specification of an area by name.
-
-ellipsoid_ 0x01 Var. Octet String This field allows GSM arc Max.100 specification of an area as an ellipsoid arc.
-
-Ref. [3GPP TS 23.032] Sections: 5.7, 7.3.7
-
-polygon 0x02 Var. Octet String This field allows GSM Max.100 specification of an area as a polygon.
-
-Ref. [3GPP TS 23.032] Sections: 5.4, 7.3.4
-
-##### All other values reserved
+| Format | Format Value | Size Octets | Value Type | Description | Technology |
+| --- | --- | --- | --- | --- | --- |
+| alias/ name | `0x00` | Var. Max.100 | Octet String | This field allows specification of an area by name. | Generic |
+| ellipsoid_ arc | `0x01` | Var. Max.100 | Octet String | This field allows specification of an area as an ellipsoid arc.<br><br>Ref.  [3GPP TS 23.032] Sections: 5.7, 7.3.7 | GSM |
+| polygon | `0x02` | Var. Max.100 | Octet String | This field allows specification of an area as a polygon.<br><br>Ref.  [3GPP TS 23.032] Sections: 5.4, 7.3.4 | GSM |
+| All other values reserved. |  |  |  |  |  |
 
 **Table 4-65 Broadcast Area Format Types**
 
@@ -3016,38 +2980,24 @@ SMPP V5.0  SMS Forum 144 of 166
 
 ***4.8.4.15 callback_num*** The *callback_num* parameter associates a call back number with the message. In TDMA networks, it is possible to send and receive multiple call-back numbers to/from TDMA mobile stations.
 
-##### Field <u>Size octets</u> Type Description
+| Field | Size octets | Type | Description |
+| --- | --- | --- | --- |
+| Parameter Tag | 2 | Integer | `0x0381` |
+| Length | 2 | Integer | Length of Value part in octets |
+| Value | Var<br>4 - 19 | Octet String | `Bits 7......0`<br>`0000000D` (octet 1)<br>`00000TTT` (octet 2)<br>`0000NNNN` (octet 3)<br>`XXXXXXXX` (octet 4)<br>:<br>:<br>`XXXXXXXX` (octet N)<br><br>The originating SME can set a Call Back Number for the receiving Mobile Station.<br>The first octet contains the Digit Mode Indicator.<br><br>Bit D=0 indicates that the Call Back Number is sent to the mobile as DTMF digits encoded in TBCD.<br><br>Bit D=1 indicates that the Call Back Number is sent to the mobile encoded as ASCII digits.<br><br>The 2nd octet contains the Type of Number (TON). Encoded as in section 4.7.1<br><br>The third octet contains the Numbering Plan Indicator (NPI). Encoded as specified in section 4.7.2<br><br>The remaining octets contain the Call Back Number digits encoded as ASCII characters |
 
-<u>Parameter Tag</u> 2 Integer 0x0381 Length 2 Integer Length of Value part in octets
-Value Var Octet String Bits 7......0
-4 - 19 0000000D (octet 1) 00000TTT (octet 2) 0000NNNN (octet 3) XXXXXXXX (octet 4) : : XXXXXXXX (octet N)
-
-The originating SME can set a Call Back Number for the receiving Mobile Station. The first octet contains the Digit Mode Indicator.
-
-Bit D=0 indicates that the Call Back Number is sent to the mobile as DTMF digits encoded in TBCD.
-
-Bit D=1 indicates that the Call Back Number is sent to the mobile encoded as ASCII digits.
-
-The 2nd octet contains the Type of Number (TON). Encoded as in section 4.7.1
-
-The third octet contains the Numbering Plan Indicator (NPI). Encoded as specified in section
-
-4.7.2 The remaining octets contain the Call Back Number digits encoded as ASCII characters
 **Table 4-76 *callback_num* TLV**
 
 SMPP V5.0  SMS Forum 145 of 166
 
 ***4.8.4.16 callback_num_atag*** The *callback_num_atag* parameter associates an alphanumeric display with the call back number.
 
-##### Field <u>Size octets</u> Type Description
+| Field | Size octets | Type | Description |
+| --- | --- | --- | --- |
+| Parameter Tag | 2 | Integer | `0x0303` |
+| Length | 2 | Integer | Length of Value part in octets |
+| Value | Var<br>max<br>65 | Octet string | Alphanumeric display tag for call back number<br><br>`Bits 7......0`<br>`EEEEEEEE` (octet 1)<br>`XXXXXXXX` (octet 2)<br>:<br>:<br>`XXXXXXXX` (octet N)<br><br>The first octet contains the encoding scheme of the Alpha Tag display characters. This field contains the same values as for Data Coding Scheme (see section 4.7.7).<br>The following octets contain the display characters:<br>There is one octet per display character for 7-bit and 8-bit encoding schemes.<br>There are two octets per display character for 16-bit encoding schemes. |
 
-<u>Parameter Tag</u> 2 Integer 0x0303 Length 2 Integer Length of Value part in octets Value Var Octet Alphanumeric display tag for call back number max string
-65 Bits 7......0
-EEEEEEEE (octet 1) XXXXXXXX (octet 2) : : XXXXXXXX (octet N)
-
-The first octet contains the encoding scheme of the Alpha Tag display characters. This field contains the same values as for Data Coding Scheme (see section
-
-4.7.7). The following octets contain the display characters: There is one octet per display character for 7-bit and 8- bit encoding schemes. There are two octets per display character for 16-bit encoding schemes.
 **Table 4-77 *callback_num_atag* TLV**
 
 ***4.8.4.17 callback_num_pres_ind***
@@ -3088,9 +3038,11 @@ SMPP V5.0  SMS Forum 147 of 166
 
 ***4.8.4.20 dest_addr_np_country*** The *dest_addr_np_country* TLV is used to carry E.164 information relating to the operator country code.
 
-##### Field <u>Size octets</u> Type Description
-
-<u>Parameter Tag</u> 2 Integer 0x0613 Length 2 Integer Length of Value part in octets Value 1-5 Integer Country code of the origination operator (E.164 Region Code)
+| Field | Size octets | Type | Description |
+| --- | --- | --- | --- |
+| Parameter Tag | 2 | Integer | `0x0613` |
+| Length | 2 | Integer | Length of Value part in octets |
+| Value | 1-5 | Integer | Country code of the origination operator (E.164 Region Code) |
 
 **Table 4-81 *dest_addr_np_country* TLV**
 
@@ -3170,9 +3122,11 @@ SMPP V5.0  SMS Forum 149 of 166
 
 ***4.8.4.28 dest_subaddress*** The *dest_subaddress* parameter specifies a subaddress associated with the destination of the message.
 
-##### Field <u>Size octets</u> Type Description
-
-<u>Parameter Tag</u> 2 Integer 0x0203 Length 2 Integer Length of Value part in octets Value Var Octet String See 4.8.4.60 for parameter 2 - 23 encoding.
+| Field | Size octets | Type | Description |
+| --- | --- | --- | --- |
+| Parameter Tag | 2 | Integer | `0x0203` |
+| Length | 2 | Integer | Length of Value part in octets |
+| Value | Var<br>2 - 23 | Octet String | See 4.8.4.60 for parameter encoding. |
 
 **Table 4-89 *dest_subaddress* TLV**
 
@@ -3312,9 +3266,8 @@ SMPP V5.0  SMS Forum 154 of 166
 
 ***4.8.4.40 ms_msg_wait_facilities*** The *ms_msg_wait_facilities* parameter allows an indication to be provided to an MS that there are messages waiting for the subscriber on systems on the PLMN. The indication can be an icon on the MS screen or other MMI indication.
 
-|The ms_msg_wait_facilities can|||also specify the type of message associated with the|
-|---|---|---|---|
-|message waiting indication.||||
+The *ms_msg_wait_facilities* can also specify the type of message associated with the message waiting indication.
+
 | Field | Size octets | Type | Description |
 | --- | --- | --- | --- |
 | Parameter Tag | 2 | Integer | `0x0030` |
@@ -3355,13 +3308,11 @@ SMPP V5.0  SMS Forum 156 of 166
 
 ***4.8.4.42 network_error_code*** The *network_error_code* parameter is used to indicate the actual network error code for a delivery failure. The network error code is technology specific.
 
-##### Field <u>Size octets</u> Type Description
-
-<u>Parameter Tag</u> 2 Integer 0x0423 Length 2 Integer Length of value part in octets Value 3 Octet String Sub-field Size Type Network Type 1 Integer Error Code 2 Integer
-
-The first octet indicates the network type. The following values are defined: 1 = ANSI 136 Access Denied Reason 2 = IS 95 Access Denied Reason 3 = GSM 4 = ANSI 136 Cause Code 5 = IS 95 Cause Code 6 = ANSI-41 Error 7 = SMPP Error 8 = Message Center Specific
-
-All other values reserved. The remaining two octets specify the actual <u>network error code appropriate to the network type.</u>
+| Field | Size octets | Type | Description |
+| --- | --- | --- | --- |
+| Parameter Tag | 2 | Integer | `0x0423` |
+| Length | 2 | Integer | Length of value part in octets |
+| Value | 3 | Octet String | _Sub-field — Size — Type_<br>Network Type — 1 — Integer<br>Error Code — 2 — Integer<br><br>The first octet indicates the network type.<br>The following values are defined:<br>1 = ANSI 136 Access Denied Reason<br>2 = IS 95 Access Denied Reason<br>3 = GSM<br>4 = ANSI 136 Cause Code<br>5 = IS 95 Cause Code<br>6 = ANSI-41 Error<br>7 = SMPP Error<br>8 = Message Center Specific<br><br>All other values reserved.<br>The remaining two octets specify the actual network error code appropriate to the network type. |
 
 **Table 4-103 *network_error_code* TLV**
 
@@ -3579,19 +3530,11 @@ SMPP V5.0  SMS Forum 164 of 166
 
 ***4.8.4.60 source_subaddress*** The *source_subaddress* parameter specifies a subaddress associated with the originator of the message.
 
-##### Field <u>Size octets</u> Type Description
-
-<u>Parameter Tag</u> 2 Integer 0x0202 Length 2 Integer Length of Value part in octets Value Var Octet String The first octet of the data field is a Type of 2 - 23 Subaddress tag and indicates the type of Sub-addressing information included, and implies the type and length of subaddressing information which can accompany this tag value in the data field.
-
-##### Valid Tag values are
-
-00000001 - Reserved 00000010 - Reserved 10000000 - NSAP (Even) [ITUT X.213] 10001000 - NSAP (Odd) [ITUT X.213] 10100000 - User Specified All other values Reserved
-
-##### The remaining octets contain the subaddress
-
-A NSAP address shall be encoded using the preferred binary encoding specified in [ITUT X.213]. In this case the subaddress field contains the Authority and Format Identifier.
-
-A User Specified subaddress is encoded according to user specification, subject to a maximum of 22 octets.
+| Field | Size octets | Type | Description |
+| --- | --- | --- | --- |
+| Parameter Tag | 2 | Integer | `0x0202` |
+| Length | 2 | Integer | Length of Value part in octets |
+| Value | Var<br>2 - 23 | Octet String | The first octet of the data field is a Type of Subaddress tag and indicates the type of Sub-addressing information included, and implies the type and length of subaddressing information which can accompany this tag value in the data field.<br><br>Valid Tag values are:<br><br>`00000001` - Reserved<br>`00000010` - Reserved<br>`10000000` - NSAP (Even) [ITUT X.213]<br>`10001000` - NSAP (Odd) [ITUT X.213]<br>`10100000` - User Specified<br>All other values Reserved<br><br>The remaining octets contain the subaddress.<br><br>A NSAP address shall be encoded using the preferred binary encoding specified in [ITUT X.213]. In this case the subaddress field contains the Authority and Format Identifier.<br><br>A User Specified subaddress is encoded according to user specification, subject to a maximum of 22 octets. |
 
 **Table 4-121 *source_subaddress* TLV**
 
