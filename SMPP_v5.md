@@ -2209,6 +2209,7 @@ reference *user_message_reference* this should be qualified within the service b
 | `source_addr_npi` | 1 | Integer | Numbering Plan Indicator for source address.<br><br>If not known, set to NULL (Unknown). | 4.7.2 |
 | `source_addr` | Var. max 21 | C-Octet String | Address of SME which originated this message.<br><br>If not known, set to NULL (Unknown). | 4.7.29 |
 | Query Broadcast Request TLVs | Var. | TLV |  | 4.6.1.2 |
+
 **Table 4-37 *query_broadcast_sm* PDU**
 
 ### 4.6.1.2 Query Broadcast Request Optional TLVs
@@ -2216,6 +2217,7 @@ reference *user_message_reference* this should be qualified within the service b
 | Field Name | Size octets | Type | Description | Ref. |
 | --- | --- | --- | --- | --- |
 | `user_message_reference` | Var. | TLV | ESME assigned message reference number. | 4.8.4.62 |
+
 **Table 4-38  Query Broadcast Optional TLVs**
 
 ### 4.6.1.3 query_broadcast_sm_resp Syntax
@@ -2714,7 +2716,8 @@ The *replace_if_present_flag* parameter is used to request the MC to replace a p
 | 2 - 255 | Reserved |
 
 **Table 4-53 *replace_if_present* Values**
- ESME applications that use this MC messaging function should use the same *service_type* and set the *replace_if_present_flag* parameter consistently to `1` for all messages, including the first message. This ensures that the MC has at most one message pending per destination SME for a particular application (e.g. voice mail notification).
+
+ESME applications that use this MC messaging function should use the same *service_type* and set the *replace_if_present_flag* parameter consistently to `1` for all messages, including the first message. This ensures that the MC has at most one message pending per destination SME for a particular application (e.g. voice mail notification).
 
 ## 4.7.23 scheduled_delivery_time, validity_period, final_date
 
