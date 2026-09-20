@@ -57,7 +57,7 @@ The following diagram illustrates the context of SMPP in a mobile network:
 ```
 **Figure 1-1 SMPP Network Diagram**
 
-SMPP V5.0  SMS Forum 12 of 166
+
 
 ##### 1.1 Scope Of This Document
 
@@ -106,7 +106,7 @@ This document defines Version 5.0 of the SMPP protocol. It is intended for desig
 
 **Table 1-1 Glossary**
 
-SMPP V5.0  SMS Forum 13 of 166
+
 
 ##### 1.3 References
 | Ref. | Document Title | Document Number | Version Number |
@@ -141,7 +141,7 @@ SMPP V5.0  SMS Forum 13 of 166
 
 The following sub-sections overview the basic concepts and characteristics of SMPP. Many of these characteristics will be discussed in greater detail throughout the document.
 
-SMPP V5.0  SMS Forum 16 of 166
+
 
 ##### 1.4.1 Protocol Versions
 
@@ -184,7 +184,7 @@ The variety of messaging applications, particularly SMS for which SMPP can be em
 - Online Banking, Share Dealing and E-Commerce, A mobile user could use SMS to send messages to an ESME requesting the purchase of products, shares etc. Likewise, a subscriber may use SMS to access banking services such as bill payment and funds transfer.
 - Gaming and SMS Chat. Mobile users can interact with each other by means of a central server (ESME) and use this interaction as a means of playing wireless games, dating or SMS chat services similar to the concept of instant messaging and Internet room. These services have already appeared in the form of SMS-TV and SMS-Radio services.
 - MMS Notification. In Multimedia Messaging, SMS is a bearer for the Multimedia Message Notification, which informs the recipient MMS user agent that a multimedia message is available on the Multimedia Message Centre.
-SMPP V5.0  SMS Forum 19 of 166
+
 
 - Cell Broadcast Services. Applications designed to support geographical messaging such as traffic alerts and emergency services, may use the Cell Broadcast features of SMPP to upload messages for periodic broadcast to subscribers within a given location.
 
@@ -197,7 +197,7 @@ There are three forms of ESME-initiated session:
 - Transmitter (TX) when authenticated as a transmitter, an ESME may submit short messages to the MC for onward delivery to Mobile Stations (MS). A transmitter session will also allow an ESME cancel, query or replace previously submitted messages. Messages sent in this manner are often called mobile terminated messages.
 - Receiver (RX) A receiver session enables an ESME to receive messages from a MC. These messages typically originate from mobile stations and are referred to as mobile originated messages.
 - Transceiver (TRX) A TRX session is a combination of TX and RX, such that a single SMPP session can be used to submit mobile terminated messages and receive mobile originated messages. Additionally, the Message Centre can establish a SMPP session by connecting to the ESME. This is referred to as an Outbind Session.
-SMPP V5.0  SMS Forum 20 of 166
+
 
 ##### 1.4.5 Protocol Operations and PDUs
 
@@ -288,7 +288,7 @@ The following sub-sections list each category and its associated operations.
 
 **Table 1-9 Anciliary Broadcast Operations**
 
-SMPP V5.0  SMS Forum 24 of 166
+
 
 #### 2 SMPP Sessions
 
@@ -318,7 +318,7 @@ SMPP is an application layer protocol, using the same underlying communications 
 ```
 **Figure 2-1 Application Layer Communication Between ESME and MC**
 
-SMPP V5.0  SMS Forum 25 of 166
+
 
 ##### 2.2 Establishing a SMPP Session
 
@@ -494,7 +494,7 @@ To help explain the context of SMPP operations and their related states, the fol
 ```
 **Figure 2-8 Example Transmitter Session**
 
-SMPP V5.0  SMS Forum 31 of 166
+
 
 ##### 2.5.2 Example Receiver Session
 ```text
@@ -519,7 +519,7 @@ SMPP V5.0  SMS Forum 31 of 166
 ```
 **Figure 2-9 Example Receiver Session**
 
-SMPP V5.0  SMS Forum 32 of 166
+
 
 ##### 2.5.3 Example Transceiver Session
 ```text
@@ -548,7 +548,7 @@ SMPP V5.0  SMS Forum 32 of 166
 ```
 **Figure 2-10 Example Transceiver Session**
 
-SMPP V5.0  SMS Forum 33 of 166
+
 
 ##### 2.5.4 Example Transmitter Session (Cell Broadcast Entity)
 ```text
@@ -575,7 +575,7 @@ SMPP V5.0  SMS Forum 33 of 166
 ```
 **Figure 2-11 Example Transmitter Session (Cell Broadcast Entity)**
 
-SMPP V5.0  SMS Forum 34 of 166
+
 
 ##### 2.5.5 Example Outbind Session
 
@@ -604,7 +604,7 @@ This example depicts an outbind session that results in the binding of a receive
 ```
 **Figure 2-12 Example Outind Session**
 
-SMPP V5.0  SMS Forum 35 of 166
+
 
 ##### 2.6 PDU Sequencing
 
@@ -643,7 +643,7 @@ Referring to the above example, sequence numbers are uniquely issued per request
 
 Each response PDU must carry the sequence number used in the matching request. In the above example, the MC responded with a *bind_transceiver_resp* carrying a sequence number of 1, simply because the *bind_transceiver* request had a sequence number of 1. The next request issued by the ESME was the *submit_sm* PDU and it carried a sequence number
 
-SMPP V5.0  SMS Forum 36 of 166
+
 
 of 2. The third and forth request PDUs to be sent by the ESME further incremented this value to 3 and 4 respectively.
 
@@ -706,7 +706,7 @@ The asynchronous behaviour of both the ESME and Message Centre is evident in the
 
 The PDU sequence numbers make the request/response matching possible. So regardless of when an asynchronous response arrives, it can be immediately re-matched to the original request PDU. Thus, if only for this reason, each PDU request should use a unique sequence number within the context of the session.
 
-SMPP V5.0  SMS Forum 38 of 166
+
 
 ##### 2.6.5 Why Asynchronous?
 
@@ -761,7 +761,7 @@ The recommended approach is to continually try to connect or reconnect again at 
 
 Most SMPP sessions will be ESME-initiated, but as we have seen from Outbind, the MC can itself be in a position to connect to an ESME that is configured for Outbind. The likely reason for attempting an Outbind is that messages for the ESME have arrived in the MC. If the connection attempt fails, it is recommend that the MC use a similar mechanism of periodically attempting to Outbind to the ESME. This may be driven by a retry sequence that controls the frequency of delivery attempts made for a given message. Every time the ESMEs message is scheduled for retry, the MC attempts to Outbind to the ESME.
 
-SMPP V5.0  SMS Forum 41 of 166
+
 
 ##### 2.8.2 Operation Failure
 
@@ -773,7 +773,7 @@ There are a number of reasons why a MC or ESME may reject an operation request P
 - The PDU data is unexpected and deemed invalid This type of rejection is an application rather than a protocol compliance issue and an absolute list of causes is well beyond the scope of this document. An example of such a scenario could be an Email gateway that provides a service to convert Mobile originated SMS messages into emails. The email addressing might be based on the text content of the message. If the ESME found that the message forwarded by the MC did not contain the correct formatting it would reject the message. The typical error code would be ESME_RX_R_APPN, which is a means of rejecting a message and ensuring that it is not retried at a later point.
 - The PDU is not allowed in the current session state This is a violation of the rules of the SMPP sessions and a simple example would be an ESME in Bound_RX state, attempting to submit a message by sending a *submit_sm* PDU or by attempting to submit a message across an Open State session without first binding. The expected command status in the *submit_sm_resp* PDU would be ESME_RINVBNDSTS
 - The ESME or MC is restricting the use of certain PDUs or features SMPP has a broad scope of functionality and some Message Centres or ESMEs may deliberately provide mechanisms to disable certain features. For example if an operator configured a message centre to reject attempts by ESMEs to request delivery receipts for messages, it would force the MC to reject the message with a command status set to ESME_RINVREGDLVFLG. Although the field may be correctly encoded, its usage is disabled and the MC is authorised to reject the message using that error code.
-SMPP V5.0  SMS Forum 42 of 166
+
 
 ##### 2.9 Flow Control and Congestion Avoidance
 
@@ -826,7 +826,7 @@ The above diagram shows a session where an ESME is transmitting PDUs at a rate o
 
 SMPP itself, does not define any native encryption mechanisms. The content exchanged across a SMPP session is open to unauthorised interception or impersonation if transmitted across an open medium such as the Internet. To combat this risk, there are two recommended approaches to securing SMPP sessions.
 
-SMPP V5.0  SMS Forum 44 of 166
+
 
 ##### 2.10.1 Leased Lines
 
@@ -856,7 +856,7 @@ A Virtual Private Network is typically used within organizations to consolidate 
 ```
 **Figure 2-17 ESME-MC SMPP session using a secure VPN**
 
-SMPP V5.0  SMS Forum 45 of 166
+
 
 ##### 2.10.4 Secure Tunnel
 
@@ -879,7 +879,7 @@ Another approach to securing a SMPP session is to use a secure tunnel. This is w
 ```
 **Figure 2-18 ESME-MC SMPP session using a secure tunnel**
 
-SMPP V5.0  SMS Forum 46 of 166
+
 
 ##### 2.11 Forward and Backward Compatibility
 
@@ -899,7 +899,7 @@ the particular SMPP operation, the TLV shall be processed. o If a TLV Tag is rec
 - If the Parameter value is otherwise unrecognized or invalid, the SMPP entity should return an error indicating the Parameter Value is invalid.
 - A SMPP entity detecting that a TLV, which is required in the context of the operation, is not present should return the ESME_RMISSINGTLV *command_status*.
 - A Variable length field Parameter may have its’ maximum length definition extended in subsequent versions of the SMPP protocol. A SMPP entity receiving a variable length Parameter whose length is greater than the maximum length the entity supports for that Parameter should reject the parameter with its appropriate *command_status* value.
-SMPP V5.0  SMS Forum 47 of 166
+
 
 ##### 2.11.2 Backward Compatibility
 
@@ -919,7 +919,7 @@ As the concept of TLVs was first introduced in V3.4 of the protocol, the followi
 - A MC supporting V3.4 or later should return the SMPP version it supports in the *sc_interface_version* parameter of the bind response PDU. If a bind response does not contain the *sc_interface_version* parameter, then the ESME should assume that the MC does not support the use of TLVs.
 - An ESME that implements SMPP V3.4 or a later version of this protocol must not send TLVs to a MC that implements an earlier version of this protocol. The ESME shall determine the MC version support from the SMPP bind response PDU.
 - A MC that implements SMPP V3.4 or later must not generate message IDs greater than 8 octets when communicating with an ESME that supports SMPP V3.3 or earlier.
-SMPP V5.0  SMS Forum 48 of 166
+
 
 #### 3 SMPP Parameter and PDU Format
 
@@ -942,7 +942,7 @@ represents 4 binary bits. Thus, a 2-digit hex number is represented by 1 octet o
 
 **Table 3-1 SMPP PDU Parameter Types**
 
-SMPP V5.0  SMS Forum 50 of 166
+
 
 ##### 3.1.1 NULL Settings
 
@@ -957,7 +957,7 @@ References to a NULL setting for a field imply that the field is not carrying a 
 
 **Table 3-2 SMPP PDU Parameter Type NULL Settings**
 
-SMPP V5.0  SMS Forum 51 of 166
+
 
 ##### 3.1.2 SMPP Parameter Field Size Notation
 
@@ -976,7 +976,7 @@ The following notation style is used throughout. Note that some SMPP strings are
 
 **Table 3-3 SMPP PDU Parameter Type Size Notation**
 
-SMPP V5.0  SMS Forum 52 of 166
+
 
 ##### 3.2 General PDU Format
 
@@ -1017,7 +1017,7 @@ Command_length represents the actual size of the PDU including the PDU header an
 
 The reason for requiring a command_length field is that SMPP is a binary protocol and also supports asynchronous transmission. This means that an ESME or MC must support the ability to decode a PDU from a network connection buffer that may contain several PDUs. The key to achieving the means of decoding each PDU within a buffer is based on the knowledge of how big each PDU is. The *command_length* represents the first field of a PDU and its value contains the overall size of the PDU. An application can easily decode a PDU from a buffer by extracting the first 4 octets, assuming these to represent the
 
-SMPP V5.0  SMS Forum 53 of 166
+
 
 *command_length* and then deduce from the value, the overall size of the PDU. Considering that 4 octets have been read from the buffer, the deduced value is decremented by 4 to indicate the remaining PDU data to extract from the buffer.
 
@@ -1057,7 +1057,7 @@ Tagged Length Value (TLV) parameters as described in section 3.1 are identified 
 
 TLVs were originally referred to as Optional Parameters in SMPP V3.4. In Version 5.0 of the protocol, the term Optional Parameter applies only to TLVs that are not mandatory within a
 
-SMPP V5.0  SMS Forum 54 of 166
+
 
 PDU. Therefore TLVs are described in the context of a PDU as Mandatory TLVs and Optional TLVs. The Term Optional Parameter is no longer used.
 
@@ -1090,7 +1090,7 @@ The remaining data represents the PDU body (which in this example relates to the
 |01|addr_npi (0x01)|
 |00|addr_range (NULL)|
 
-SMPP V5.0  SMS Forum 55 of 166
+
 
 #### 4 SMPP PDU Definitions
 
@@ -1133,7 +1133,7 @@ The associated *bind_transmitter_resp* PDU will echo the same sequence number.
 
 system_id Var. C-Octet Identifies the ESME system
 
-SMPP V5.0  SMS Forum 56 of 166
+
 
 | Field Name | Size octets | Type | Description | Ref. |
 | --- | --- | --- | --- | --- |
@@ -1167,7 +1167,7 @@ The SMPP *bind_transmitter_resp* PDU is used to reply to a bind_transmitter requ
 
 **Table 4-2 *bind_transmitter_resp* PDU**
 
-SMPP V5.0  SMS Forum 57 of 166
+
 
 ##### 4.1.1.3 bind_receiver Syntax
 
@@ -1189,7 +1189,7 @@ The format of the SMPP *bind_receiver* PDU is defined in the following table.
 
 **Table 4-3 *bind_receiver* PDU**
 
-SMPP V5.0  SMS Forum 58 of 166
+
 
 ##### 4.1.1.4 bind_receiver_resp Syntax
 
@@ -1245,7 +1245,7 @@ The format of the SMPP *bind_transceiver_resp* PDU is defined in the following t
 
 **Table 4-6 *bind_transceiver_resp* PDU**
 
-SMPP V5.0  SMS Forum 60 of 166
+
 
 ##### 4.1.1.7 outbind Syntax
 
@@ -1279,7 +1279,7 @@ Thus, the *unbind* operation may be viewed as a form of MC logoff request to clo
 
 **Table 4-8 *unbind* PDU**
 
-SMPP V5.0  SMS Forum 61 of 166
+
 
 ##### 4.1.1.9 unbind_resp Syntax
 
@@ -1296,7 +1296,7 @@ The format of the SMPP *unbind_resp* PDU is defined in the following table:
 
 **Table 4-9 *unbind_resp* PDU**
 
-SMPP V5.0  SMS Forum 62 of 166
+
 
 ##### 4.1.2 Enquire Link Operation
 
@@ -1326,7 +1326,7 @@ The *enquire_link_resp* PDU is used to reply to an *enquire_link* request.
 
 **Table 4-11 *enquire_link_resp* PDU**
 
-SMPP V5.0  SMS Forum 63 of 166
+
 
 ##### 4.1.3 Alert Notification Operation
 
@@ -1358,7 +1358,7 @@ Following is the format of the SMPP *alert_notification* PDU.
 
 **Table 4-12 *alert_notification* PDU**
 
-SMPP V5.0  SMS Forum 64 of 166
+
 
 ##### 4.1.4 Generic NACK Operation
 
@@ -1377,7 +1377,7 @@ Following is the format of the SMPP *generic_nack* PDU***.*** It comprises the S
 
 **Table 4-13 *generic_nack* PDU**
 
-SMPP V5.0  SMS Forum 65 of 166
+
 
 ##### 4.2 Message Submission Operations
 
@@ -1400,7 +1400,7 @@ This operation is used by an ESME to submit a short message to the MC for onward
 
 **Table 4-15 *submit_sm_resp* PDU**
 
-SMPP V5.0  SMS Forum 68 of 166
+
 
 ##### 4.2.2 data_sm Operation
 
@@ -1441,7 +1441,7 @@ The *data_sm* operation is similar to the *submit_sm* in that it provides a mean
 
 **Table 4-17 *data_sm_resp* PDU**
 
-SMPP V5.0  SMS Forum 70 of 166
+
 
 ##### 4.2.3 submit_multi Operation
 
@@ -1483,7 +1483,7 @@ The *submit_multi* operation is an enhanced variation of *submit_sm* designed to
 
 **Table 4-18 *submit_multi* PDU**
 
-SMPP V5.0  SMS Forum 73 of 166
+
 
 ##### 4.2.3.2 submit_multi_resp Syntax
 
@@ -1508,7 +1508,7 @@ message_id Var. C-Octet This field contains the MC
 
 2 This field is a composite field containing an SME address (*dest_addr_ton*, *dest_addr_npi* & *destination_addr*) and an error code (*error_status_code*). Additionally the field can be encoded multiple times according to the value specified in the *no_unsuccess* field.
 
-SMPP V5.0  SMS Forum 74 of 166
+
 
 ### SMSFORUM
 
@@ -1641,7 +1641,7 @@ In daily life, people talk about national and international numbers they use for
 
 An international TON means that the number starts with the country code followed by the national destination code and the subscriber number. The national destination code is also known as the operator code, operator prefix, and is similar to the fixed-line network area codes. It is common for numbering plans to have multiple national destination codes. In
 
-SMPP V5.0  SMS Forum 77 of 166
+
 
 some countries, the wireless and fixed-line network numbering plans are fully integrated. On the mobile terminal the '+' is used as a visible cue to indicate an international number. The '+' itself is not encoded in the address, it simply translates to TON International.
 
@@ -1668,7 +1668,7 @@ Specifying addresses for ESMEs is very much prone to the network operator’s pr
 - Service Short Code Short codes are brief and often easy to remember. Operators providing services that allow a subscriber avail of stock quotes, lotto results etc, will often configure the service to respond to a short digit sequence such as `1234`. The subscriber will mobile originate a message addressed to `1234` (TON=0 `unknown`) and the message center routing will deliver this to an ESME receiver or transceiver. In responding to the message, the ESME will usually set the source address to the short code, making it easy for the recipient to reply to the message if another request is desired.
 - International Number With growth in the numbers of subscribers roaming internationally with their mobiles, ESME services that they use, need to be accessible regardless of location. One approach to supporting this accessibility is for the ESME to use an international number in the source address of the message (TON=1, NPI=1).
 - NULL Address An ESME Transmitter may enter NULL values in the ‘source address’ fields. In this event, the MC may then substitute a default address for that particular ESME. This feature is designed for interfaces that are not normally familiar with the notion of a source address for a short message, e.g., paging systems, voice mail systems,
-SMPP V5.0  SMS Forum 78 of 166
+
 
 which were developed before the advent of SMS technologies and were based on one-way paging, hence the lack of a source address.
 
@@ -1730,7 +1730,7 @@ Another use of scheduled messages is to provide for birthday services or SMS-bas
 
 A pre-defined message is a `canned` message that is provisioned on a MC. The ESME specifies the message by providing its ID in the *sm_default_msg_id* field (ref. 4.7.27). The purpose of the predefined message is to relieve the ESME from specifying the actual text, allowing the operator control over what goes to the subscriber.
 
-SMPP V5.0  SMS Forum 80 of 166
+
 
 ##### 4.2.10 Message Modes
 
@@ -1795,7 +1795,7 @@ In Datagram Message Mode, typical MC functions such as scheduled delivery, regis
 ```
 **Figure 4-3 Datagram Message Mode compare to Store and Forward Mode**
 
-SMPP V5.0  SMS Forum 83 of 166
+
 
 ##### 4.2.10.4 Transaction Message Mode
 
@@ -1820,7 +1820,7 @@ Transaction Message Mode is designed for applications that involve real-time mes
 ```
 **Figure 4-4 Transaction Mode**
 
-SMPP V5.0  SMS Forum 84 of 166
+
 
 ##### 4.3 Message Delivery Operations
 
@@ -1867,7 +1867,7 @@ Set to NULL if not known by MC
 |replace_if_present_flag 1 Integer|||Flag indicating if delivered message should replace an existing message.|4.7.22|
 |data_coding|1|Integer|Defines the encoding scheme of the short message user data.|4.7.7|
 
-SMPP V5.0  SMS Forum 86 of 166
+
 
 |Field Name||Size octets||Type||Description||Ref.|
 |---|---|---|---|---|---|---|---|---|
@@ -1891,7 +1891,7 @@ sequence_number 4 Integer Set to sequence number of 4.7.24 original *deliver_sm*
 
 message_id Var. C-Octet This field is unused and should
 
-SMPP V5.0  SMS Forum 87 of 166
+
 
 ||Field Name|Size octets|Type|Description||Ref.||
 |---|---|---|---|---|---|---|---|
@@ -1928,7 +1928,7 @@ The following fields are relevant in the *deliver_sm* and *data_sm* operations w
 - *message_state* TLV This TLV indicates the final state of the original message.
 - *network_error_code* TLV
 - *receipted_message_id* TLV
-SMPP V5.0  SMS Forum 90 of 166
+
 
 Note: Many pre-V3.4 interfaces and Message Centers supporting V3.3 are likely to have a
 
@@ -1971,7 +1971,7 @@ A Manual/User Acknowledgement is an application generated reply message sent in 
 
 This message type is unique to Interactive Teleservice defined by the Korean CDMA Carriers Organization. It is sent by a MS-based SME to indicate the unexpected termination of an interactive session. A Conversation Abort may be carried in a *deliver_sm* or *data_sm* PDU.
 
-SMPP V5.0  SMS Forum 91 of 166
+
 
 ##### 4.4 Message Broadcast Operations
 
@@ -2012,7 +2012,7 @@ This operation is issued by the ESME to submit a message to the Message Centre f
 
 **Table 4-26 *broadcast_sm* PDU**
 
-SMPP V5.0  SMS Forum 95 of 166
+
 
 ##### 4.4.1.2 broadcast_sm_resp Syntax
 
@@ -2058,7 +2058,7 @@ This section lists optional TLVs that may be additionally specified in a broadca
 
 **Table 4-28 Broadcast Request Optional TLVs**
 
-SMPP V5.0  SMS Forum 98 of 166
+
 
 ##### 4.4.3 Broadcast Response Optional TLVs
 
@@ -2077,7 +2077,7 @@ Setting the *replace_if_present flag* to 1 activates this mode. Additionally it 
 
 If the MC cannot replace the previous message, the operation will fail. This differs from *submit_sm* w/replace where a new message is submitted, should the replace attempt fail.
 
-SMPP V5.0  SMS Forum 99 of 166
+
 
 ##### 4.5 Ancillary Submission Operations
 
@@ -2112,7 +2112,7 @@ Where the original *submit_sm, data_sm* or *submit_multi* ‘source address’ i
 
 **Table 4-30 *cancel_sm* PDU**
 
-SMPP V5.0  SMS Forum 101 of 166
+
 
 ##### 4.5.1.2 cancel_sm_resp Syntax
 
@@ -2163,7 +2163,7 @@ The matching mechanism is based on the MC assigned *message_id* and source addre
 
 **Table 4-33 *query_sm_resp* PDU**
 
-SMPP V5.0  SMS Forum 103 of 166
+
 
 ##### 4.5.3 replace_sm Operation
 
@@ -2193,7 +2193,7 @@ Where the original *submit_sm* ‘source address’ was defaulted to NULL, then 
 
 **Table 4-34 *replace_sm* PDU**
 
-SMPP V5.0  SMS Forum 105 of 166
+
 
 ##### 4.5.3.2 replace_sm_resp Syntax
 
@@ -2214,7 +2214,7 @@ SMPP V5.0  SMS Forum 105 of 166
 
 **Table 4-36 Message Replacement TLVs**
 
-SMPP V5.0  SMS Forum 106 of 166
+
 
 ##### 4.6 Ancillary Broadcast Operations
 
@@ -2253,7 +2253,7 @@ reference *user_message_reference* this should be qualified within the service b
 
 **Table 4-41 *cancel_broadcast_sm_resp* PDU**
 
-SMPP V5.0  SMS Forum 112 of 166
+
 
 ##### 4.7 PDU Field Definitions
 
@@ -2294,7 +2294,7 @@ These fields define the Numeric Plan Indicator (NPI) to be used in the SME addre
 
 **Table 4-43 NPI Values**
 
-SMPP V5.0  SMS Forum 113 of 166
+
 
 ***4.7.3 address_range*** The *address_range* parameter is used in the *bind_receiver* and *bind_transceiver* command to specify a set of SME addresses serviced by the ESME client. A single SME address may also be specified in the *address_range* parameter. UNIX Regular Expression notation should be used to specify a range of addresses. Messages addressed to any destination in this range shall be routed to the ESME.
 **Note:** For IP addresses, it is only possible to specify a single IP address. A range of IP
@@ -2313,7 +2313,7 @@ SMPP uses a regular expression in the *bind_receiver* and *bind_transceiver* PDU
 - ^123456$ A combination of ‘^’ and ‘$’ at the beginning and end of a regular expression, is used to specify an absolute address, i.e the above expression will match MSISDNs beginning with and ending with 123456. The only value ever matched to this will in fact be ‘123456’ itself.
 - [13579]$ values within [] denote a character class. The above expression will match MSISDNs ending with any of 1, 3, 5, 7 or 9. So this expression will match MSISDNs ending in an odd digit. If a ‘^’ character is placed inside the ‘[‘, then the match is based on any character not in the specified class; e.g [^13579]$ will match MSISDNs not ending with any of the specified digits.
 ***4.7.4 command_length*** This 4-octet integer represents the overall length of a PDU. This is described in detail in section 3.2.1.1
-SMPP V5.0  SMS Forum 114 of 166
+
 
 ***4.7.5 command_id*** The complete set of SMPP Command IDs and their associated values are defined in the following table.
 
@@ -2356,7 +2356,7 @@ SMPP V5.0  SMS Forum 114 of 166
 
 ##### 0x80010200 - 0x800102FF
 
-SMPP V5.0  SMS Forum 115 of 166
+
 
 |Command ID|Value||
 |---|---|---|
@@ -2436,7 +2436,7 @@ SMPP V5.0  SMS Forum 115 of 166
 
 **Table 4-45 *command_status* Values**
 
-SMPP V5.0  SMS Forum 122 of 166
+
 
 ***4.7.7 data_coding*** The following values are defined for this field:
 
@@ -2467,7 +2467,7 @@ SMPP V5.0  SMS Forum 122 of 166
 
 3 This represents the default alphabet assumed by the MC. This coding scheme may differ from vendor to vendor or may vary according to location and network technology of MC. For portability of applications, it is strongly recommended to avoid using this setting. 4 In cases where a Data Coding Scheme is defined for TDMA and/ or CDMA but not defined for GSM, SMPP uses GSM 03.38 reserved values. 5 These coding schemes are common to GSM, TDMA and CDMA. The SMPP protocol allows ESME applications to use the same DCS value (i.e. the GSM 03.38 value) for all three technologies. 6 The *data_coding* parameter will evolve to specify Character code settings only. Thus the recommended way to specify GSM MWI control is by specifying the relevant settings in the TLVs *ms_msg_wait_facilities* and *ms_validity.* 7 The *data_coding* parameter will evolve to specify Character code settings only. Thus the recommended way to specify GSM message class control is by specifying the relevant setting in the TLV *dest_addr_subunit*.
 
-SMPP V5.0  SMS Forum 123 of 166
+
 
 ***4.7.8 destination_addr*** Specifies the destination SME address. For mobile terminated messages, this is the directory number of the recipient MS. <u>Notes</u>
 
@@ -2499,7 +2499,7 @@ SMPP V5.0  SMS Forum 123 of 166
 - If the MC delivers a short message that contains GSM User Data Header information encoded in the *short_message* or *message_payload* parameter, it must set the UDHI flag in the *esm_class* field.
 - UDH encoded messages have all UDH-related information encoded directly into the message text. This includes the settings for fragmentation and port settings.
 - For GSM networks, the concatenation related TLVs (*sar_msg_ref_num*, *sar_total_segments, sar_segment_seqnum*) or port addressing related TLVs
-SMPP V5.0  SMS Forum 125 of 166
+
 
 (*source_port, dest_port*) cannot be used in conjunction with encoded User Data Header in the *short_message* (user data) field. This means that the above listed TLVs cannot be used if the User Data Header Indicator flag is set.
 
@@ -2515,7 +2515,7 @@ SMPP V5.0  SMS Forum 125 of 166
 **Table 4-49 *interface_version* Values**
 
 ***4.7.14 message_id*** The unique message identifier reference assigned by the MC to each submitted short message. It is an opaque value and is set according to MC implementation. It is returned by the MC in the *submit_sm_resp, submit_multi_resp* and *data_sm_resp* PDUs and may be used by the ESME in subsequent SMPP operations relating to the short message, e.g. the ESME can use the *query_sm* operation to query a previously submitted message using the MC *message_id* as the message handle***.*** The *message_id* is also returned in the *broadcast_sm_resp* and may be used by the ESME in subsequent SMPP broadcast operations relating to the short message, e.g. the ESME can use the *query_broadcast_sm* operation to query a previously submitted broadcast message using the MC *message_id* as the message handle.
-SMPP V5.0  SMS Forum 126 of 166
+
 
 ***4.7.15 message_state*** The following is a list of allowable states for a short message. The MC returns the *message_state value* to the ESME as part of the *query_sm_resp* or *query_broadcast_sm_resp* PDU. Intermediate states are states that can change. Final states are states that represent an end of life state for a message. For example, a message in retry may return an ENROUTE state. At some point in the future, this message will either expire or be delivered. The state will then progress to EXPIRED or DELIVERED. Thus a message in ENROUTE state is said to be in an intermediate state. A message in DELIVERED or EXPIRED state cannot progress to another state. These states are therefore final states.
 
@@ -2534,7 +2534,7 @@ SMPP V5.0  SMS Forum 126 of 166
 
 **Table 4-50 *message_state* Values**
 
-SMPP V5.0  SMS Forum 128 of 166
+
 
 ***4.7.16 no_unsuccess*** The number of unsuccessful SME destinations to which delivery was attempted for a *submit_multi* operation.
 ***4.7.17 number_of_dests*** The *number_of_dests* parameter indicates the number of *dest_address* structures that are to follow in the *submit_multi* operation. A maximum of 255 destination address structures are allowed.
@@ -2565,7 +2565,7 @@ For mobile terminated messages, this field is not used and is therefore ignored 
 
 9 For GSM mobile terminated, messages with priority greater than Level 0 are treated as priority when making a delivery attempt (i.e. a delivery attempt is made even when MWD is set in the HLR). For GSM Cell Broadcast service the category of the message can have priority background, see [GSM 03.41] Section 9.2.7.
 
-SMPP V5.0  SMS Forum 129 of 166
+
 
 ##### <u>IS-95 (CDMA)</u>
 
@@ -2589,7 +2589,7 @@ For mobile terminated messages, this field is not used and is therefore ignored 
 
 **Table 4-52 *registered_delivery* Values**
 
-SMPP V5.0  SMS Forum 130 of 166
+
 
 ***4.7.22 replace_if_present_flag*** The *replace_if_present_flag* parameter is used to request the MC to replace a previously submitted message that is pending delivery. The MC will replace an existing message provided that the source address, destination address and *service_type* match the same fields in the new message.
 
@@ -2607,7 +2607,7 @@ SMPP V5.0  SMS Forum 130 of 166
 ***4.7.23.1 scheduled_delivery_time*** This parameter specifies the scheduled time at which the message delivery should be first attempted. It defines either the absolute date and time or relative time from the current MC time at which delivery of this message will be attempted by the MC. It can be specified in either absolute time format or relative time format.
 ***4.7.23.2 validity_period*** The *validity_period* parameter indicates the MC expiration time, after which the message should be discarded if not delivered to the destination. It can be defined in absolute time format or relative time format.
 ***4.7.23.3 final_date*** The *final_date* parameter indicates the completion time for a message. It can only be specified in absolute format. See section 4.7.23.4 for more details.
-SMPP V5.0  SMS Forum 131 of 166
+
 
 ##### 4.7.23.4 Absolute Time Format
 
@@ -2649,7 +2649,7 @@ Absolute time is formatted as a 16 character string (encoded as a 17-octet C-oct
 
 **Table 4-55 Relative Time Format**
 
-SMPP V5.0  SMS Forum 132 of 166
+
 
 For example, the following time format ‘020610233429000R`:
 
@@ -2686,7 +2686,7 @@ supported.
 
 All other values are carrier specific and are defined by mutual agreement between the MC Service Provider and the ESME application.
 
-SMPP V5.0  SMS Forum 133 of 166
+
 
 ***4.7.26 short_message*** The *short_message* parameter contains the user data. A maximum of 255 octets can be sent. ESME’s should use the optional *message_payload* parameter in *submit_sm,* *submit_multi,* and *deliver_sm* to send larger user data sizes.
 Note: The *short_message* field is designed to carry binary payloads. This is why it is not
@@ -2711,7 +2711,7 @@ Note: The *short_message* field is designed to carry binary payloads. This is wh
 
 ***4.7.29 source_addr*** Specifies the address of the SME, which originated this message. An ESME, which is implemented as a single SME address, may set this field to NULL to allow the MC to default the source address of the submitted message. <u>Notes</u> An IP address is specified in `aaa.bbb.ccc.ddd` notation. IP version 6.0 is not supported.
 ***4.7.30 system_id*** The *system_id* parameter is used to identify an ESME or a MC at bind time. An ESME *system_id* identifies the ESME or ESME agent to the MC. The MC *system_id* provides an identification of the MC to the ESME.
-**4.7.31 system_type** The *system_type* parameter is used to categorize the type of ESME that is binding to the MC. Examples include `VMS` (voice mail system) and `OTA` (over-the-air activation system). Specification of the *system_type* is optional-some MCs may not require ESME’s to provide this detail. In this case, the ESME can set the *system_typ*e to NULL. SMPP V5.0  SMS Forum 134 of 166
+**4.7.31 system_type** The *system_type* parameter is used to categorize the type of ESME that is binding to the MC. Examples include `VMS` (voice mail system) and `OTA` (over-the-air activation system). Specification of the *system_type* is optional-some MCs may not require ESME’s to provide this detail. In this case, the ESME can set the *system_typ*e to NULL. 
 
 ##### 4.8 PDU TLV Definitions
 
@@ -2831,7 +2831,7 @@ This is a variable size field used to contain the TLV payload for each specific 
 
 **Table 4-62 *alert_on_message_delivery* TLV**
 
-SMPP V5.0  SMS Forum 137 of 166
+
 
 ***4.8.4.3 billing_identification***
 
@@ -2864,7 +2864,7 @@ The *broadcast_area_identifier* defines the Broadcast Area in terms of a geograp
 
 **Table 4-65 Broadcast Area Format Types**
 
-SMPP V5.0  SMS Forum 138 of 166
+
 
 ***4.8.4.5 broadcast_area_success*** The *broadcast_area_success* parameter is a success rate indicator, defined as the ratio of the number of BTSs who accepted the message and the total number of BTSs who should accept the message, for a particular *broadcast_area_identifier*.
 
@@ -2906,7 +2906,7 @@ SMPP V5.0  SMS Forum 138 of 166
 
 **Table 4-69 *broadcast_content_type* TLV**
 
-SMPP V5.0  SMS Forum 141 of 166
+
 
 ***4.8.4.9 broadcast_end_time*** The *broadcast_end_time* parameter indicates the date and time at which the broadcasting state of this message was set to terminated in the Message Centre.
 
@@ -2928,7 +2928,7 @@ SMPP V5.0  SMS Forum 141 of 166
 
 **Table 4-71 *broadcast_error_status* TLV**
 
-SMPP V5.0  SMS Forum 142 of 166
+
 
 ##### 4.8.4.11 broadcast _frequency_interval
 
@@ -2954,7 +2954,7 @@ Example: 0x09001F => every 31 (0x1F) minutes (0x09)
 
 **Table 4-73 *broadcast_message_class* TLV**
 
-SMPP V5.0  SMS Forum 143 of 166
+
 
 **4.8.4.13 *broadcast_rep_num*** This field indicates the number of repeated broadcasts requested by the Submitter.
 
@@ -2966,7 +2966,7 @@ SMPP V5.0  SMS Forum 143 of 166
 
 **Table 4-74 *broadcast_rep_num* TLV**
 
-SMPP V5.0  SMS Forum 144 of 166
+
 
 ***4.8.4.14 broadcast_service_group*** The *broadcast_service_group* parameter is used to specify special target groups for broadcast information.
 
@@ -2988,7 +2988,7 @@ SMPP V5.0  SMS Forum 144 of 166
 
 **Table 4-76 *callback_num* TLV**
 
-SMPP V5.0  SMS Forum 145 of 166
+
 
 ***4.8.4.16 callback_num_atag*** The *callback_num_atag* parameter associates an alphanumeric display with the call back number.
 
@@ -3010,7 +3010,7 @@ SMPP V5.0  SMS Forum 145 of 166
 
 **Table 4-78 *callback_num_pres_ind* TLV**
 
-SMPP V5.0  SMS Forum 146 of 166
+
 
 ***4.8.4.18 congestion_state*** The *congestion_state* parameter is used to pass congestion status information between ESME and MC as a means of providing flow control and congestion avoidance capabilities to the sending peer. The TLV can be used in any SMPP operation response PDU as a means of passing congestion status from one peer to another. Typical uses of this would be in *submit_sm/submit_sm_resp* sequences where an ESME would drive a batch of submissions at a high rate and use continual tracking of the returned *congestion_state* values as a means of gauging the congestion. Reaction to a variation in *congestion_state* would involve increasing/decreasing the rate as required to maintain the balance in the Optimum range.
 
@@ -3034,7 +3034,7 @@ SMPP V5.0  SMS Forum 146 of 166
 
 The *delivery_failure_reason* parameter is not included if the delivery attempt was successful.
 
-SMPP V5.0  SMS Forum 147 of 166
+
 
 ***4.8.4.20 dest_addr_np_country*** The *dest_addr_np_country* TLV is used to carry E.164 information relating to the operator country code.
 
@@ -3066,7 +3066,7 @@ SMPP V5.0  SMS Forum 147 of 166
 
 **Table 4-83 *dest_addr_np_resolution* TLV**
 
-SMPP V5.0  SMS Forum 148 of 166
+
 
 ***4.8.4.23 dest_addr_subunit*** The *dest_addr_subunit* parameter is used to route messages when received by a mobile station, for example to a smart card in the mobile station or to an external device connected to the mobile station.
 
@@ -3098,7 +3098,7 @@ SMPP V5.0  SMS Forum 148 of 166
 
 **Table 4-86 *dest_network_id* TLV**
 
-SMPP V5.0  SMS Forum 149 of 166
+
 
 ***4.8.4.26 dest_network_type*** The *dest_network_type* parameter is used to indicate a network type associated with the destination address of a message. In the case that the receiving system (e.g. MC) does not support the indicated network type, it may treat this a failure and return a response PDU reporting a failure.
 
@@ -3132,7 +3132,7 @@ SMPP V5.0  SMS Forum 149 of 166
 
 The *dest_subaddress* parameter is not supported in the SMPP ***submit_multi*** PDU.
 
-SMPP V5.0  SMS Forum 150 of 166
+
 
 ***4.8.4.29 dest_telematics_id*** This parameter defines the telematic interworking to be used by the delivering system for the destination address. This is only useful when a specific *dest_bearer_type* parameter has also been specified, as the value is bearer dependent. In the case that the receiving system (e.g. MC) does not support the indicated telematic interworking, it may treat this a failure and return a response PDU reporting a failure.
 
@@ -3170,7 +3170,7 @@ SMPP V5.0  SMS Forum 150 of 166
 
 **Table 4-92 *display_time* TLV**
 
-SMPP V5.0  SMS Forum 151 of 166
+
 
 ***4.8.4.32 dpf_result*** The *dpf_result* parameter is used to indicate if delivery pending flag (DPF) was set for a delivery failure of a short message. When used in conjunction with transaction mode, *dpf_result* can be returned in a *submit_sm_resp* or *data_sm_resp* PDU. Where store and forward or datagram modes are used in the original submission, *dpf_result* may be returned as part of a delivery receipt in the form of a deliver_sm or data_sm PDU. If the *dpf_result* parameter is not returned, then the ESME should assume that DPF is not set.
 
@@ -3194,7 +3194,7 @@ SMPP V5.0  SMS Forum 151 of 166
 
 **Table 4-94 *its_reply_type* TLV**
 
-SMPP V5.0  SMS Forum 152 of 166
+
 
 ***4.8.4.34 its_session_info*** The *its_session_info* parameter is a required parameter for the CDMA Interactive Teleservice as defined by the Korean PCS carriers [KORITS]. It contains control information for the interactive session between an MS and an ESME.
 
@@ -3218,7 +3218,7 @@ SMPP V5.0  SMS Forum 152 of 166
 
 **Table 4-96 *language_indicator* TLV**
 
-SMPP V5.0  SMS Forum 153 of 166
+
 
 ***4.8.4.36 message_payload*** The *message_payload* parameter contains the user data. Its function is to provide an alternative means of carrying text lengths above the 255 octet limit of the *short_message* field. Applications, which need to send messages longer than 255 octets, should use the *message_payload* TLV. When used in the context of a *submit_*sm PDU, the *sm_length* field should be set to zero.
 
@@ -3250,7 +3250,7 @@ SMPP V5.0  SMS Forum 153 of 166
 
 **Table 4-99 *more_messages_to_send* TLV**
 
-SMPP V5.0  SMS Forum 154 of 166
+
 
 ***4.8.4.39 ms_availability_status*** The *ms_availability_status* parameter is used in the *alert_notification* operation to indicate the availability state of the MS to the ESME. If the MC does not include the parameter in the *alert_notification* operation, the ESME should assume that the MS is in an `available` state.
 
@@ -3276,7 +3276,7 @@ The *ms_msg_wait_facilities* can also specify the type of message associated wit
 
 **Table 4-101 *ms_msg_wait_facilities* TLV**
 
-SMPP V5.0  SMS Forum 155 of 166
+
 
 ***4.8.4.41 ms_validity*** The *ms_validity* parameter is used to provide an MS with validity information associated with the received short message.
 
@@ -3304,7 +3304,7 @@ Octet 2: specifies the Units of Time
 
 **Table 4-102 *ms_validity* TLV**
 
-SMPP V5.0  SMS Forum 156 of 166
+
 
 ***4.8.4.42 network_error_code*** The *network_error_code* parameter is used to indicate the actual network error code for a delivery failure. The network error code is technology specific.
 
@@ -3328,7 +3328,7 @@ SMPP V5.0  SMS Forum 156 of 166
 
 **Table 4-104 *number_of_messages* TLV**
 
-SMPP V5.0  SMS Forum 157 of 166
+
 
 ***4.8.4.44 payload_type*** The *payload_type* parameter defines the higher layer PDU type contained in the message payload.
 
@@ -3354,7 +3354,7 @@ SMPP V5.0  SMS Forum 157 of 166
 
 **Table 4-106 *privacy_indicator* TLV**
 
-SMPP V5.0  SMS Forum 158 of 166
+
 
 ***4.8.4.46 qos_time_to_live*** This parameter defines the number of seconds which the sender requests the MC to keep the message if undelivered before it is deemed expired. If the parameter is not present, the MC may apply a default value.
 
@@ -3390,7 +3390,7 @@ SMPP V5.0  SMS Forum 158 of 166
 
 **Table 4-109 *sar_msg_ref_num* TLV**
 
-SMPP V5.0  SMS Forum 159 of 166
+
 
 ***4.8.4.49 sar_segment_seqnum*** The *sar_segment_seqnum* parameter is used to indicate the sequence number of a particular short message within the concatenated short message.
 
@@ -3426,7 +3426,7 @@ SMPP V5.0  SMS Forum 159 of 166
 
 **Table 4-112 *sc_interface_version* TLV**
 
-SMPP V5.0  SMS Forum 160 of 166
+
 
 ***4.8.4.52 set_dpf*** An ESME may use the *set_dpf* parameter to request the setting of a delivery pending flag (DPF) for certain delivery failure scenarios, such as MS unavailability (as indicated by the HLR). The MC should respond to such a request with an *alert_notification* PDU when it detects that the destination MS has become available. The delivery failure scenarios under which DPF is set is MC implementation and network implementation specific. If a delivery pending flag is set by the MC or network (e.g. HLR), then the MC should indicate this to the ESME in the *submit_sm_resp or data_sm_resp* PDU via the *dpf_result* parameter. It may also use a delivery receipt to relay this information and as a result may use a *deliver_sm* or *data_sm* PDU to carry the *dpf_result.* For more information see 4.8.4.32
 
@@ -3464,7 +3464,7 @@ SMPP V5.0  SMS Forum 160 of 166
 
 **Table 4-115 *source_addr_subunit* TLV**
 
-SMPP V5.0  SMS Forum 161 of 166
+
 
 ***4.8.4.55 source_bearer_type*** The *source_bearer_type* parameter indicates the wireless bearer over which the message originated.
 
@@ -3478,7 +3478,7 @@ SMPP V5.0  SMS Forum 161 of 166
 
 **Table 4-116 *source_bearer_type* TLV**
 
-SMPP V5.0  SMS Forum 162 of 166
+
 
 ***4.8.4.56 source_network_id*** The *source_network_id* assigned to a wireless network operator or ESME operator is a unique address that may be derived and assigned by the node owner without establishing a central assignment and management authority. When this TLV is specified, it must be accompanied with a *source_node_id* TLV Ref. 4.8.4.58.
 
@@ -3490,7 +3490,7 @@ SMPP V5.0  SMS Forum 162 of 166
 
 **Table 4-117 *source_network_id* TLV**
 
-SMPP V5.0  SMS Forum 163 of 166
+
 
 ***4.8.4.57 source_network_type*** The *source_network_type* parameter is used to indicate the network type associated with the device that originated the message.
 
@@ -3526,7 +3526,7 @@ SMPP V5.0  SMS Forum 163 of 166
 
 **Table 4-120 *source_port* TLV**
 
-SMPP V5.0  SMS Forum 164 of 166
+
 
 ***4.8.4.60 source_subaddress*** The *source_subaddress* parameter specifies a subaddress associated with the originator of the message.
 
@@ -3550,7 +3550,7 @@ SMPP V5.0  SMS Forum 164 of 166
 
 **Table 4-122 *source_telematics_id* TLV**
 
-SMPP V5.0  SMS Forum 165 of 166
+
 
 ***4.8.4.62 user_message_reference*** A reference assigned by the originating SME to the short message. Depending on the destination network technology, this field may be passed directly to the mobile device. The *user_message_reference* TLV is also applicable in ancillary broadcast operations as a means of identifying a previously submitted message. In such cases, the *user_message_reference* can be used to substitute an actual *message_id* or may be used in conjunction with a *message_id.*
 
@@ -3585,5 +3585,3 @@ SMPP V5.0  SMS Forum 165 of 166
 | Value | 1 | Integer | 0 = PSSD indication<br>1 = PSSR indication<br>2 = USSR request<br>3 = USSN request<br>4 to 15 = reserved<br><br>16 = PSSD response<br>17 = PSSR response<br>18 = USSR confirm<br>19 = USSN confirm<br><br>20 to 31 = reserved<br>32 to 255 = reserved for vendor specific USSD operations |
 
 **Table 4-125 *ussd_service_op* TLV**
-
-SMPP V5.0  SMS Forum 166 of 166
