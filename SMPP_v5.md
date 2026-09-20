@@ -1388,7 +1388,35 @@ Message submission operations provide an ESME with the ability to submit message
 This operation is used by an ESME to submit a short message to the MC for onward transmission to a specified short message entity (SME).
 
 ##### 4.2.1.1 submit_sm Syntax
+| Field Name | Size octets | Type | Description | Ref. |
+| --- | --- | --- | --- | --- |
+| `command_length` | 4 | Integer | Set to overall length of PDU. | 4.7.4 |
+| `command_id` | 4 | Integer | `0x00000004` | 4.7.5 |
+| `command_status` | 4 | Integer | `0x00000000` | 4.7.6 |
+| `sequence_number` | 4 | Integer | Set to a Unique sequence number. The associated `submit_sm_resp` PDU will echo this sequence number. | 4.7.24 |
+| `service_type` | Var. max 6 | C-Octet String | The `service_type` parameter can be used to indicate the SMS Application service associated with the message. Specifying the `service_type` allows the ESME to avail of enhanced messaging services such as “replace by `service_type`” or to control the teleservice used on the air interface.<br><br>Set to NULL for default MC settings | 4.7.25 |
+| `source_addr_ton` | 1 | Integer | Type of Number for source address.<br><br>If not known, set to NULL (Unknown). | 4.7.1 |
+| `source_addr_npi` | 1 | Integer | Numbering Plan Indicator for source address.<br><br>If not known, set to NULL (Unknown). | 4.7.2 |
+| `source_addr` | Var. max 21 | C-Octet String | Address of SME which originated this message.<br><br>If not known, set to NULL (Unknown). | 4.7.29 |
+| `dest_addr_ton` | 1 | Integer | Type of Number for destination | 4.7.1 |
+| `dest_addr_npi` | 1 | Integer | Numbering Plan Indicator for destination | 4.7.2 |
+| `destination_addr` | Var. max 21 | C-Octet String | Destination address of this short message For mobile terminated messages, this is the directory number of the recipient MS | 4.7.8 |
+| `esm_class` | 1 | Integer | Indicates Message Mode and Message Type | 4.7.12 |
+| `protocol_id` | 1 | Integer | Protocol Identifier.<br><br>Network specific field. | 4.7.20 |
+| `priority_flag` | 1 | Integer | Designates the priority level of the message | 4.7.19 |
+| `schedule_delivery_time` | 1 or 17 | C-Octet String | The short message is to be scheduled by the MC for delivery.<br><br>Set to NULL for immediate message delivery | 4.7.23.1 |
+| `validity_period` | 1 or 17 | C-Octet String | The validity period of this message.<br><br>Set to NULL to request the MC default validity period<br><br>**Note:** this is superseded by the `qos_time_to_live` TLV if specified. Ref. 4.8.4.46 | 4.7.23.2 |
+| `registered_delivery` | 1 | Integer | Indicator to signify if a MC delivery receipt, manual ACK, delivery ACK or an intermediate notification is required. | 4.7.21 |
+| `replace_if_present_flag` | 1 | Integer | Flag indicating if the submitted message should replace an existing message. | 4.7.22 |
+| `data_coding` | 1 | Integer | Defines the encoding scheme of the short message user data. | 4.7.7 |
+| `sm_default_msg_id` | 1 | Integer | Indicates the short message to send from a list of pre-defined (‘canned’) short messages stored on the MC. If not using a MC canned message, set to NULL. | 4.7.27 |
+| `sm_length` | 1 | Integer | Length in octets of the `short_message` user data. | 4.7.28 |
+| `short_message` | Var. 0-255 | Octet String | Up to 255 octets of short message user data.<br><br>The exact physical limit for `short_message` size may vary according to the underlying network<br><br>**Note:** this field is superseded by the `message_payload` TLV if specified. Ref. 4.8.4.36 | 4.7.26 |
+| Message Submission TLVs | Var. | TLV |  | 4.2.4 |
 
+**Table 4-14 *submit_sm* PDU**
+
+##### 4.2.1.2 submit_sm_resp Syntax
 | Field Name | Size octets | Type | Description | Ref. |
 | --- | --- | --- | --- | --- |
 | `command_length` | 4 | Integer | Set to overall length of PDU. | 4.7.4 |
@@ -1486,82 +1514,27 @@ The *submit_multi* operation is an enhanced variation of *submit_sm* designed to
 
 
 ##### 4.2.3.2 submit_multi_resp Syntax
+| Field Name | Size octets | Type | Description | Ref. |
+| --- | --- | --- | --- | --- |
+| `command_length` | 4 | Integer | Set to overall length of PDU. | 4.7.4 |
+| `command_id` | 4 | Integer | `0x80000021` | 4.7.5 |
+| `command_status` | 4 | Integer | Indicates outcome of `submit_multi` request. | 4.7.6 |
+| `sequence_number` | 4 | Integer | Set to sequence number of original `submit_multi` PDU. | 4.7.24 |
+| `message_id` | Var. max 65 | C-Octet String | This field contains the MC message ID of the submitted message. It may be used at a later stage to query the status of a message, cancel or replace the message. | 4.7.14 |
+| `no_unsuccess` | 1 | Integer | The number of messages to destination SME addresses that were unsuccessfully submitted to the MC. This is followed by the specified number of unsuccessful SMEs, each specified in a `unsuccess_sme` field. | 4.7.16 |
+| `unsuccess_sme`: | Var. max 27 |  | Unsuccessful SME (Composite Field) |  |
+| &nbsp;&nbsp;->`dest_addr_ton` | 1 | Integer | Type of number for destination | 4.7.1 |
+| &nbsp;&nbsp;->`dest_addr_npi` | 1 | Integer | Numbering Plan Indicator for SME | 4.7.2 |
+| &nbsp;&nbsp;->`destination_addr` | Var. max 21 | C-Octet String | Destination Address of SME | 4.7.8 |
+| &nbsp;&nbsp;->`error_status_code` | 4 | Integer | Indicates the success or failure of the `submit_multi` request to this SME address | 4.7.6 |
+| Message Submission Response TLVs | Var. | TLV |  | 4.2.5 |
 
-|||max 65|String|message ID of the submitted message. It may be used at a later stage to query the status of a message, cancel or replace the message.|4.7.14|
-|---|---|---|---|---|---|
-||no_unsuccess unsuccess_sme² Var. dest_addr_ton dest_addr_npi destination_addr Var. C-Octet error_status_code|1 max 27 1 1 max 21 4|String Integer|Integer The number of messages to 4.7.16 destination SME addresses that were unsuccessfully submitted to the MC. This is followed by the specified number of unsuccessful SMEs, each specified in a unsuccess_sme field. Unsucessful SME (Composite Field) Integer Type of number for destination Integer Numbering Plan Indicator for4.7.2 SME Destination Address of SME Indicates the success or failure 4.7.6 of the submit_multi request to this SME address|4.7.1 4.7.8|
-||Message Submission Response TLVs|Var. TLV Table 4-19|submit_multi_resp|PDU|4.2.5|
+**Table 4-19 *submit_multi_resp* PDU**
 
-##### Field Name Size Type Description Ref
-
-**octets**
-
-command_length 4 Integer Set to overall length of PDU. 4.7.4
-
-##### command_id 4 Integer 0x80000021 4.7.5
-
-command_status 4 Integer Indicates outcome of 4.7.6 *submit_multi* request.
-
-sequence_number 4 Integer Set to sequence number of 4.7.24 original *submit_multi* PDU.
-
-message_id Var. C-Octet This field contains the MC
-
-2 This field is a composite field containing an SME address (*dest_addr_ton*, *dest_addr_npi* & *destination_addr*) and an error code (*error_status_code*). Additionally the field can be encoded multiple times according to the value specified in the *no_unsuccess* field.
-
-
-
-### SMSFORUM
 
 ##### 4.2.4 Message Submission Request TLVs
 
 This section lists TLVs that may be used for message submission operations.
-
-<www.smsforum.net>
-
-##### TLV Name
-
-*alert_on_msg_delivery*
-
-*billing_identification*
-
-*callback_num*
-
-*callback_num_atag*
-
-*callback_num_pres_ind*
-
-##### Description Ref
-
-Request an MS alert signal be invoked on message 4.8.4.2 delivery.
-
-Billing information passed from ESME to MC 4.8.4.3
-
-A call-back number associated with the short message. 4.8.4.15
-
-This parameter can be included a number of times for multiple call-back addresses.
-
-Associates a displayable alphanumeric tag with the call-4.8.4.16 back number.
-
-If this parameter is present and there are multiple instances of the *callback_num* parameter then this parameter must occur an equal number of instances and the order of occurrence determines the particular *callback_num_atag* which corresponds to a particular *callback_num*.
-
-Defines the call-back number presentation and screening. 4.8.4.17
-
-If this parameter is present and there are multiple instances of the *callback_num* parameter then this parameter must occur an equal number of instances and the order of occurrence determines the particular *callback_num_pres_ind* which corresponds to a particular *callback_num*.
-
-|dest_addr_np_country|E.164 information to the operator country code|4.8.4.20|
-|---|---|---|
-|dest_addr_np_information Number portability information for the destination address 4.8.4.21|||
-|dest_addr_np_resolution dest_addr_subunit dest_bearer_type|Number portability query indicator The subcomponent in the destination device for which the 4.8.4.23 user data is intended. The correct bearer type for delivering the user data to the 4.8.4.24 destination|4.8.4.22|
-|dest_network_id|Identification of destination network|4.8.4.25|
-|dest_network_type|The correct network for the destination device|4.8.4.26|
-|dest_node_id|Identification of destination node|4.8.4.27|
-|dest_subaddress|The sub-address of the message destination.|4.8.4.28|
-|dest_telematics_id|The telematics identifier associated with the destination|4.8.4.29|
-|dest_port|Indicates the application port number associated with the destination address of the message. This parameter should be present for WAP applications.|4.8.4.30|
-|display_time its_reply_type|Provides the receiving MS with a display time associated with the message. The MS user’s reply method to an SMS delivery message 4.8.4.33 received from the network, is indicated and controlled by this parameter.|4.8.4.31|
-|its_session_info SMPP V5.0|Session control information for Interactive Teleservice.|4.8.4.34 75 of 166|
-
- SMS Forum
 
 | TLV Name | Description | Ref. |
 | --- | --- | --- |
@@ -1832,70 +1805,92 @@ The *deliver_sm* is issued by the MC to send a message to an ESME. Using this co
 
 ##### 4.3.1.1 deliver_sm Syntax
 
-##### Field Name Size Type Description Ref
+| Field Name | Size octets | Type | Description | Ref. |
+| --- | --- | --- | --- | --- |
+| `command_length` | 4 | Integer | Set to overall length of PDU. | 4.7.4 |
+| `command_id` | 4 | Integer | `0x00000005` | 4.7.5 |
+| `command_status` | 4 | Integer | `0x00000000` | 4.7.6 |
+| `sequence_number` | 4 | Integer | Set to a Unique sequence number. The associated `deliver_sm_resp` PDU will echo this sequence number. | 4.7.24 |
+| `service_type` | Var. max 6 | C-Octet String | The `service_type` parameter can be used to indicate the SMS Application service associated with the message. Specifying the `service_type` allows the ESME to avail of enhanced messaging services such as “replace by `service_type`” or control the teleservice used on the air interface.<br><br>Set to NULL if not known by MC | 4.7.25 |
+| `source_addr_ton` | 1 | Integer | Type of Number for source address. | 4.7.1 |
+| `source_addr_npi` | 1 | Integer | Numbering Plan Indicator for source address. | 4.7.2 |
+| `source_addr` | Var. max 21 | C-Octet String | Address of SME which originated this message. | 4.7.29 |
+| `dest_addr_ton` | 1 | Integer | Type of Number for destination | 4.7.1 |
+| `dest_addr_npi` | 1 | Integer | Numbering Plan Indicator for destination | 4.7.2 |
+| `destination_addr` | Var. max 21 | C-Octet String | Destination address of this short message For mobile terminated messages, this is the directory number of the recipient MS | 4.7.8 |
+| `esm_class` | 1 | Integer | Indicates Message Mode and Message Type | 4.7.12 |
+| `protocol_id` | 1 | Integer | Protocol Identifier.<br><br>Network specific field. | 4.7.20 |
+| `priority_flag` | 1 | Integer | Designates the priority level of the message | 4.7.19 |
+| `schedule_delivery_time` | 1 or 17 | C-Octet String | The short message is to be scheduled by the receiving MC or ESME for delivery.<br><br>This field is only applicable if the short message is being forwarded to another MC. In this case it is the time at which the receiving MC should schedule the short message.<br><br>Set to NULL if not scheduled. | 4.7.23.1 |
+| `validity_period` | 1 or 17 | C-Octet String | The validity period of this message.<br><br>This field is only applicable if this short message is being forwarded to another MC. In this case it specifies how long the receiving MC should retain the SM and continue trying to deliver it.<br><br>Set to NULL if the current validity period is unavailable. | 4.7.23.2 |
+| `registered_delivery` | 1 | Integer | Indicator to signify if a MC delivery receipt or an SME acknowledgement is required. | 4.7.21 |
+| `replace_if_present_flag` | 1 | Integer | Flag indicating if delivered message should replace an existing message. | 4.7.22 |
+| `data_coding` | 1 | Integer | Defines the encoding scheme of the short message user data. | 4.7.7 |
+| `sm_default_msg_id` | 1 | Integer | Indicates the short message to send from a list of pre-defined (‘canned’) short messages stored on the receiving MC.<br><br>This field is only applicable if this message is being forwarded to another MC.<br><br>Set to NULL. If not known or applicable | 4.7.27 |
+| `sm_length` | 1 | Integer | Length in octets of the `short_message` user data. | 4.7.28 |
+| `short_message` | Var. 0-255 | Octet String | Up to 255 octets of short message user data.<br><br>The exact physical limit for `short_message` size may vary according to the underlying network<br><br>**Note:** this field is superseded by the `message_payload` TLV if specified. Ref. 4.8.4.36<br><br>Applications which need to send messages longer than 255 octets should use the `message_payload` TLV. In this case the `sm_length` field should be set to zero | 4.7.26 |
+| Message Delivery Request TLVs | Var. | TLV |  | 4.3.3 |
 
-**octets**
+**Table 4-22 *deliver_sm* PDU**
 
-command_length 4 Integer Set to overall length of 4.7.4 PDU.
+##### 4.3.1.2 deliver_sm_resp Syntax
 
-##### command_id 4 Integer 0x00000005 4.7.5
+| Field Name | Size octets | Type | Description | Ref. |
+| --- | --- | --- | --- | --- |
+| `command_length` | 4 | Integer | Set to overall length of PDU. | 4.7.4 |
+| `command_id` | 4 | Integer | `0x80000005` | 4.7.5 |
+| `command_status` | 4 | Integer | Indicates outcome of `deliver_sm` request. | 4.7.6 |
+| `sequence_number` | 4 | Integer | Set to sequence number of original `deliver_sm` PDU. | 4.7.24 |
+| `message_id` | Var. Max 65 | C-Octet String | This field is unused and should be set to NULL | 4.7.14 |
+| Message Delivery Response TLVs | Var. | TLV |  | 4.3.4 |
 
-##### command_status 4 Integer 0x00000000 4.7.6
+**Table 4-23 *deliver_sm_resp* PDU**
 
-sequence_number 4 Integer Set to a Unique sequence 4.7.24 number. The associated *deliver_sm_resp* PDU will echo this sequence number.
+##### 4.3.2 data_sm Operation
+The data_sm operation is symmetrically used for delivery as it is used to submit messages.
+For detail on the specification of data_sm, refer to section 4.2.2. 
 
-service_type C-Octet The service_type parameter 4.7.25 String can be used to indicate the Var. SMS Application service max 6 associated with the message. Specifying the service_type allows the ESME to avail of enhanced messaging services such as `replace by service_type` or control the teleservice used on the air interface.
+##### 4.3.3 Message Delivery Request TLVs
+The following table lists TLVs appropriate for message delivery using deliver_sm or data_sm
+operations.
 
-Set to NULL if not known by MC
+| TLV Name | Description | Ref. |
+| --- | --- | --- |
+| `callback_num` | A call-back number associated with the short message.<br><br>This parameter can be included a number of times for multiple call-back addresses. | 4.8.4.15 |
+| `callback_num_atag` | Associates a displayable alphanumeric tag with the call-back number.<br><br>If this parameter is present and there are multiple instances of the `callback_num` parameter then this parameter must occur an equal number of instances and the order of occurrence determines the particular `callback_num_atag` which corresponds to a particular `callback_num`. | 4.8.4.16 |
+| `callback_num_pres_ind` | Defines the call-back number presentation and screening.<br><br>If this parameter is present and there are multiple instances of the `callback_num` parameter then this parameter must occur an equal number of instances and the order of occurrence determines the particular `callback_num_pres_ind` which corresponds to a particular `callback_num`. | 4.8.4.17 |
+| `dest_addr_np_country` | E.164 information to the operator country code | 4.8.4.20 |
+| `dest_addr_np_information` | Number portability information for the destination address | 4.8.4.21 |
+| `dest_addr_np_resolution` | Number portability query indicator | 4.8.4.22 |
+| `dest_addr_subunit` | The subcomponent in the destination device for which the user data is intended. | 4.8.4.23 |
+| `dest_network_id` | Identification of destination network | 4.8.4.25 |
+| `dest_node_id` | Identification of destination node | 4.8.4.27 |
+| `dest_subaddress` | The sub-address of the message destination. | 4.8.4.28 |
+| `dest_port` | Indicates the application port number associated with the destination address of the message. This parameter should be present for WAP applications. | 4.8.4.30 |
+| `dpf_result` | Indicates whether the Delivery Pending Flag was set. | 4.8.4.32 |
+| `its_reply_type` | The MS user’s reply method to an SMS delivery message received from the network is indicated and controlled by this parameter. | 4.8.4.33 |
+| `its_session_info` | Session control information for Interactive Teleservice. | 4.8.4.34 |
+| `language_indicator` | Indicates the language of an alphanumeric text message. | 4.8.4.35 |
+| `message_payload` | Contains the extended short message user data. Up to 64K octets can be transmitted.<br><br>Note: The short message data should be inserted in either the `short_message` or `message_payload` fields. Both fields should not be used simultaneously.<br><br>The `sm_length` field should be set to zero if using the `message_payload` parameter.<br><br>Note: In the case of `data_sm`, the `message_payload` TLV is the only means of specifying text. | 4.8.4.36 |
+| `message_state` | Should be present for MC Delivery Receipts and Intermediate Notifications. | 4.8.4.37 |
+| `network_error_code` | May be present for delivery receipts and Intermediate Notifications | 4.8.4.42 |
+| `payload_type` | defines the type of payload (e.g. WDP, WCMP, etc.). | 4.8.4.44 |
+| `privacy_indicator` | Indicates the level of privacy associated with the message. | 4.8.4.45 |
+| `receipted_message_id` | MC message ID of message being receipted. Should be present for MC Delivery Receipts and Intermediate Notifications. | 4.8.4.47 |
+| `sar_msg_ref_num` | The reference number for a particular concatenated short message. | 4.8.4.48 |
+| `sar_segment_seqnum` | Indicates the sequence number of a particular short message fragment within the concatenated short message. | 4.8.4.49 |
+| `sar_total_segments` | Indicates the total number of short message segments within the concatenated short message. | 4.8.4.50 |
+| `source_addr_subunit` | The subcomponent in the destination device, which created the user data. | 4.8.4.54 |
+| `source_network_id` | Identification of source network | 4.8.4.56 |
+| `source_node_id` | Identification of source node | 4.8.4.58 |
+| `source_port` | Indicates the application port number associated with the source address of the message. This parameter should be present for WAP applications. | 4.8.4.59 |
+| `source_subaddress` | The sub-address of the message originator. | 4.8.4.60 |
+| `user_message_reference` | ESME assigned message reference number. | 4.8.4.62 |
+| `user_response_code` | A user response code. The actual response codes are implementation specific. | 4.8.4.63 |
+| `ussd_service_op` | This parameter is used to identify the required USSD Service type when interfacing to a USSD system. | 4.8.4.64 |
 
-|source_addr_ton|1|Integer|Type of Number for source address.|4.7.1|
-|---|---|---|---|---|
-|source_addr_npi|1|Integer|Numbering Plan Indicator for source address.|4.7.2|
-|source_addr Var.|max 21|C-Octet String|Address of SME which originated this message.|4.7.29|
-|dest_addr_ton|1|Integer|Type of Number for destination|4.7.1|
-|dest_addr_npi|1|Integer|Numbering Plan Indicator for destination|4.7.2|
-|destination_addr Var.|max 21|C-Octet String|Destination address of this short message For mobile terminated messages, this is the directory number of the recipient MS|4.7.8|
-|SMPP V5.0|| SMS Forum||85 of 166|
+**Table 4-24 Message Delivery Request TLVs**
 
-|Field Name|Size octets|Type|Description|Ref.|
-|---|---|---|---|---|
-|esm_class|1 protocol_id 1 Integer Protocol Identifier.|Integer|Indicates Message Mode and Message Type Network specific field.|4.7.12 4.7.20|
-|priority_flag|1|Integer|Designates the priority level of the message|4.7.19|
-|schedule_delivery_time|1 or 17|C-Octet String|The short message is to be scheduled by the receiving MC or ESME for delivery. This field is only applicable if the short message is being forwarded to another MC. In this case it is the time at which the receiving MC should schedule the short message. Set to NULL if not scheduled.|4.7.23.1|
-|validity_period 1 or|17|C-Octet String|The validity period of this message. This field is only applicable if this short message is being forwarded to another MC. In this case it specifies how long the receiving MC should retain the SM and continue trying to deliver it. Set to NULL if the current validity period is unavailable.|4.7.23.2|
-|registered_delivery|1|Integer|Indicator to signify if a MC delivery receipt or an SME acknowledgement is required.|4.7.21|
-|replace_if_present_flag 1 Integer|||Flag indicating if delivered message should replace an existing message.|4.7.22|
-|data_coding|1|Integer|Defines the encoding scheme of the short message user data.|4.7.7|
-
-
-
-|Field Name||Size octets||Type||Description||Ref.|
-|---|---|---|---|---|---|---|---|---|
-|sm_default_msg_id||1||Integer||Indicates the short message to send from a list of pre- defined (‘canned’) short messages stored on the receiving MC. This field is only applicable if this message is being forwarded to another MC. Set to NULL. If not known or applicable||4.7.27|
-|sm_length||1||Integer||Length in octets of the short_message user data.||4.7.28|
-|short_message Var.||0-255||Octet String||Up to 255 octets of short message user data. The exact physical limit for short_message size may vary according to the underlying network Note: this field is superceded by the message_payload TLV if specified. Ref. 4.8.4.36 Applications which need to send messages longer than 255 octets should use the message_payload TLV. In this case the sm_length field should be set to zero||4.7.26|
-|Message Delivery Request TLVs|||Var. TLV|||||4.3.3|
-|4.3.1.2 deliver_sm_resp Syntax||Max 65|Table 4-22|deliver_sm String||PDU be set to NULL||4.7.14|
-
-##### Field Name Size Type Description Ref
-
-**octets**
-
-command_length 4 Integer Set to overall length of PDU. 4.7.4
-
-##### command_id 4 Integer 0x8000005 4.7.5
-
-command_status 4 Integer Indicates outcome of 4.7.6 *deliver_sm* request.
-
-sequence_number 4 Integer Set to sequence number of 4.7.24 original *deliver_sm* PDU.
-
-message_id Var. C-Octet This field is unused and should
-
-
-
-||Field Name|Size octets|Type|Description||Ref.||
-|---|---|---|---|---|---|---|---|
-||Message Delivery Response TLVs 4.3.2 data_sm Operation The data_sm 4.3.3 Message Delivery Request TLVs operations.|Var. TLV Table 4-23 For detail on the specification of data_sm, refer to section 4.2.2. The following table lists TLVs appropriate for message delivery using|deliver_sm_resp|PDU operation is symmetrically used for delivery as it is used to submit messages. deliver_sm or||4.3.4 data_sm||
 | TLV Name | Description | Ref. |
 | --- | --- | --- |
 | `additional_status_info_text` | ASCII text giving a description of the meaning of the response. | 4.8.4.1 |
@@ -2214,8 +2209,6 @@ Where the original *submit_sm* ‘source address’ was defaulted to NULL, then 
 
 **Table 4-36 Message Replacement TLVs**
 
-
-
 ##### 4.6 Ancillary Broadcast Operations
 
 ##### 4.6.1 query_broadcast_sm Operation
@@ -2227,7 +2220,70 @@ Note: Where the broadcast is queried on the basis of the ESME assigned message
 reference *user_message_reference* this should be qualified within the service by the *system_id* and/or the *system_type* associated with the *query_broadcast_sm* operation (specified in the bind operation). If more than one message with the same *user_message_reference* value is present in the Message Center, the details of the most recently submitted message with the specified *user_message_reference* value will be returned in the *query_broadcast_sm_resp*.
 
 ##### 4.6.1.1 query_broadcast_sm Syntax
+| Field Name | Size octets | Type | Description | Ref. |
+| --- | --- | --- | --- | --- |
+| `command_length` | 4 | Integer | Set to overall length of PDU. | 4.7.4 |
+| `command_id` | 4 | Integer | `0x00000112` | 4.7.5 |
+| `command_status` | 4 | Integer | `0x00000000` | 4.7.6 |
+| `sequence_number` | 4 | Integer | Set to a Unique sequence number. The associated `query_broadcast_sm_resp` PDU will echo this sequence number. | 4.7.24 |
+| `message_id` | Var. max 65 | C-Octet String | Message ID of the message to be queried. This must be the MC assigned Message ID allocated to the original short message when submitted to the MC by the `broadcast_sm` command, and returned in the response PDU by the MC.<br><br>Set to NULL if setting `user_message_reference`. | 4.7.14 |
+| `source_addr_ton` | 1 | Integer | Type of Number for source address.<br><br>If not known, set to NULL (Unknown). | 4.7.1 |
+| `source_addr_npi` | 1 | Integer | Numbering Plan Indicator for source address.<br><br>If not known, set to NULL (Unknown). | 4.7.2 |
+| `source_addr` | Var. max 21 | C-Octet String | Address of SME which originated this message.<br><br>If not known, set to NULL (Unknown). | 4.7.29 |
+| Query Broadcast Request TLVs | Var. | TLV |  | 4.6.1.2 |
+**Table 4-37 *query_broadcast_sm* PDU**
 
+##### 4.6.1.2 Query Broadcast Request Optional TLVs
+
+| Field Name | Size octets | Type | Description | Ref. |
+| --- | --- | --- | --- | --- |
+| `user_message_reference` | Var. | TLV | ESME assigned message reference number. | 4.8.4.62 |
+**Table 4-38  Query Broadcast Optional TLVs**
+
+##### 4.6.1.3 query_broadcast_sm_resp Syntax
+| Field Name | Size octets | Type | Description | Ref. |
+| --- | --- | --- | --- | --- |
+| `command_length` | 4 | Integer | Set to overall length of PDU. | 4.7.4 |
+| `command_id` | 4 | Integer | `0x80000112` | 4.7.5 |
+| `command_status` | 4 | Integer | Indicates outcome of `query_broadcast_sm` request. | 4.7.6 |
+| `sequence_number` | 4 | Integer | Set to sequence number of original `query_broadcast_sm` PDU. | 4.7.24 |
+| `message_id` | Var. max 65 | Integer | Message ID of the queried message. This must be the MC assigned Message ID allocated to the original short message when submitted to the MC by the `broadcast_sm`, command, and returned in the `broadcast_sm_resp` PDU by the MC. | 4.7.14 |
+| `message_state` | Var. | TLV | This field indicates the current status of the broadcast message. | 4.7.15 |
+| `broadcast_area_identifier` | Var. | TLV | Identifies one or more target Broadcast Area(s) for which the status information applies.<br><br>The number of instances of this parameter will be exactly equal to the number of occurrences of the `broadcast_area_identifiers` parameter in the corresponding `broadcast_sm`. | 4.8.4.4 |
+| `broadcast_area_success` | Var. | TLV | The success rate indicator, defined as the ratio of the number of BTSs that accepted the message and the total number of BTSs that should have accepted the message, for a particular `broadcast_area_identifier`. | 4.8.4.5 |
+| Query Broadcast Response TLVs | Var. | TLV |  | 4.6.1.4 |
+
+**Table 4-39 *query_broadcast_sm_resp* PDU**
+
+##### 4.6.1.4 Query Broadcast Response Optional TLVs
+| Field Name | Size octets | Type | Description | Ref. |
+| --- | --- | --- | --- | --- |
+| `broadcast_end_time` | Var. | TLV | The date and time at which the broadcasting state of this message was set to terminated in the Message Centre. | 4.8.4.9 |
+| `user_message_reference` | Var. | TLV | ESME assigned message reference number. | 4.8.4.62 |
+
+**Table 4.6.1.4 Query Broadcast Response Optional TLVs**
+
+
+##### 4.6.2 cancel_broadcast_sm Operation
+This command is issued by the ESME to cancel a broadcast message which has been
+previously submitted to the Message Centre for broadcast via broadcast_sm and which is still
+pending delivery.
+
+If the message_id is set to the ID of a previously submitted message, then provided the
+source address supplied by the ESME matches that of the stored message, that message
+will be cancelled.
+
+If the message_id is NULL, all outstanding undelivered messages with matching source and
+destination addresses (and service_type if specified) are cancelled.
+
+If the user_message_reference is set to the ESME-assigned reference of a previously
+submitted message, then provided the source address supplied by the ESME matches that of
+the stored message, that message will be cancelled.
+
+Where the original broadcast_sm ‘source address’ was defaulted to NULL, then the source
+address in the cancel_broadcast_sm command should also be NULL.
+
+##### 4.6.2.1 cancel_broadcast_sm Syntax
 | Field Name | Size octets | Type | Description | Ref. |
 | --- | --- | --- | --- | --- |
 | `command_length` | 4 | Integer | Set to overall length of PDU. | 4.7.4 |
@@ -2243,6 +2299,14 @@ reference *user_message_reference* this should be qualified within the service b
 **Table 4-40 *cancel_broadcast_sm* PDU**
 
 ##### 4.6.2.2 Cancel Broadcast Optional TLVs
+| Field Name | Size octets | Type | Description | Ref. |
+| --- | --- | --- | --- | --- |
+| `broadcast_content_type` | Var. | TLV | Specifies the content type of the message. | 4.8.4.8 |
+| `user_message_reference` | Var. | TLV | ESME assigned message reference number.<br><br>Note: The `message_id` field should be set to NULL if using the `user_message_reference` TLV. | 4.8.4.62 |
+
+**Table 4.6.2.2 Cancel Broadcast Optional TLVs**
+
+##### 4.6.2.3 *cancel_broadcast_sm_resp* Syntax
 
 | Field Name | Size octets | Type | Description | Ref. |
 | --- | --- | --- | --- | --- |
@@ -2315,53 +2379,52 @@ SMPP uses a regular expression in the *bind_receiver* and *bind_transceiver* PDU
 ***4.7.4 command_length*** This 4-octet integer represents the overall length of a PDU. This is described in detail in section 3.2.1.1
 
 
-***4.7.5 command_id*** The complete set of SMPP Command IDs and their associated values are defined in the following table.
+##### 4.7.5 command_id
+The complete set of SMPP Command IDs and their associated values are defined in the following table.
 
-|Command ID|Value|
-|---|---|
-|bind_receiver|0x00000001|
-|bind_transmitter|0x00000002|
-|query_sm|0x00000003|
-|submit_sm|0x00000004|
-|deliver_sm|0x00000005|
-|unbind|0x00000006|
-|replace_sm|0x00000007|
-|cancel_sm|0x00000008|
-|bind_transceiver|0x00000009|
-|outbind|0x0000000B|
-|enquire_link|0x00000015|
-|submit_multi|0x00000021|
-|alert_notification|0x00000102|
-|data_sm|0x00000103|
-|broadcast_sm|0x00000111|
-|query_broadcast_sm|0x00000112|
-|cancel_broadcast_sm|0x00000113|
-|generic_nack|0x80000000|
-|bind_receiver_resp|0x80000001|
-|bind_transmitter_resp|0x80000002|
-|query_sm_resp|0x80000003|
-|submit_sm_resp|0x80000004|
-|deliver_sm_resp|0x80000005|
-|unbind_resp|0x80000006|
-|replace_sm_resp|0x80000007|
-|cancel_sm_resp|0x80000008|
-|bind_transceiver_resp|0x80000009|
-|enquire_link_resp|0x80000015|
-|submit_multi_resp|0x80000021|
-|data_sm_resp|0x80000103|
-|broadcast_sm_resp|0x80000111|
-|query_broadcast_sm_resp|0x80000112|
-|cancel_broadcast_sm_resp|0x80000113|
-|Reserved for MC Vendor|0x00010200 - 0x000102FF|
-
-##### 0x80010200 - 0x800102FF
-
+| Command ID | Value |
+| --- | --- |
+| `bind_receiver` | `0x00000001` |
+| `bind_transmitter` | `0x00000002` |
+| `query_sm` | `0x00000003` |
+| `submit_sm` | `0x00000004` |
+| `deliver_sm` | `0x00000005` |
+| `unbind` | `0x00000006` |
+| `replace_sm` | `0x00000007` |
+| `cancel_sm` | `0x00000008` |
+| `bind_transceiver` | `0x00000009` |
+| `outbind` | `0x0000000B` |
+| `enquire_link` | `0x00000015` |
+| `submit_multi` | `0x00000021` |
+| `alert_notification` | `0x00000102` |
+| `data_sm` | `0x00000103` |
+| `broadcast_sm` | `0x00000111` |
+| `query_broadcast_sm` | `0x00000112` |
+| `cancel_broadcast_sm` | `0x00000113` |
+| `generic_nack` | `0x80000000` |
+| `bind_receiver_resp` | `0x80000001` |
+| `bind_transmitter_resp` | `0x80000002` |
+| `query_sm_resp` | `0x80000003` |
+| `submit_sm_resp` | `0x80000004` |
+| `deliver_sm_resp` | `0x80000005` |
+| `unbind_resp` | `0x80000006` |
+| `replace_sm_resp` | `0x80000007` |
+| `cancel_sm_resp` | `0x80000008` |
+| `bind_transceiver_resp` | `0x80000009` |
+| `enquire_link_resp` | `0x80000015` |
+| `submit_multi_resp` | `0x80000021` |
+| `data_sm_resp` | `0x80000103` |
+| `broadcast_sm_resp` | `0x80000111` |
+| `query_broadcast_sm_resp` | `0x80000112` |
+| `cancel_broadcast_sm_resp` | `0x80000113` |
+| Reserved for MC Vendor | `0x00010200` - `0x000102FF`<br>`0x80010200` - `0x800102FF` |
+| All other values reserved |  |
 
 
-|Command ID|Value||
-|---|---|---|
-|All other values reserved|||
-|Table 4-44 4.7.6 command_status, error_status_code The command_status NULL in SMPP request messages. The SMPP Error status codes are returned by the MC in the SMPP message header and in the following table.|command_id a SMPP request. It is relevant only in the SMPP response message and should be set to error_status_code The complete set of SMPP Error Codes and their associated values are defined in the|Values field of a SMPP message response indicates the success or failure of command_status field of the field of a submit_multi_resp message.|
+**Table 4-44 command_id Values**
+
+##### 4.7.6 command_status, error_status_code
+The command_status NULL in SMPP request messages. The SMPP Error status codes are returned by the MC in the SMPP message header and in the following table.|command_id a SMPP request. It is relevant only in the SMPP response message and should be set to error_status_code The complete set of SMPP Error Codes and their associated values are defined in the|Values field of a SMPP message response indicates the success or failure of command_status field of the field of a submit_multi_resp message.|
 | Command Status Name | Value | Description |
 | --- | --- | --- |
 | ESME_ROK | `0x00000000` | No Error.<br><br>Specified in a response PDU to indicate the success of the corresponding request PDU. |
@@ -2438,7 +2501,8 @@ SMPP uses a regular expression in the *bind_receiver* and *bind_transceiver* PDU
 
 
 
-***4.7.7 data_coding*** The following values are defined for this field:
+##### 4.7.7 data_coding
+The following values are defined for this field:
 
 | data_coding Bits<br>7 6 5 4 3 2 1 0 | Meaning | Notes |
 | --- | --- | --- |
@@ -2469,9 +2533,42 @@ SMPP uses a regular expression in the *bind_receiver* and *bind_transceiver* PDU
 
 
 
-***4.7.8 destination_addr*** Specifies the destination SME address. For mobile terminated messages, this is the directory number of the recipient MS. <u>Notes</u>
+##### 4.7.8 destination_addr
+Specifies the destination SME address. For mobile terminated messages, this is the directory number of the recipient MS. 
+<u>Notes</u>
 
-|An IP address is specified in `aaa.bbb.ccc.ddd` notation. IP version 6.0 is not supported.|A flag, which will identify whether destination address is a Distribution List (DL) name or SME|
+|An IP address is specified in `aaa.bbb.ccc.ddd` notation. IP version 6.0 is not supported.|
+
+##### 4.7.9 dest_flag
+A flag, which will identify whether destination address is a Distribution List (DL) name or SME
+address.
+| dest_flag Value | Meaning |
+| --- | --- |
+| `0x01` | SME Address |
+| `0x02` | Distribution List Name |
+
+**Table 4-47 *dest_flag* Values**
+
+##### 4.7.10 dl_name
+The reference name for a distribution list provisioned on the MC. Distribution list names are
+defined by mutual agreement between the MC and the ESME.
+
+##### 4.7.11 esme_addr
+
+Specifies the address of an ESME address to which an alert_notification should be routed.
+
+<u>Notes</u>
+
+|An IP address is specified in `aaa.bbb.ccc.ddd` notation. IP version 6.0 is not supported.
+
+
+##### 4.7.12 esm_class
+The esm_class parameter is used to indicate special message attributes associated with the
+short message.
+
+The esm_class parameter is encoded as follows in the submit_sm, submit_multi and
+data_sm (ESME -> MC) PDUs:
+
 |---|---|
 |  | esm_class Bits<br>7 6 5 4 3 2 1 0 | Meaning |
 | --- | --- | --- |
@@ -3585,3 +3682,5 @@ Octet 2: specifies the Units of Time
 | Value | 1 | Integer | 0 = PSSD indication<br>1 = PSSR indication<br>2 = USSR request<br>3 = USSN request<br>4 to 15 = reserved<br><br>16 = PSSD response<br>17 = PSSR response<br>18 = USSR confirm<br>19 = USSN confirm<br><br>20 to 31 = reserved<br>32 to 255 = reserved for vendor specific USSD operations |
 
 **Table 4-125 *ussd_service_op* TLV**
+
+
