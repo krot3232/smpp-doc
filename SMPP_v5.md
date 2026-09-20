@@ -2,7 +2,7 @@
 
 ## Version 5.0
 
-#### 1 Introduction
+# 1 Introduction
 
 The SMS Forum, a non-profit organisation dedicated to the promotion of SMS within the wireless industry, manages the Short Message Peer to Peer (SMPP) protocol. The specification and related documentation is available from the SMS Forum Website [http://www.smsforum.net](http://www.smsforum.net)
 
