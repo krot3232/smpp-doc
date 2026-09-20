@@ -1073,7 +1073,7 @@ The 16-octet header would be decoded as follows:
 
 |00 00 00 2F|Command Length|0x0000002F|
 |---|---|---|
-|00 00 00 02 Command ID 0x00000002 (bind_transmitter)|||
+|00 00 00 02|Command ID|0x00000002 (bind_transmitter)|
 |00 00 00 00|Command Status|0x00000000|
 |00 00 00 01|Sequence Number|0x00000001|
 
@@ -1111,28 +1111,6 @@ An ESME may bind as both a SMPP Transmitter and Receiver using separate *bind_tr
 ##### 4.1.1.1 bind_transmitter Syntax
 
 The format of the SMPP *bind_transmitter* PDU is defined in the following table:
-
-||max 16|String|requesting to bind as a transmitter with the MC.|4.7.30|
-|---|---|---|---|---|
-|password Var.|max 9|C-Octet String|The password may be used by the MC to authenticate the ESME requesting to bind.|4.7.18|
-|system_type Var.|max 13|C-Octet String|Identifies the type of ESME system requesting to bind as a transmitter with the MC.|4.7.31|
-
-##### Field Name Size Type Description Ref
-
-**octets**
-
-command_length 4 Integer Defines the overall length of the 4.7.4 *bind_transmitter* PDU.
-
-##### command_id 4 Integer 0x00000002 4.7.5
-
-##### command_status 4 Integer 0x00000000 4.7.6
-
-sequence_number 4 Integer Set to a unique sequence number. 4.7.24
-
-The associated *bind_transmitter_resp* PDU will echo the same sequence number.
-
-system_id Var. C-Octet Identifies the ESME system
-
 
 
 | Field Name | Size octets | Type | Description | Ref. |
@@ -2431,7 +2409,7 @@ NULL in SMPP request messages.
 The SMPP Error status codes are returned by the MC in the command_status field of the
 SMPP message header and in the error_status_code field of a submit_multi_resp message.
 
-The command_status NULL in SMPP request messages. The SMPP Error status codes are returned by the MC in the SMPP message header and in the following table.
+The complete set of SMPP Error Codes and their associated values are defined in the following table.
 
 | Command Status Name | Value | Description |
 | --- | --- | --- |
@@ -2543,7 +2521,7 @@ The following values are defined for this field:
 Specifies the destination SME address. For mobile terminated messages, this is the directory number of the recipient MS. 
 <u>Notes</u>
 
-|An IP address is specified in `aaa.bbb.ccc.ddd` notation. IP version 6.0 is not supported.|
+An IP address is specified in `aaa.bbb.ccc.ddd` notation. IP version 6.0 is not supported.
 
 ##### 4.7.9 dest_flag
 A flag, which will identify whether destination address is a Distribution List (DL) name or SME
@@ -2565,7 +2543,7 @@ Specifies the address of an ESME address to which an alert_notification should b
 
 <u>Notes</u>
 
-|An IP address is specified in `aaa.bbb.ccc.ddd` notation. IP version 6.0 is not supported.
+An IP address is specified in `aaa.bbb.ccc.ddd` notation. IP version 6.0 is not supported.
 
 
 ##### 4.7.12 esm_class
