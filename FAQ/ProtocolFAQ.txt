@@ -1,0 +1,40 @@
+#%TITLE:Protocol Feature FAQ
+
+#%QUESTION:What are TONs & NPIs
+#%ANSWER:TON stands for Type of Number and NPI stands for Numbering Plan Indicator. They are used in conjunction with an address field to constitute the identification of a mobile subscriber number.<p>When we think of mobile numbers, we usually consider only a sequence of digits. In telecoms talk, this is not enough. We need to know the type or nature of the number.. is it an internation or national number?.. the NPI tells us how it is encoded.. E.164 is the most common form of encoding, with other values including IP address etc. <p>The values for these TON and NPI fields are defined by ETSI, TIA and other telecom standards bodies. Many values arew shared across standards.
+
+#%QUESTION:What's new in SMPP 3.4?..Can a 3.3 client connect to a 3.4 server?..Can a 3.4 client connect to a 3.3 server?
+#%_ANSWER: Alfonso,<br>
+  thats a very good question and has been asked many times. The answer is in fact application and implementation specific. If the Message Centre or SMPP Server is exclusively 3.4 based, then a 3.3 ESME should not work. If the vendor declares support for both V3.3 and V3.4, then ESMEs developed against both versions of the protocol should work properly.
+
+<br><br>V3.4 ESMEs would not be able to function properly with V3.3-based MCs. For instance optional parameters from a V3.4 ESME may be interpreted by a V3.3 MC as corrupt data tailing the PDU and may cause rejection of the message.
+
+<br><br>For the changes (V3.3->V3.4)
+Here's some background. V3.3 of the protocol is owned and managed by Logica Mobile Networks and is based on the Logica SMSC (Telepath). It has been widely depoyed by several other message centre vendors and ownership of the protocol has since been given to the SMPP Forum which now manages the evolution of SMPP.
+
+<br><br>V3.4 is first version of the protocol to be managed by the SMPP forum. To rationalise the specification and remove vendor-specific characteristics, operations such as param_retrieve, query_last_messages & query_message_details were removed.
+
+<br><br>Error codes were also rationalised to a tighter set of values that reflect more generic aspects of the protocol. The V3.4 error code set is more or less a tighter subset of the V3.3 error codes.
+
+<br><br>In terms of whats new in V3.4:
+
+<br><br>o Optional Parameter Support<br>
+SMPP can now support optional fields within PDUs allowing for network specific and enhanced features within the operations. The specification, available from this site, details these parameters in more detail.
+
+<br><br>o Message Length > 255 octets<br>
+SMPP V3.3 represented text length with a single octet, limiting the length to a physical limit of 255 octets. In V3.4, larger message payloads can be encoded using the message_payload TLV which can suport upto 64K or text.
+
+<br><br>o WAP Support<br>
+SMPP V3.4 has functionality and operations specifically geared towards the WAP within the context of an SMS bearer.
+#%_
+
+#%QUESTION:For encoding messages, what is the SMSC "default Alphabet"?
+#%_ANSWER:
+The term default alphabet is used to describe the concept of an SMSC default interpretation of incoming text. ESMEs tend to expect ASCII by default and the default SMSC interpretation is usually ASCII.But to be 100% sure, you need to verify this with each vendor. There is no way of guessing this.
+
+#%_
+
+
+
+
+#%END:END

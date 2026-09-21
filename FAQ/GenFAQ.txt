@@ -1,0 +1,24 @@
+#%TITLE:General SMPP FAQ
+
+#%QUESTION:What is SMPP?
+#%ANSWER:The Short Message Peer to Peer (SMPP) protocol is an open industry standard messaging protocol designed to simplify integration of data applications with wireless mobile networks such as GSM, TDMA, CDMA and PDC. The protocol is widely deployed in the mobile telecommunications industry. The SMPP protocol specification is freely available from the Documents section of this site.
+
+#%QUESTION:What is the SMS Forum?
+#%ANSWER:The SMS Forum is made up of representatives from companies who have a shared interest in the evolution of the Short Message Peer to Peer (SMPP) protocol and SMS in general. The main substantive work of the Forum includes review and discussion of the evolution of the SMPP Protocol Specification and interoperability issues. The Forum also liaises with other industry organizations.
+
+#%QUESTION:What are the mission and goals  of the SMS Forum?
+#%ANSWER:The Forum mission and goals are: <br> <ul> <li>To foster and promote SMS to the benefit of the Wireless Industry, and, to manage/enhance SMPP with the intent of providing a robust worldwide standard.</li> <li>Develop and evolve the SMPP protocol as a primary means of integrating applications with short messaging infrastructures.</li> <li>Promote Short Messaging to the benefit of the wireless industry through technical and marketing activities.</li> <li>Provide backward compatibility and a framework for Interoperability testing and protocol compliance testing for implementers of the SMPP protocol.</li> <li>Contribute to, and guide the evolution of the SMPP protocol in the interest of all users, technologies and the telecommunications industry worldwide.</li> </ul> 
+
+#%QUESTION:When did the SMS Forum start up?
+#%ANSWER:The participants of the Forum first came together in Dallas in 1997 during the PCS '97 Show week. At that first meeting, it was decided to establish the 'SMPP Developers Forum' initially to advise and assist in the development of the SMPP protocol which was a widely deployed proprietary protocol at that time. It was the intention also, when the Forum became well established, to transfer ownership and control of the evolution of the protocol to the 'SMPP Developers Forum' as an independent entity, thereby creating a vendor-independent, cross-technology standards body for this key technology. Since September 1997 onwards the Forum has been meeting regularly. Since that time, the forum was incorporated as an independent body and took full ownership and control of the SMPP protocol. In this new role, the forum was renamed the 'SMPP Forum'. In October 2001, the forum was renamed the 'SMS Forum' as it embarked on a wider spectrum of activities relating to SMS.
+
+#%QUESTION:Who can join the SMS Forum?
+#%ANSWER:The SMPP Forum is open to all industry participants who have an interest in the evolution of the SMPP protocol. Its work is of particular interest to SMSC vendors, carriers, infrastructure providers, voice mail system vendors as well as application developers. Details can be obtained from the How To Join section on the main site menu.
+
+#%QUESTION:What port number does SMPP run on?
+#%ANSWER:The IANA assigned default port for SMPP is 2775. Note, however, that individual operators can choose to run their SMPP server on a different port.
+
+#%QUESTION:Where to I get the SMPP V3.3 Specification
+#%ANSWER:The SMS Forum does not own nor manage the SMPP V3.3 protocol. This is available directly from <a href="http://opensmpp.logica.com/CommonPart/Documentation/Documentation.htm" target="linkwindow">Logica's OpenSMPP Website</a>
+
+#%END:END
