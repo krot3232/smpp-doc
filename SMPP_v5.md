@@ -112,7 +112,7 @@ This document defines Version 5.0 of the SMPP protocol. It is intended for desig
 | Ref. | Document Title | Document Number | Version Number |
 | --- | --- | --- | --- |
 | [1] [GSM 03.03] | Digital Cellular Telecommunications System (Phase 2+); Numbering, Addressing and Identification (Release 1998) | GSM 03.03<br>http://www.etsi.fr<br>3GPP<br>http://www.3GPP.org | v7.6.0 |
-| [2] [GSM 03.38] | “Digital Cellular telecommunications system (Phase 2+); Alphabets and language specific information”. | [GSM 03.38]<br>http://www.etsi.fr<br>Superseded by [19] | v5.6.1<br>Jan. ‘98 |
+| [2] [GSM 03.38] | “Digital Cellular telecommunications system (Phase 2+); Alphabets and language specific information”. | [GSM 03.38]<br>http://www.etsi.fr<br>Superseded by [19] | v5.6.1<br>Jan. `98 |
 | [3] [GSM 03.40] | Technical Realisation of the Short Message Service Point to Point | GSM 03.40<br>http://www.etsi.fr<br>Superseded by [20] | v5.7.1 |
 | [4] [GSM MAP 09.02] | GSM Mobile Application Part | [GSM MAP 09.02]<br>http://www.etsi.fr<br>Superseded by [23] | v5.11.0 |
 | [5] [IS637] | Short Message Service for Spread Spectrum Systems | TIA/EIA/IS-637-A | Rev A |
@@ -172,13 +172,13 @@ SMPP is designed to support short messaging functionality for any cellular techn
 
 The variety of messaging applications, particularly SMS for which SMPP can be employed, is almost boundless. Wireless Operators, Message Centre vendors, Infrastructure Providers, and application developers are constantly developing new applications for SMS. SMPP is ideal as an access protocol for these applications. The following summarises common applications of SMPP:
 
-- Voicemail alerts originating from a VPS (Voice Processing System), indicating voice messages at a customer’s mailbox. This is arguably one of the first ESME-based applications of SMS and is still heavily used in the industry.
+- Voicemail alerts originating from a VPS (Voice Processing System), indicating voice messages at a customer`s mailbox. This is arguably one of the first ESME-based applications of SMS and is still heavily used in the industry.
 - Numeric and alphanumeric paging services. With an SMS-capable phone, the need to carry both pager and phone is drastically reduced.
 - Information services. For example, an application that enables mobile subscribers to query currency rates or share-price information from a database or the WWW and have it displayed as a short message on the handsets.
-- Calls directly dialled or diverted to a message-bureau operator, who forwards the message to the MC, for onward delivery to a subscriber’s handset.
+- Calls directly dialled or diverted to a message-bureau operator, who forwards the message to the MC, for onward delivery to a subscriber`s handset.
 - Directory services. For example a subscriber calls a directory service requesting information on restaurants in a given area. The operator lists out available restaurants and sends the appropriate information as an SMS to the caller.
 - Location-based services. These include applications that use mobile hardware to send GPS or cell data across SMS and using a MC, relay these messages to an ESME. The ESME may then use the collected data to manage services such as taxi assignment, stolen vehicle tracking and logistics control.
-- Telemetry applications. For example, a household meter that transmits a short message to a utility company’s billing system to automatically record customer usage.
+- Telemetry applications. For example, a household meter that transmits a short message to a utility company`s billing system to automatically record customer usage.
 - Security applications such as alarm systems that can use SMS services for remote access and alerting purposes. For example, a parent receives an SMS from his security company to inform him that his daughter has arrived home and keyed in her access code.
 - WAP Proxy Server. A WAP Proxy Server acts as the WAP gateway for wireless Internet applications. A WAP Proxy Server may select an SMS or USSD bearer for sending WDP datagrams to and receiving WDP datagrams from a mobile station.
 - Online Banking, Share Dealing and E-Commerce, A mobile user could use SMS to send messages to an ESME requesting the purchase of products, shares etc. Likewise, a subscriber may use SMS to access banking services such as bill payment and funds transfer.
@@ -219,11 +219,11 @@ The following sub-sections list each category and its associated operations.
 | SMPP PDU Name | Description |
 | --- | --- |
 | `bind_transmitter` | Authentication PDU used by a transmitter ESME to bind to the Message Centre. The PDU contains identification information and an access password for the ESME. |
-| `bind_transmitter_resp` | Message Centre response to a `bind_transmitter` PDU. This PDU indicates the success or failure of the ESME’s attempt to bind as a transmitter |
+| `bind_transmitter_resp` | Message Centre response to a `bind_transmitter` PDU. This PDU indicates the success or failure of the ESME`s attempt to bind as a transmitter |
 | `bind_receiver` | Authentication PDU used by a receiver ESME to bind to the Message Centre. The PDU contains identification information, an access password for the ESME and may also contain routing information specifying the range of addresses serviced by the ESME. |
-| `bind_receiver_resp` | Message Centre response to a `bind_receiver` PDU. This PDU indicates the success or failure of the ESME’s attempt to bind as a receiver |
+| `bind_receiver_resp` | Message Centre response to a `bind_receiver` PDU. This PDU indicates the success or failure of the ESME`s attempt to bind as a receiver |
 | `bind_transceiver` | Authentication PDU used by a transceiver ESME to bind to the Message Centre. The PDU contains identification information, an access password for the ESME and may also contain routing information specifying the range of addresses serviced by the ESME. |
-| `bind_transceiver_resp` | Message Centre response to a `bind_transceiver` PDU. This PDU indicates the success or failure of the ESME’s attempt to bind as a transceiver |
+| `bind_transceiver_resp` | Message Centre response to a `bind_transceiver` PDU. This PDU indicates the success or failure of the ESME`s attempt to bind as a transceiver |
 | `outbind` | Authentication PDU used by a Message Centre to Outbind to an ESME to inform it that messages are present in the MC. The PDU contains identification, and access password for the ESME. If the ESME authenticates the request, it will respond with a `bind_receiver` or `bind_transceiver` to begin the process of binding into the MC. |
 | `unbind` | This PDU can be sent by the ESME or MC as a means of initiating the termination of a SMPP session. |
 | `unbind_resp` | This PDU can be sent by the ESME or MC as a means of acknowledging the receipt of an unbind request. After sending this PDU the MC typically closes the network connection. |
@@ -612,7 +612,7 @@ Up to now, we have referred to PDUs by name and indicated the request/response p
 
 ## 2.6.1 The PDU Sequence Number
 
-Each SMPP request PDU has an identifier called a sequence number that is used to uniquely identify the PDU in the context of its’ originating entity and the current SMPP session. The resulting response PDU (which must be returned on the same SMPP session) is expected to mirror the sequence number of the original request. The following diagram illustrates the use of sequence numbers.
+Each SMPP request PDU has an identifier called a sequence number that is used to uniquely identify the PDU in the context of its` originating entity and the current SMPP session. The resulting response PDU (which must be returned on the same SMPP session) is expected to mirror the sequence number of the original request. The following diagram illustrates the use of sequence numbers.
 ```text
     ┌──────┐                                         ┌────────────────┐
     │ ESME │                                         │ Message Center │
@@ -779,9 +779,9 @@ There are a number of reasons why a MC or ESME may reject an operation request P
 
 It is a common misconception that windowing provides full flow control. However, as already discussed in section [2.6.4](#264-synchronous-vs-asynchronous), all that is gained is a finite limit to an asynchronous window. A maxed out window prevents the originator from issuing more requests until responses arrive, but this is not flow control.
 
-Flow control relates to the concept of a receiver informing the sender that it can’t accept any more data.
+Flow control relates to the concept of a receiver informing the sender that it can`t accept any more data.
 
-In TCP, this concept is supported by a ‘receiver buffer advertisement’, which can be passed with every packet acknowledgement. The sender uses this data as a means of judging how much more data can be sent in subsequent transmissions. This mechanism works fine for TCP, given that congestion is based mostly on volumes of data being sent across busy networks or to a congested receiver.
+In TCP, this concept is supported by a `receiver buffer advertisement`, which can be passed with every packet acknowledgement. The sender uses this data as a means of judging how much more data can be sent in subsequent transmissions. This mechanism works fine for TCP, given that congestion is based mostly on volumes of data being sent across busy networks or to a congested receiver.
 
 In terms of SMPP, if an ESME or MC submits/delivers messages at a rate that exceeds the capabilities of its peer, congestion may occur. Relying on windowing to solve the problem is not enough. The ESME will continue to top up its window of unacknowledged requests, keeping the MC under load to process these requests.
 
@@ -820,7 +820,7 @@ The advantage of using *congestion_state* over a fixed window is that the ESME c
 ```
 **Figure 2-16 Flow Control & Congestion Avoidance using the *congestion_state* TLV.**
 
-The above diagram shows a session where an ESME is transmitting PDUs at a rate of 50/second. On recognising the *congestion_state* TLV and its below Optimum value, the ESME increased its rate until the *congestion_state* enters an optimum range. At this point, the ESME maintains the 120 PDUs/second until the *congestion_state* enters ‘Nearing Congestion’, at which time the ESME relaxes the messaging rate to return the *congestion_state* to an optimum level.
+The above diagram shows a session where an ESME is transmitting PDUs at a rate of 50/second. On recognising the *congestion_state* TLV and its below Optimum value, the ESME increased its rate until the *congestion_state* enters an optimum range. At this point, the ESME maintains the 120 PDUs/second until the *congestion_state* enters `Nearing Congestion`, at which time the ESME relaxes the messaging rate to return the *congestion_state* to an optimum level.
 
 # 2.10 Session Security and Encryption
 
@@ -898,7 +898,7 @@ the particular SMPP operation, the TLV shall be processed. o If a TLV Tag is rec
 - A SMPP entity receiving a parameter value defined as "reserved" should use the default value if a "default" setting is defined, otherwise the parameter should be ignored.
 - If the Parameter value is otherwise unrecognized or invalid, the SMPP entity should return an error indicating the Parameter Value is invalid.
 - A SMPP entity detecting that a TLV, which is required in the context of the operation, is not present should return the ESME_RMISSINGTLV *command_status*.
-- A Variable length field Parameter may have its’ maximum length definition extended in subsequent versions of the SMPP protocol. A SMPP entity receiving a variable length Parameter whose length is greater than the maximum length the entity supports for that Parameter should reject the parameter with its appropriate *command_status* value.
+- A Variable length field Parameter may have its` maximum length definition extended in subsequent versions of the SMPP protocol. A SMPP entity receiving a variable length Parameter whose length is greater than the maximum length the entity supports for that Parameter should reject the parameter with its appropriate *command_status* value.
 
 
 ## 2.11.2 Backward Compatibility
@@ -909,7 +909,7 @@ Backward Compatibility procedures allow a functional entity using one version of
 - The effect of receiving any existing message in a new modified format must be same as that in previous versions. Thus the addition of new parameters or parameter values is purely additive.
 - TLVs shall not become mandatory parameters. No field formatted as a TLV can be deprecated and replaced by a standard integer, C-Octet string or Octet String field.
 - Mandatory parameters shall not become TLVs. No mandatory field can be deprecated and replaced by a TLV. TLVs may be defined to supercede mandatory fields (e.g *message_payload* supercedes *short_message*) but the original mandatory field remains in place and usable by legacy applications.
-- In situations where TLVs are defined to supercede a mandatory C-Octet or Octet String, it may become plausable to allow NULL values to be specified for the superceded field, where its’ previous definition disallowed the use of NULL settings.
+- In situations where TLVs are defined to supercede a mandatory C-Octet or Octet String, it may become plausable to allow NULL values to be specified for the superceded field, where its` previous definition disallowed the use of NULL settings.
 - Additional mandatory parameters shall not be added to an existing SMPP PDU.
 - Existing mandatory parameters shall not be removed from an existing SMPP PDU.
 - The meaning of any existing parameter value shall not be changed in the new version of the protocol.
@@ -1026,7 +1026,7 @@ Command_ids for request PDUs are allocated from a range of numbers; 0x00000000 t
 
 Command_ids for response PDUs are allocated from a range of numbers; 0x80000000 to 0x800001FF.
 
-The relationship between the *command_id* for a request PDU and its associated response PDU is that bit 31 is cleared for the request and set for the response. For example, *replace_sm* has a *command_id* = 0x**0**0000007 and its’ response PDU *replace_sm_resp* has a *command_id* = 0x80000007. Ref. [4.7.5](#475-command_id)
+The relationship between the *command_id* for a request PDU and its associated response PDU is that bit 31 is cleared for the request and set for the response. For example, *replace_sm* has a *command_id* = 0x**0**0000007 and its` response PDU *replace_sm_resp* has a *command_id* = 0x80000007. Ref. [4.7.5](#475-command_id)
 
 ### 3.2.1.3 Command_status
 
@@ -1046,7 +1046,7 @@ Standard Parameters consist of combinations of Integer, C-Octet Strings and Octe
 
 ### 3.2.1.6 TLV Parameters
 
-Tagged Length Value (TLV) parameters as described in section [3.1](#31-parameter-type-definitions) are identified by a tag, length and value and can be appended to a PDU in any order. The only requirement is that the PDU’s standard fields are first encoded, and then followed by the TLV parameters. Otherwise, the PDU decoding by the peer would be unable to decode the PDU.
+Tagged Length Value (TLV) parameters as described in section [3.1](#31-parameter-type-definitions) are identified by a tag, length and value and can be appended to a PDU in any order. The only requirement is that the PDU`s standard fields are first encoded, and then followed by the TLV parameters. Otherwise, the PDU decoding by the peer would be unable to decode the PDU.
 
 TLVs were originally referred to as Optional Parameters in SMPP V3.4. In Version 5.0 of the protocol, the term Optional Parameter applies only to TLVs that are not mandatory within a
 
@@ -1181,7 +1181,7 @@ The format of the SMPP *bind_receiver_resp* PDU is defined in the following tabl
 
 ### 4.1.1.5 bind_transceiver Syntax
 
-The format of the SMPP *bind_transceiver* PDU is defined in the following table***.***
+The format of the SMPP *bind_transceiver* PDU is defined in the following table.
 
 | Field Name | Size Octets | Type | Description | Ref. |
 | --- | --- | --- | --- | --- |
@@ -1301,7 +1301,7 @@ The *enquire_link_resp* PDU is used to reply to an *enquire_link* request.
 
 The *alert_notification* PDU is sent by the MC to the ESME across a Receiver or Transceiver session. It is sent when the MC has detected that a particular mobile subscriber has become available and a delivery pending flag had been previously set for that subscriber by means of the *set_dpf* TLV (ref. [4.8.4.52](#48452-set_dpf)).
 
-A typical use of this operation is to trigger a data content ‘Push’ to the subscriber from a WAP Proxy Server.
+A typical use of this operation is to trigger a data content `Push` to the subscriber from a WAP Proxy Server.
 
 Note: There is no associated *alert_notification_resp* PDU.
 
@@ -1335,7 +1335,7 @@ The *generic_nack* PDU is used to acknowledge the submission of an unrecognized 
 
 ### 4.1.4.1 generic_nack Syntax
 
-Following is the format of the SMPP *generic_nack* PDU***.*** It comprises the SMPP message header only***.***
+Following is the format of the SMPP *generic_nack* PDU. It comprises the SMPP message header only.
 
 | Field Name | Size octets | Type | Description | Ref. |
 | --- | --- | --- | --- | --- |
@@ -1378,7 +1378,7 @@ This operation is used by an ESME to submit a short message to the MC for onward
 | `registered_delivery` | 1 | Integer | Indicator to signify if a MC delivery receipt, manual ACK, delivery ACK or an intermediate notification is required. | [4.7.21](#4721-registered_delivery) |
 | `replace_if_present_flag` | 1 | Integer | Flag indicating if the submitted message should replace an existing message. | [4.7.22](#4722-replace_if_present_flag) |
 | `data_coding` | 1 | Integer | Defines the encoding scheme of the short message user data. | [4.7.7](#477-data_coding) |
-| `sm_default_msg_id` | 1 | Integer | Indicates the short message to send from a list of pre-defined (‘canned’) short messages stored on the MC. If not using a MC canned message, set to NULL. | [4.7.27](#4727-sm_default_msg_id) |
+| `sm_default_msg_id` | 1 | Integer | Indicates the short message to send from a list of pre-defined (`canned`) short messages stored on the MC. If not using a MC canned message, set to NULL. | [4.7.27](#4727-sm_default_msg_id) |
 | `sm_length` | 1 | Integer | Length in octets of the `short_message` user data. | [4.7.28](#4728-sm_length) |
 | `short_message` | Var. 0-255 | Octet String | Up to 255 octets of short message user data.<br><br>The exact physical limit for `short_message` size may vary according to the underlying network<br><br>**Note:** this field is superseded by the `message_payload` TLV if specified. Ref. [4.8.4.36](#48436-message_payload) | [4.7.26](#4726-short_message) |
 | Message Submission TLVs | Var. | TLV |  | [4.2.4](#424-message-submission-request-tlvs) |
@@ -1473,7 +1473,7 @@ The *submit_multi* operation is an enhanced variation of *submit_sm* designed to
 | `registered_delivery` | 1 | Integer | Indicator to signify if a MC delivery receipt or an SME acknowledgement is required. | [4.7.21](#4721-registered_delivery) |
 | `replace_if_present_flag` | 1 | Integer | Flag indicating if submitted message should replace an existing message. | [4.7.22](#4722-replace_if_present_flag) |
 | `data_coding` | 1 | Integer | Defines the encoding scheme of the short message user data. | [4.7.7](#477-data_coding) |
-| `sm_default_msg_id` | 1 | Integer | Indicates the short message to send from a list of pre-defined (‘canned’) short messages stored on the MC. If not using a MC canned message, set to NULL. | [4.7.27](#4727-sm_default_msg_id) |
+| `sm_default_msg_id` | 1 | Integer | Indicates the short message to send from a list of pre-defined (`canned`) short messages stored on the MC. If not using a MC canned message, set to NULL. | [4.7.27](#4727-sm_default_msg_id) |
 | `sm_length` | 1 | Integer | Length in octets of the `short_message` user data. | [4.7.28](#4728-sm_length) |
 | `short_message` | Var. 0-255 | Octet String | Up to 255 octets of short message user data.<br><br>The exact physical limit for `short_message` size may vary according to the underlying network<br><br>**Note:** this field is superseded by the `message_payload` TLV if specified. Ref. [4.8.4.36](#48436-message_payload)<br><br>Applications which need to send messages longer than 255 octets should use the `message_payload` TLV. In this case the `sm_length` field should be set to zero | [4.7.26](#4726-short_message) |
 | Message Submission TLVs | Var. | TLV |  | [4.2.4](#424-message-submission-request-tlvs) |
@@ -1528,7 +1528,7 @@ This section lists TLVs that may be used for message submission operations.
 | `dest_telematics_id` | The telematics identifier associated with the destination | [4.8.4.29](#48429-dest_telematics_id) |
 | `dest_port` | Indicates the application port number associated with the destination address of the message. This parameter should be present for WAP applications. | [4.8.4.30](#48430-dest_port) |
 | `display_time` | Provides the receiving MS with a display time associated with the message. | [4.8.4.31](#48431-display_time) |
-| `its_reply_type` | The MS user’s reply method to an SMS delivery message received from the network, is indicated and controlled by this parameter. | [4.8.4.33](#48433-its_reply_type) |
+| `its_reply_type` | The MS user`s reply method to an SMS delivery message received from the network, is indicated and controlled by this parameter. | [4.8.4.33](#48433-its_reply_type) |
 | `its_session_info` | Session control information for Interactive Teleservice. | [4.8.4.34](#48434-its_session_info) |
 | `language_indicator` | Indicates the language of an alphanumeric text message. | [4.8.4.35](#48435-language_indicator) |
 | `message_payload` | Contains the extended short message user data. Up to 64K octets can be transmitted.<br><br>Note: The short message data should be inserted in either the `short_message` or `message_payload` fields. Both fields should not be used simultaneously.<br><br>The `sm_length` field should be set to zero if using the `message_payload` parameter.<br><br>Note: In the case of `data_sm`, the `message_payload` TLV is the only means of specifying text. | [4.8.4.36](#48436-message_payload) |
@@ -1573,7 +1573,7 @@ The following table contains TLVs that can be returned in a *submit_sm_res*p or 
 
 ## 4.2.6 Source and Destination Addressing
 
-The *submit_sm* and *data_*sm PDUs include provision for both ‘source address’ (message sender) and ‘destination address’ (message recipient). The common concept of a source or destination address is a sequence of digits representing a mobile or fixed-line number. However the reality is more complex. Both addresses comprise of three parts, namely the TON (Type of Number), NPI (Numbering Plan Indicator) and Address (Digit sequence). Every time a message is sent either to or from a mobile, the source and destination addresses comprise of the three parts. This three-part relationship is visible in the PDUs in the form of *source_addr_ton*, *source_addr_npi*, *source_addr*, *dest_addr_ton*, *dest_addr_npi* and *destination_addr* fields.
+The *submit_sm* and *data_sm* PDUs include provision for both `source address` (message sender) and `destination address` (message recipient). The common concept of a source or destination address is a sequence of digits representing a mobile or fixed-line number. However the reality is more complex. Both addresses comprise of three parts, namely the TON (Type of Number), NPI (Numbering Plan Indicator) and Address (Digit sequence). Every time a message is sent either to or from a mobile, the source and destination addresses comprise of the three parts. This three-part relationship is visible in the PDUs in the form of *source_addr_ton*, *source_addr_npi*, *source_addr*, *dest_addr_ton*, *dest_addr_npi* and *destination_addr* fields.
 
 **Note**: Setting the source_addr field to NULL, will force the MC to default the address to some
 
@@ -1607,11 +1607,11 @@ NPI is generally set to 1 by mobile devices. Its purpose is to specify the numbe
 
 ### 4.2.6.3 ESME Addresses
 
-Specifying addresses for ESMEs is very much prone to the network operator’s preferences and the message center implementation. An ESME will typically use one of the following approaches:
+Specifying addresses for ESMEs is very much prone to the network operator`s preferences and the message center implementation. An ESME will typically use one of the following approaches:
 
 - Service Short Code Short codes are brief and often easy to remember. Operators providing services that allow a subscriber avail of stock quotes, lotto results etc, will often configure the service to respond to a short digit sequence such as `1234`. The subscriber will mobile originate a message addressed to `1234` (TON=0 `unknown`) and the message center routing will deliver this to an ESME receiver or transceiver. In responding to the message, the ESME will usually set the source address to the short code, making it easy for the recipient to reply to the message if another request is desired.
 - International Number With growth in the numbers of subscribers roaming internationally with their mobiles, ESME services that they use, need to be accessible regardless of location. One approach to supporting this accessibility is for the ESME to use an international number in the source address of the message (TON=1, NPI=1).
-- NULL Address An ESME Transmitter may enter NULL values in the ‘source address’ fields. In this event, the MC may then substitute a default address for that particular ESME. This feature is designed for interfaces that are not normally familiar with the notion of a source address for a short message, e.g., paging systems, voice mail systems,
+- NULL Address An ESME Transmitter may enter NULL values in the `source address` fields. In this event, the MC may then substitute a default address for that particular ESME. This feature is designed for interfaces that are not normally familiar with the notion of a source address for a short message, e.g., paging systems, voice mail systems,
 
 
 which were developed before the advent of SMS technologies and were based on one-way paging, hence the lack of a source address.
@@ -1622,7 +1622,7 @@ Though SMPP offers a dedicated *replace_sm* operation, the *submit_sm* operation
 
 This feature is designed for applications needing the ability to update an undelivered message. A common application of this feature is with a voicemail system. The first message may read `You have 1 message in your mail box`. If the mobile is unavailable, the message will remain undelivered and in retry within the message center. If another message is left for the same subscriber, the voicemail server will send another message with the updated text `You have 2 messages in your mail box`. If the *replace_flag* of the *submit_sm* PDU is set to 1, then this message should replace the undelivered first message. The result is that the subscriber gets the latest message instead of all messages.
 
-Alternatively, a MC administrator may define a specific *service_type* to provide ‘replace-if- present’ functionality. In this case, the replace function can be activated in the *submit_sm* PDU by setting the *service_type* field to the defined value.
+Alternatively, a MC administrator may define a specific *service_type* to provide `replace-if- present` functionality. In this case, the replace function can be activated in the *submit_sm* PDU by setting the *service_type* field to the defined value.
 
 For both methods of replacing a message using the *submit_sm* operation, the data contained in the short message found in the MC, whose source and destination addresses and *service_type* match those addresses specified in the latest submit_sm operation, will be replaced with the text contained in the *short_message* field of that latest submit_sm operation.
 
@@ -1797,7 +1797,7 @@ The *deliver_sm* is issued by the MC to send a message to an ESME. Using this co
 | `registered_delivery` | 1 | Integer | Indicator to signify if a MC delivery receipt or an SME acknowledgement is required. | [4.7.21](#4721-registered_delivery) |
 | `replace_if_present_flag` | 1 | Integer | Flag indicating if delivered message should replace an existing message. | [4.7.22](#4722-replace_if_present_flag) |
 | `data_coding` | 1 | Integer | Defines the encoding scheme of the short message user data. | [4.7.7](#477-data_coding) |
-| `sm_default_msg_id` | 1 | Integer | Indicates the short message to send from a list of pre-defined (‘canned’) short messages stored on the receiving MC.<br><br>This field is only applicable if this message is being forwarded to another MC.<br><br>Set to NULL. If not known or applicable | [4.7.27](#4727-sm_default_msg_id) |
+| `sm_default_msg_id` | 1 | Integer | Indicates the short message to send from a list of pre-defined (`canned`) short messages stored on the receiving MC.<br><br>This field is only applicable if this message is being forwarded to another MC.<br><br>Set to NULL. If not known or applicable | [4.7.27](#4727-sm_default_msg_id) |
 | `sm_length` | 1 | Integer | Length in octets of the `short_message` user data. | [4.7.28](#4728-sm_length) |
 | `short_message` | Var. 0-255 | Octet String | Up to 255 octets of short message user data.<br><br>The exact physical limit for `short_message` size may vary according to the underlying network<br><br>**Note:** this field is superseded by the `message_payload` TLV if specified. Ref. [4.8.4.36](#48436-message_payload)<br><br>Applications which need to send messages longer than 255 octets should use the `message_payload` TLV. In this case the `sm_length` field should be set to zero | [4.7.26](#4726-short_message) |
 | Message Delivery Request TLVs | Var. | TLV |  | [4.3.3](#433-message-delivery-request-tlvs) |
@@ -1839,7 +1839,7 @@ operations.
 | `dest_subaddress` | The sub-address of the message destination. | [4.8.4.28](#48428-dest_subaddress) |
 | `dest_port` | Indicates the application port number associated with the destination address of the message. This parameter should be present for WAP applications. | [4.8.4.30](#48430-dest_port) |
 | `dpf_result` | Indicates whether the Delivery Pending Flag was set. | [4.8.4.32](#48432-dpf_result) |
-| `its_reply_type` | The MS user’s reply method to an SMS delivery message received from the network is indicated and controlled by this parameter. | [4.8.4.33](#48433-its_reply_type) |
+| `its_reply_type` | The MS user`s reply method to an SMS delivery message received from the network is indicated and controlled by this parameter. | [4.8.4.33](#48433-its_reply_type) |
 | `its_session_info` | Session control information for Interactive Teleservice. | [4.8.4.34](#48434-its_session_info) |
 | `language_indicator` | Indicates the language of an alphanumeric text message. | [4.8.4.35](#48435-language_indicator) |
 | `message_payload` | Contains the extended short message user data. Up to 64K octets can be transmitted.<br><br>Note: The short message data should be inserted in either the `short_message` or `message_payload` fields. Both fields should not be used simultaneously.<br><br>The `sm_length` field should be set to zero if using the `message_payload` parameter.<br><br>Note: In the case of `data_sm`, the `message_payload` TLV is the only means of specifying text. | [4.8.4.36](#48436-message_payload) |
@@ -1910,7 +1910,7 @@ Note: The returning of a message receipt is dependent on the value set in the
 
 An intermediate notification is a special form of message that the MC may send to an ESME for a mobile terminated message delivery. It provides an intermediate status of a message delivery attempt.
 
-Typical uses are to report the outcome of delivery attempts made during the message’s retry lifetime within the MC. This could be used to track the various reasons why a message is not delivered to its destination and use this to profile the subscriber’s availability.
+Typical uses are to report the outcome of delivery attempts made during the message`s retry lifetime within the MC. This could be used to track the various reasons why a message is not delivered to its destination and use this to profile the subscriber`s availability.
 
 In such cases the following TLVs would be of importance:
 
@@ -1968,10 +1968,10 @@ This operation is issued by the ESME to submit a message to the Message Centre f
 | `message_id` | Var. max 65 | C-Octet String | If using `broadcast_sm` to replace a message, previously submitted for broadcast, then set `message_id` to the MC assigned message ID allocated to the original message and returned in the `broadcast_sm_resp` (to the original `broadcast_sm` request).<br><br>Note:<br><br>For "broadcast replace", either the `message_id` or the `user_message_reference` field should be used. Both fields must not be used simultaneously.<br><br>Set to NULL:<br><br>• if not using MC message ID in `broadcast_sm` to replace a message, previously submitted for broadcast.<br><br>• if setting `user_message_reference` TLV. | [4.7.14](#4714-message_id) |
 | `priority_flag` | 1 | Integer | Designates the priority level of the message | [4.7.19](#4719-priority_flag) |
 | `schedule_delivery_time` | 1 or 17 | C-Octet String | The short message is to be scheduled by the MC for delivery.<br><br>Set to NULL for immediate message broadcast. | [4.7.23.1](#47231-scheduled_delivery_time) |
-| `validity_period` | 1 or 17 | C-Octet String | The validity period of this message.<br><br>Set to NULL to specify that a ‘`broadcast_rep_num`’ parameter and a ‘`broadcast_frequency_interval`’ parameter have been specified from which a default value should be derived. | [4.7.23.2](#47232-validity_period) |
+| `validity_period` | 1 or 17 | C-Octet String | The validity period of this message.<br><br>Set to NULL to specify that a ``broadcast_rep_num`` parameter and a ``broadcast_frequency_interval`` parameter have been specified from which a default value should be derived. | [4.7.23.2](#47232-validity_period) |
 | `replace_if_present_flag` | 1 | Integer | Flag indicating if the submitted message should replace an existing message which has:<br><br>(1) MC message ID matching the ID supplied in the `message_id` field<br><br>(2) or ESME assigned message reference number supplied in the `user_message_reference` field. | [4.7.22](#4722-replace_if_present_flag) |
 | `data_coding` | 1 | Integer | Defines the encoding scheme of the short message user data. | [4.7.7](#477-data_coding) |
-| `sm_default_msg_id` | 1 | Integer | Indicates the short message to send from a list of pre-defined (‘canned’) short messages stored on the MC. If not using a MC canned message, set to NULL. | [4.7.27](#4727-sm_default_msg_id) |
+| `sm_default_msg_id` | 1 | Integer | Indicates the short message to send from a list of pre-defined (`canned`) short messages stored on the MC. If not using a MC canned message, set to NULL. | [4.7.27](#4727-sm_default_msg_id) |
 | `broadcast_area_identifier` | Var. | TLV | Identifies the target Broadcast Area(s) for the requested message broadcast.<br><br>This parameter can be included a number of times for multiple target Broadcast Areas(s). | [4.8.4.4](#4844-broadcast_area_identifier-failed_broadcast_area_identifier) |
 | `broadcast_content_type` | Var. | TLV | Specifies the content type of the message. | [4.8.4.8](#4848-broadcast_content_type) |
 | `broadcast_rep_num` | Var. | TLV | This field indicates the number of repeated broadcasts of a message requested by the submitter. | [4.8.4.13](#48413-broadcast_rep_num) |
@@ -2059,7 +2059,7 @@ If the *message_id* is set to the ID of a previously submitted message, then pro
 
 If the *message_id* is NULL, all outstanding undelivered messages with matching source and destination addresses (and *service_type* if specified) are cancelled.
 
-Where the original *submit_sm, data_sm* or *submit_multi* ‘source address’ is defaulted to NULL, then the source address in the *cancel_sm* command should also be NULL.
+Where the original *submit_sm, data_sm* or *submit_multi* `source address` is defaulted to NULL, then the source address in the *cancel_sm* command should also be NULL.
 
 ### 4.5.1.1 cancel_sm Syntax
 
@@ -2099,7 +2099,7 @@ The *cancel_sm_resp* PDU is used to reply to a *cancel_sm* request. It comprises
 
 This command is issued by the ESME to query the status of a previously submitted short message.
 
-The matching mechanism is based on the MC assigned *message_id* and source address. Where the original *submit_sm, data_sm* or *submit_multi* ‘source address’ was defaulted to NULL, then the source address in the *query_sm* command should also be set to NULL.
+The matching mechanism is based on the MC assigned *message_id* and source address. Where the original *submit_sm, data_sm* or *submit_multi* `source address` was defaulted to NULL, then the source address in the *query_sm* command should also be set to NULL.
 
 ### 4.5.2.1 query_sm Syntax
 
@@ -2137,7 +2137,7 @@ The matching mechanism is based on the MC assigned *message_id* and source addre
 
 This command is issued by the ESME to replace a previously submitted short message that is pending delivery. The matching mechanism is based on the *message_id* and source address of the original message.
 
-Where the original *submit_sm* ‘source address’ was defaulted to NULL, then the source address in the *replace_sm* command should also be NULL.
+Where the original *submit_sm* `source address` was defaulted to NULL, then the source address in the *replace_sm* command should also be NULL.
 
 ### 4.5.3.1 replace_sm Syntax
 
@@ -2154,7 +2154,7 @@ Where the original *submit_sm* ‘source address’ was defaulted to NULL, then 
 | `schedule_delivery_time` | 1 or 17 | C-Octet String | New scheduled delivery time for the short message.<br><br>Set to NULL to preserve the original scheduled delivery time | [4.7.23.1](#47231-scheduled_delivery_time) |
 | `validity_period` | 1 or 17 | C-Octet String | New expiry time for the short message.<br><br>Set to NULL to preserve the original validity period setting. | [4.7.23.2](#47232-validity_period) |
 | `registered_delivery` | 1 | Integer | Indicator to signify if a MC delivery receipt, user/manual or delivery ACK or intermediate notification is required. | [4.7.21](#4721-registered_delivery) |
-| `sm_default_msg_id` | 1 | Integer | Indicates the short message to send from a list of pre-defined (‘canned’) short messages stored on the MC. If not using a MC canned message, set to NULL. | [4.7.27](#4727-sm_default_msg_id) |
+| `sm_default_msg_id` | 1 | Integer | Indicates the short message to send from a list of pre-defined (`canned`) short messages stored on the MC. If not using a MC canned message, set to NULL. | [4.7.27](#4727-sm_default_msg_id) |
 | `sm_length` | 1 | Integer | Length in octets of the `short_message` user data. | [4.7.28](#4728-sm_length) |
 | `short_message` | Var. 0-255 | Octet String | Up to 255 octets of short message user data.<br><br>The exact physical limit for `short_message` size may vary according to the underlying network<br><br>**Note:** this field is superseded by the `message_payload` TLV if specified. Ref. [4.8.4.36](#48436-message_payload)<br><br>Applications which need to send messages longer than 255 octets should use the `message_payload` TLV. In this case the `sm_length` field should be set to zero | [4.7.26](#4726-short_message) |
 | Message Replacement Request TLVs | Var. | TLV |  | [4.5.3.3](#4533-message-replacement-tlvs) |
@@ -2255,7 +2255,7 @@ If the user_message_reference is set to the ESME-assigned reference of a previou
 submitted message, then provided the source address supplied by the ESME matches that of
 the stored message, that message will be cancelled.
 
-Where the original broadcast_sm ‘source address’ was defaulted to NULL, then the source
+Where the original broadcast_sm `source address` was defaulted to NULL, then the source
 address in the cancel_broadcast_sm command should also be NULL.
 
 ### 4.6.2.1 cancel_broadcast_sm Syntax
@@ -2349,10 +2349,10 @@ Full explanations of UNIX regular expressions can be found in section 5 of the s
 
 SMPP uses a regular expression in the *bind_receiver* and *bind_transceiver* PDUs. The ESME uses this to provide routing criteria to the SMSC, namely, TON, NPI and routing_expr. The TON & NPI values are fixed values where the routing_expr itself is the regular expression.
 
-- ^1234 The ‘^’ char is used to represent `beginning with`, therefore ^1234 is interpreted as MSISDNs beginning with 1234. This allows an ESME specify a specific set of numbers based on a a given prefix common to all.
-- 5678$ The ‘$’ char is used to represent `ending with`, thus 5678$ will match any MSISDN ending with 5678.
-- ^123456$ A combination of ‘^’ and ‘$’ at the beginning and end of a regular expression, is used to specify an absolute address, i.e the above expression will match MSISDNs beginning with and ending with 123456. The only value ever matched to this will in fact be ‘123456’ itself.
-- [13579]$ values within [] denote a character class. The above expression will match MSISDNs ending with any of 1, 3, 5, 7 or 9. So this expression will match MSISDNs ending in an odd digit. If a ‘^’ character is placed inside the ‘[‘, then the match is based on any character not in the specified class; e.g [^13579]$ will match MSISDNs not ending with any of the specified digits.
+- ^1234 The `^` char is used to represent `beginning with`, therefore ^1234 is interpreted as MSISDNs beginning with 1234. This allows an ESME specify a specific set of numbers based on a a given prefix common to all.
+- 5678$ The `$` char is used to represent `ending with`, thus 5678$ will match any MSISDN ending with 5678.
+- ^123456$ A combination of `^` and `$` at the beginning and end of a regular expression, is used to specify an absolute address, i.e the above expression will match MSISDNs beginning with and ending with 123456. The only value ever matched to this will in fact be `123456` itself.
+- [13579]$ values within [] denote a character class. The above expression will match MSISDNs ending with any of 1, 3, 5, 7 or 9. So this expression will match MSISDNs ending in an odd digit. If a `^` character is placed inside the `[`, then the match is based on any character not in the specified class; e.g [^13579]$ will match MSISDNs not ending with any of the specified digits.
 ## 4.7.4 command_length
 
 This 4-octet integer represents the overall length of a PDU. This is described in detail in section [3.2.1.1](#3211-command_length)
@@ -2608,7 +2608,7 @@ This parameter is used to indicate the version of the SMPP protocol. The followi
 
 ## 4.7.14 message_id
 
-The unique message identifier reference assigned by the MC to each submitted short message. It is an opaque value and is set according to MC implementation. It is returned by the MC in the *submit_sm_resp, submit_multi_resp* and *data_sm_resp* PDUs and may be used by the ESME in subsequent SMPP operations relating to the short message, e.g. the ESME can use the *query_sm* operation to query a previously submitted message using the MC *message_id* as the message handle***.*** The *message_id* is also returned in the *broadcast_sm_resp* and may be used by the ESME in subsequent SMPP broadcast operations relating to the short message, e.g. the ESME can use the *query_broadcast_sm* operation to query a previously submitted broadcast message using the MC *message_id* as the message handle.
+The unique message identifier reference assigned by the MC to each submitted short message. It is an opaque value and is set according to MC implementation. It is returned by the MC in the *submit_sm_resp, submit_multi_resp* and *data_sm_resp* PDUs and may be used by the ESME in subsequent SMPP operations relating to the short message, e.g. the ESME can use the *query_sm* operation to query a previously submitted message using the MC *message_id* as the message handle. The *message_id* is also returned in the *broadcast_sm_resp* and may be used by the ESME in subsequent SMPP broadcast operations relating to the short message, e.g. the ESME can use the *query_broadcast_sm* operation to query a previously submitted broadcast message using the MC *message_id* as the message handle.
 
 
 ## 4.7.15 message_state
@@ -2640,7 +2640,7 @@ The number of unsuccessful SME destinations to which delivery was attempted for 
 The *number_of_dests* parameter indicates the number of *dest_address* structures that are to follow in the *submit_multi* operation. A maximum of 255 destination address structures are allowed.
 ## 4.7.18 password
 
-The *password* parameter is used by the MC to authenticate the identity of the binding ESME. The Service Provider may require ESME’s to provide a password when binding to the MC. This password is normally issued by the MC system administrator. The *password* parameter may also be used by the ESME to authenticate the identity of the binding MC (e.g. in the case of the *outbind* operation).
+The *password* parameter is used by the MC to authenticate the identity of the binding ESME. The Service Provider may require ESME`s to provide a password when binding to the MC. This password is normally issued by the MC system administrator. The *password* parameter may also be used by the ESME to authenticate the identity of the binding MC (e.g. in the case of the *outbind* operation).
 ## 4.7.19 priority_flag
 
 The *priority_flag* parameter allows the originating SME to assign a priority level to the short message:
@@ -2706,7 +2706,7 @@ The *replace_if_present_flag* parameter is used to request the MC to replace a p
 
 | Value | Meaning |
 | --- | --- |
-| 0 | Don’t replace (default) |
+| 0 | Don`t replace (default) |
 | 1 | Replace |
 | 2 - 255 | Reserved |
 
@@ -2729,47 +2729,47 @@ The *final_date* parameter indicates the completion time for a message. It can o
 
 ### 4.7.23.4 Absolute Time Format
 
-This is the default format used by SMPP. Scheduled delivery times, expiry times and message completion dates are specified in UTC format, including the quarter hour offset and direction symbol ‘+’ or ‘-’.
+This is the default format used by SMPP. Scheduled delivery times, expiry times and message completion dates are specified in UTC format, including the quarter hour offset and direction symbol `+` or `-`.
 
 Absolute time is formatted as a 16-character string (encoded as a 17-octet C-octet String) `**YYMMDDhhmmsstnnp**` where:
 
 | Digits | Meaning |
 | --- | --- |
-| ‘YY’ | last two digits of the year (00-99) |
-| ‘MM’ | month (01-12) |
-| ‘DD’ | day (01-31) |
-| ‘hh’ | hour (00-23) |
-| ‘mm’ | minute (00-59) |
-| ‘ss’ | second (00-59) |
-| ‘t’ | tenths of second (0-9) |
-| ‘nn’ | Time difference in quarter hours between local time (as expressed in the first 13 octets) and UTC (Universal Time Constant) time (00-48). |
-| ‘p’ | “+”  Local time is in quarter hours advanced in relation to UTC time.<br><br>“-”  Local time is in quarter hours retarded in relation to UTC time. |
+| `YY` | last two digits of the year (00-99) |
+| `MM` | month (01-12) |
+| `DD` | day (01-31) |
+| `hh` | hour (00-23) |
+| `mm` | minute (00-59) |
+| `ss` | second (00-59) |
+| `t` | tenths of second (0-9) |
+| `nn` | Time difference in quarter hours between local time (as expressed in the first 13 octets) and UTC (Universal Time Constant) time (00-48). |
+| `p` | “+”  Local time is in quarter hours advanced in relation to UTC time.<br><br>“-”  Local time is in quarter hours retarded in relation to UTC time. |
 
 **Table 4-54 Absolute UTC Time Format**
 
 ### 4.7.23.5 Relative Time Format
 
-Relative Time can be indicated by setting the UTC orientation flag to ‘R’ instead of ‘+’ or ‘-’. In this form, the MC interprets the time format as the number of years, months, days, hours, minutes and seconds from the current MC time. Values for tenths of seconds ‘t’ and UTC offset ‘nn’ are ignored and should be set to ‘0’ and ‘00’ respectively.
+Relative Time can be indicated by setting the UTC orientation flag to `R` instead of `+` or `-`. In this form, the MC interprets the time format as the number of years, months, days, hours, minutes and seconds from the current MC time. Values for tenths of seconds `t` and UTC offset `nn` are ignored and should be set to `0` and `00` respectively.
 
 Absolute time is formatted as a 16 character string (encoded as a 17-octet C-octet String) `**YYMMDDhhmmsstnnp**` where:
 
 | Digits | Meaning |
 | --- | --- |
-| ‘YY’ | year (00-99) |
-| ‘MM’ | month (01-12) |
-| ‘DD’ | day (01-31) |
-| ‘hh’ | hour (00-23) |
-| ‘mm’ | minute (00-59) |
-| ‘ss’ | second (00-59) |
-| ‘t’ | Unused. Should be set to ‘0’ |
-| ‘nn’ | Unused. Should be set to ‘00’ |
-| ‘p’ | “R”  Local time is relative to the current MC time. |
+| `YY` | year (00-99) |
+| `MM` | month (01-12) |
+| `DD` | day (01-31) |
+| `hh` | hour (00-23) |
+| `mm` | minute (00-59) |
+| `ss` | second (00-59) |
+| `t` | Unused. Should be set to `0` |
+| `nn` | Unused. Should be set to `00` |
+| `p` | “R”  Local time is relative to the current MC time. |
 
 **Table 4-55 Relative Time Format**
 
 
 
-For example, the following time format ‘020610233429000R`:
+For example, the following time format `020610233429000R`:
 
 would be interpreted as a relative period of 2 years, 6 months, 10 days, 23 hours, 34 minutes and 29 seconds from the current MC time. A MC operator may choose to impose a limit on relative time offsets, thus either rejecting a message that exceeds such a limit or reducing the offset to the maximum relative time allowed.
 
@@ -2784,7 +2784,7 @@ The *service_type* parameter can be used to indicate the SMS Application service
 
 - Avail of enhanced messaging services such as *replace_if_present* by service type (generic to all network types).
 - Control the teleservice used on the air interface (e.g. ANSI-136/TDMA, IS- 95/CDMA).
-MCs may implicitly associate a ‘replace if present’ function from the indicated *service_type* in a message submission operation, i.e., the MC will always replace an existing message pending delivery, that has the same originating and destination address as the submitted message. For example, a MC can ensure that a Voice Mail System using a *service_type* of `VMA` has at most one outstanding notification per destination MS by automatically invoking the `replace if present` function.
+MCs may implicitly associate a `replace if present` function from the indicated *service_type* in a message submission operation, i.e., the MC will always replace an existing message pending delivery, that has the same originating and destination address as the submitted message. For example, a MC can ensure that a Voice Mail System using a *service_type* of `VMA` has at most one outstanding notification per destination MS by automatically invoking the `replace if present` function.
 
 Note: In the case of Cell Broadcast Service replace functionality by service type is not
 
@@ -2812,12 +2812,12 @@ All other values are carrier specific and are defined by mutual agreement betwee
 
 ## 4.7.26 short_message
 
-The *short_message* parameter contains the user data. A maximum of 255 octets can be sent. ESME’s should use the optional *message_payload* parameter in *submit_sm,* *submit_multi,* and *deliver_sm* to send larger user data sizes.
+The *short_message* parameter contains the user data. A maximum of 255 octets can be sent. ESME`s should use the optional *message_payload* parameter in *submit_sm,* *submit_multi,* and *deliver_sm* to send larger user data sizes.
 Note: The *short_message* field is designed to carry binary payloads. This is why it is not
  specified as a C-Octet String. The value of the *sm_length* field indicates the explicit number of octets that the *short_message* field contains. NULL terminator octets (for ASCII content) should not be used in this field but if a NULL octet is included with the *short_message* data, then this octet MUST be included in the *sm_length* field.
 ## 4.7.27 sm_default_msg_id
 
-The *sm_default_msg_id* parameter specifies the MC index of a pre-defined (‘canned’) message.
+The *sm_default_msg_id* parameter specifies the MC index of a pre-defined (`canned`) message.
 
 | sm_default_msg_id Value | Meaning |
 | --- | --- |
@@ -2845,7 +2845,7 @@ Specifies the address of the SME, which originated this message. An ESME, which 
 The *system_id* parameter is used to identify an ESME or a MC at bind time. An ESME *system_id* identifies the ESME or ESME agent to the MC. The MC *system_id* provides an identification of the MC to the ESME.
 ## 4.7.31 system_type
 
-The *system_type* parameter is used to categorize the type of ESME that is binding to the MC. Examples include `VMS` (voice mail system) and `OTA` (over-the-air activation system). Specification of the *system_type* is optional-some MCs may not require ESME’s to provide this detail. In this case, the ESME can set the *system_typ*e to NULL.
+The *system_type* parameter is used to categorize the type of ESME that is binding to the MC. Examples include `VMS` (voice mail system) and `OTA` (over-the-air activation system). Specification of the *system_type* is optional-some MCs may not require ESME`s to provide this detail. In this case, the ESME can set the *system_typ*e to NULL.
 
 # 4.8 PDU TLV Definitions
 
@@ -3118,7 +3118,7 @@ This field indicates the number of repeated broadcasts requested by the Submitte
 | --- | --- | --- | --- |
 | Parameter Tag | 2 | Integer | `0x0604` |
 | Length | 2 | Integer | Length of Value part in octets |
-| Value | 2 | Integer | The value 0 has the following significance:<br><br>If no ‘`validity_period`’ has been specified for a broadcast, then the broadcasts should be repeated indefinitely.<br><br>If a ‘`validity_period`’ and a ‘`broadcast_frequency_interval`’ have been specified, then 0 in this field indicates that the `broadcast_rep_num` is implicit according to the settings of these parameters.<br><br>Where a broadcast priority (i.e. `priority_flag` setting) of 1 (Immediate Broadcast) has been requested, then the `broadcast_rep_num` parameter should not be supplied and be ignored if supplied. |
+| Value | 2 | Integer | The value 0 has the following significance:<br><br>If no ``validity_period`` has been specified for a broadcast, then the broadcasts should be repeated indefinitely.<br><br>If a ``validity_period`` and a ``broadcast_frequency_interval`` have been specified, then 0 in this field indicates that the `broadcast_rep_num` is implicit according to the settings of these parameters.<br><br>Where a broadcast priority (i.e. `priority_flag` setting) of 1 (Immediate Broadcast) has been requested, then the `broadcast_rep_num` parameter should not be supplied and be ignored if supplied. |
 
 **Table 4-74 *broadcast_rep_num* TLV**
 
@@ -3370,7 +3370,7 @@ The *dpf_result* parameter is used to indicate if delivery pending flag (DPF) wa
 
 ### 4.8.4.33 its_reply_type
 
-The *its_reply_type* parameter is a required parameter for the CDMA Interactive Teleservice as defined by the Korean PCS carriers [KORITS]. It indicates and controls the MS user’s reply method to an SMS delivery message received from the ESME.
+The *its_reply_type* parameter is a required parameter for the CDMA Interactive Teleservice as defined by the Korean PCS carriers [KORITS]. It indicates and controls the MS user`s reply method to an SMS delivery message received from the ESME.
 
 | Field | Size octets | Type | Description |
 | --- | --- | --- | --- |
