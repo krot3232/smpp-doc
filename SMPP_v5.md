@@ -3522,7 +3522,7 @@ The *payload_type* parameter defines the higher layer PDU type contained in the 
 | --- | --- | --- | --- |
 | Parameter Tag | 2 | Integer | `0x0019` |
 | Length | 2 | Integer | Length of Value part in octets |
-| Value | 1 | Integer | 0 = Default.<br><br>In the case of a WAP application, the default higher layer message type is a WDP message. See [15]<br><br>1= WCMP message.<br><br>Wireless Control Message Protocol formatted data. See [14] for details.<br><br>Values 2 to 255 are reserved |
+| Value | 1 | Integer | 0 = Default.<br><br>In the case of a WAP application, the default higher layer message type is a WDP message. See [WDP]<br><br>1= WCMP message.<br><br>Wireless Control Message Protocol formatted data. See [WCMP] for details.<br><br>Values 2 to 255 are reserved |
 
 **Table 4-105 *payload_type* TLV**
 
@@ -3676,7 +3676,7 @@ The *source_network_id* assigned to a wireless network operator or ESME operator
 | --- | --- | --- | --- |
 | Parameter Tag | 2 | Integer | `0x060D` |
 | Length | 2 | Integer | Length of Value part in octets |
-| Value | 7-65 | C-Octet String | For GSM Networks:<br>1 + MCC+ MNC; (1cccnn) Ref. [1]<br>For TDMA or CDMA Networks:<br>2 + MCC+ SID; (2cccsssss) Ref.  [12]<br><br>For ESME Operators:<br>3 + MCC + address type ind. + unique address<br><br>The following address type indicators are defined:<br>_Type — Value — Unique Address_<br>IP Address — 1 — Unique address derived from IPv4 or IPv6 IP address of resolved domain name of ESME operator.<br><br>For example, an ESME operator has a domain name of smpp.esme.com. A DNS lookup resolves smpp.esme.com to 141.204.178.86, the unique address is derived as 141205178086.<br><br>Note: 1 or 2-digit sub-domains are expanded into 3-digit numbers with leading zeros.<br><br>Alphanumeric — 2 — Alphanumeric domain name of ESME operator (for example smpp.esme.com)<br><br>E.164 — 3 — E164 address including country code<br><br>X.212 — 4 — X.212 address of ESME operator |
+| Value | 7-65 | C-Octet String | For GSM Networks:<br>1 + MCC+ MNC; (1cccnn) Ref. [GSM 03.03]<br>For TDMA or CDMA Networks:<br>2 + MCC+ SID; (2cccsssss) Ref.  [TSB29-D]<br><br>For ESME Operators:<br>3 + MCC + address type ind. + unique address<br><br>The following address type indicators are defined:<br>_Type — Value — Unique Address_<br>IP Address — 1 — Unique address derived from IPv4 or IPv6 IP address of resolved domain name of ESME operator.<br><br>For example, an ESME operator has a domain name of smpp.esme.com. A DNS lookup resolves smpp.esme.com to 141.204.178.86, the unique address is derived as 141205178086.<br><br>Note: 1 or 2-digit sub-domains are expanded into 3-digit numbers with leading zeros.<br><br>Alphanumeric — 2 — Alphanumeric domain name of ESME operator (for example smpp.esme.com)<br><br>E.164 — 3 — E164 address including country code<br><br>X.212 — 4 — X.212 address of ESME operator |
 
 **Table 4-117 *source_network_id* TLV**
 
@@ -3781,5 +3781,4 @@ The *ussd_service_op* parameter is required to define the USSD service operation
 | Value | 1 | Integer | 0 = PSSD indication<br>1 = PSSR indication<br>2 = USSR request<br>3 = USSN request<br>4 to 15 = reserved<br><br>16 = PSSD response<br>17 = PSSR response<br>18 = USSR confirm<br>19 = USSN confirm<br><br>20 to 31 = reserved<br>32 to 255 = reserved for vendor specific USSD operations |
 
 **Table 4-125 *ussd_service_op* TLV**
-
 
