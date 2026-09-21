@@ -1026,7 +1026,7 @@ Command_ids for request PDUs are allocated from a range of numbers; 0x00000000 t
 
 Command_ids for response PDUs are allocated from a range of numbers; 0x80000000 to 0x800001FF.
 
-The relationship between the *command_id* for a request PDU and its associated response PDU is that bit 31 is cleared for the request and set for the response. For example, *replace_sm* has a *command_id* = 0x**0**0000007 and its` response PDU *replace_sm_resp* has a *command_id* = 0x80000007. Ref. [4.7.5](#475-command_id)
+The relationship between the *command_id* for a request PDU and its associated response PDU is that bit 31 is cleared for the request and set for the response. For example, *replace_sm* has a *command_id* = 0x00000007 and its` response PDU *replace_sm_resp* has a *command_id* = 0x80000007. Ref. [4.7.5](#475-command_id)
 
 ### 3.2.1.3 Command_status
 
